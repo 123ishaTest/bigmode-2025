@@ -1,0 +1,83 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "maps/tutorial/tutorial.json",
+    "expandedProjectPaths": [
+        "tilesets",
+        "maps",
+        "maps/tutorial",
+        "."
+    ],
+    "fileStates": {
+        "maps/tutorial/demo2.json": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 260.6666666666667,
+                "y": 137.33333333333331
+            }
+        },
+        "maps/tutorial/fence.json": {
+            "scaleInDock": 1
+        },
+        "maps/tutorial/grass.json": {
+            "scaleInDock": 1
+        },
+        "maps/tutorial/house.json": {
+            "scaleInDock": 1
+        },
+        "maps/tutorial/scenery.json": {
+            "scaleInDock": 1
+        },
+        "maps/tutorial/tutorial.json": {
+            "scale": 2.0892,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 194.33275895079458,
+                "y": 102.9102048631055
+            }
+        },
+        "tilesets/fence.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/grass.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/house.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/scenery.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.externalTilesetPath": "/Users/isha/Documents/Development/lands-unknown/packages/content/data/worldmap/tilesets",
+    "last.imagePath": "/Users/isha/Documents/Development/lands-unknown/packages/content/data/worldmap/tilesets",
+    "loadedWorlds": [
+        "/Users/isha/Documents/Development/lands-unknown/packages/content/data/worldmap/lands-unknown.world"
+    ],
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "maps/tutorial/tutorial.json",
+        "tilesets/fence.json",
+        "tilesets/grass.json",
+        "tilesets/scenery.json",
+        "tilesets/house.json"
+    ],
+    "project": "lands-unknown.tiled-project",
+    "recentFiles": [
+        "tilesets/fence.json",
+        "tilesets/house.json",
+        "tilesets/scenery.json",
+        "tilesets/grass.json",
+        "maps/tutorial/tutorial.json",
+        "maps/tutorial/demo2.json"
+    ]
+}

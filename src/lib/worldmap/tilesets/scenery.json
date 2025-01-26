@@ -1,0 +1,21 @@
+{
+    "columns": 4,
+    "image": "scenery.png",
+    "imageheight": 64,
+    "imagewidth": 64,
+    "margin": 0,
+    "name": "scenery",
+    "spacing": 0,
+    "tilecount": 16,
+    "tiledversion": "1.10.1",
+    "tileheight": 16,
+    "tiles": [
+        {
+            "id": 0,
+            "probability": 100
+        }
+    ],
+    "tilewidth": 16,
+    "type": "tileset",
+    "version": "1.10"
+}

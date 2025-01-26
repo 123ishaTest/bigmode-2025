@@ -1,0 +1,84 @@
+{
+    "columns": 4,
+    "image": "fence.png",
+    "imageheight": 64,
+    "imagewidth": 64,
+    "margin": 0,
+    "name": "fence",
+    "spacing": 0,
+    "tilecount": 16,
+    "tiledversion": "1.10.1",
+    "tileheight": 16,
+    "tilewidth": 16,
+    "type": "tileset",
+    "version": "1.10",
+    "wangsets": [
+        {
+            "colors": [
+                {
+                    "color": "#ff0000",
+                    "name": "Fence",
+                    "probability": 1,
+                    "tile": -1
+                }
+            ],
+            "name": "Fence",
+            "tile": -1,
+            "type": "edge",
+            "wangtiles": [
+                {
+                    "tileid": 0,
+                    "wangid": [0, 0, 1, 0, 1, 0, 0, 0]
+                },
+                {
+                    "tileid": 1,
+                    "wangid": [0, 0, 1, 0, 0, 0, 1, 0]
+                },
+                {
+                    "tileid": 2,
+                    "wangid": [0, 0, 0, 0, 1, 0, 1, 0]
+                },
+                {
+                    "tileid": 3,
+                    "wangid": [0, 0, 0, 0, 1, 0, 0, 0]
+                },
+                {
+                    "tileid": 4,
+                    "wangid": [1, 0, 0, 0, 1, 0, 0, 0]
+                },
+                {
+                    "tileid": 6,
+                    "wangid": [1, 0, 0, 0, 1, 0, 0, 0]
+                },
+                {
+                    "tileid": 7,
+                    "wangid": [1, 0, 0, 0, 1, 0, 0, 0]
+                },
+                {
+                    "tileid": 8,
+                    "wangid": [1, 0, 1, 0, 0, 0, 0, 0]
+                },
+                {
+                    "tileid": 10,
+                    "wangid": [1, 0, 0, 0, 0, 0, 1, 0]
+                },
+                {
+                    "tileid": 11,
+                    "wangid": [1, 0, 0, 0, 0, 0, 0, 0]
+                },
+                {
+                    "tileid": 12,
+                    "wangid": [0, 0, 1, 0, 0, 0, 0, 0]
+                },
+                {
+                    "tileid": 13,
+                    "wangid": [0, 0, 1, 0, 0, 0, 1, 0]
+                },
+                {
+                    "tileid": 14,
+                    "wangid": [0, 0, 0, 0, 0, 0, 1, 0]
+                }
+            ]
+        }
+    ]
+}
