@@ -43,7 +43,7 @@ export class Enemy implements Fightable {
     }
 
     takeDamage(damage: number): void {
-        this.health -= Math.floor(damage);
+        this.health -= damage;
     }
 
     idle(delta: number): void {

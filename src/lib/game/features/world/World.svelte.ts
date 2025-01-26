@@ -88,7 +88,9 @@ export class World extends IgtFeature {
         // TODO(@Isha): Move the character here?
     }
 
-    load(data: SaveData): void {}
+    load(): void {}
 
-    save(): SaveData {}
+    save(): SaveData {
+        return {};
+    }
 }

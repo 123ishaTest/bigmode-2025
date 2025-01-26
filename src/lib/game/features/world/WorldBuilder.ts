@@ -2,7 +2,6 @@ import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
 import type { ObjectProperty } from '$lib/util/tiled/types/objects/ObjectProperty';
 import type { Road } from '$lib/game/features/world/Road';
 import type { ObjectGroup } from '$lib/util/tiled/types/layers/ObjectGroup';
-import { object } from 'zod';
 import type { WorldLocationId } from '$lib/content/WorldLocationId';
 import type { TiledLayer } from '$lib/util/tiled/types/layers/TiledLayer';
 import type { TiledMap } from '$lib/util/tiled/types/TiledMap';
@@ -25,7 +24,10 @@ export class WorldBuilder {
         };
     }
 
-    getPropertyValue(properties: ObjectProperty[], targetName: string) {
+    getPropertyValue(properties: ObjectProperty[] | undefined, targetName: string) {
+        if (properties == undefined) {
+            return null;
+        }
         const property = properties.find((property) => {
             return property.name === targetName;
         });
@@ -54,13 +56,12 @@ export class WorldBuilder {
                             y: position.y + object.y,
                         });
                     }) ?? [];
-                // return new Road(new RoadLocationIdentifier(id), "Road", new TownLocationIdentifier(from), new TownLocationIdentifier(to), points, baseDuration, roadType);
                 return {
                     id,
                     from,
                     to,
                     path: points,
-                    duration: 10,
+                    duration: points.length,
                     obstacles: [
                         { distance: 5, obstacle: { monster: MonsterId.Chicken, level: 1 } },
                         { distance: 10, obstacle: { monster: MonsterId.Chicken, level: 1 } },
@@ -80,7 +81,7 @@ export class WorldBuilder {
     parseWorldLocations(): WorldLocation[] {
         const hitBoxLayer = this.getLayer('Paths') as ObjectGroup;
 
-        const locations: WorldLocation[] = hitBoxLayer?.objects
+        return hitBoxLayer?.objects
             ?.filter((object) => {
                 // Only parse points.
                 return object.point;
@@ -92,6 +93,5 @@ export class WorldBuilder {
                     name: this.getPropertyValue(object.properties, 'name') ?? 'Name',
                 };
             });
-        return locations;
     }
 }

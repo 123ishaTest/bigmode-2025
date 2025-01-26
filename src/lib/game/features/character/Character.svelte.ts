@@ -13,6 +13,9 @@ import type { Bestiary } from '$lib/game/features/bestiary/Bestiary';
 import { Attack } from '$lib/game/tools/combat/Attack';
 import { WeaponType } from '$lib/game/tools/combat/WeaponType';
 import type { Fightable } from '$lib/game/tools/combat/Fightable';
+import type { RunStats } from '$lib/game/features/powers/RunStats';
+import type { Powers } from '$lib/game/features/powers/Powers.svelte';
+import { PowerType } from '$lib/game/features/powers/PowerType';
 
 export interface TravelAction {
     roadId: RoadId;
@@ -22,6 +25,14 @@ export interface TravelAction {
 export class Character extends IgtFeature implements Fightable {
     private _bestiary!: Bestiary;
     private _worldMap!: World;
+    private _powers!: Powers;
+
+    runStats: RunStats = $state({
+        damageDealt: 0,
+        damageTaken: 0,
+        monstersDefeated: 0,
+        locationsVisited: 0,
+    });
 
     roadProgress: number = $state(0);
     roadObstaclesCompleted: number = $state(0);
@@ -40,17 +51,35 @@ export class Character extends IgtFeature implements Fightable {
 
     public constructor() {
         super('character');
-        // TODO(@Isha): Get stats from somewhere
-        this.maxHealth = 100;
-        this.health = this.maxHealth;
-        this.meleeAttack = 3;
-        this.meleeDefense = 3;
     }
 
     initialize(features: IgtFeatures): void {
         this._worldMap = features.world;
         this._bestiary = features.bestiary;
-        // throw new Error('Method not implemented.');
+        this._powers = features.powers;
+    }
+
+    public startRun(): void {
+        this.runStats = {
+            damageDealt: 0,
+            damageTaken: 0,
+            monstersDefeated: 0,
+            locationsVisited: 0,
+        };
+        this.meleeAttack = this._powers.getMultiplier(PowerType.Attack);
+        this.meleeDefense = this._powers.getMultiplier(PowerType.Defense);
+        this.maxHealth = 10;
+        this.health = this.maxHealth;
+    }
+
+    public endRun(): void {
+        this.actionQueue = [];
+        this.currentObstacle = null;
+        this.roadProgress = 0;
+        this._worldMap.setCurrentLocation('/home');
+
+        // TODO(@Isha): Do this here or wait on user input?
+        this.startRun();
     }
 
     update(delta: number): void {
@@ -59,13 +88,13 @@ export class Character extends IgtFeature implements Fightable {
         }
 
         if (this.currentObstacle != null) {
-            this.currentObstacle.tick(delta);
+            const report = this.currentObstacle.tick(delta);
 
-            if (!this.currentObstacle.isActive) {
-                // TODO(@Isha): Obstacle completed
-                console.log('obstacle completed');
+            if (report != null) {
                 this.currentObstacle = null;
                 this.roadObstaclesCompleted += 1;
+                this.runStats.damageTaken += report.damageTaken;
+                this.runStats.damageDealt += report.damageDealt;
             }
             return;
         }
@@ -119,7 +148,15 @@ export class Character extends IgtFeature implements Fightable {
     }
 
     die(): void {
+        this._onDeath.dispatch(this.runStats);
         this.isAlive = false;
+        this.endRun();
+    }
+
+    private _onDeath = new SimpleEventDispatcher<RunStats>();
+
+    public get onDeath(): ISimpleEvent<RunStats> {
+        return this._onDeath.asEvent();
     }
 
     completeAction(): void {

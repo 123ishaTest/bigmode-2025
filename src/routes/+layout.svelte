@@ -7,12 +7,14 @@
 
     import { game } from '$lib/game.svelte';
     import { base } from '$app/paths';
+    import RunEndModal from '$lib/components/RunEndModal.svelte';
 
     let { children } = $props();
 
     setContext('game', game);
 </script>
 
+<RunEndModal />
 <AppBar>
     {#snippet lead()}
         <p>Super secret game name</p>

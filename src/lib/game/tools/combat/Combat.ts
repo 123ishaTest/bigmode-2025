@@ -2,6 +2,7 @@ import type { Fightable } from '$lib/game/tools/combat/Fightable';
 import type { Attack } from '$lib/game/tools/combat/Attack';
 import { intBetween } from '$lib/game/tools/random/Random';
 import type { Enemy } from '$lib/game/features/bestiary/Enemy.svelte';
+import type { CombatReport } from '$lib/game/tools/combat/CombatReport';
 
 export class Combat {
     character: Fightable;
@@ -12,6 +13,9 @@ export class Combat {
     characterScheduledAttack: Attack | null = null;
     enemyScheduledAttack: Attack | null = null;
 
+    damageDealt: number = 0;
+    damageTaken: number = 0;
+
     constructor(fighter1: Fightable, fighter2: Enemy) {
         this.character = fighter1;
         this.enemy = fighter2;
@@ -20,30 +24,37 @@ export class Combat {
         this.enemyScheduledAttack = this.enemy.attack();
     }
 
-    tick(delta: number) {
+    tick(delta: number): CombatReport | null {
         this.character.idle(delta);
         this.enemy.idle(delta);
 
         if (this.character.cooldown <= 0 && this.characterScheduledAttack) {
             const damage = this.calculateDamage(this.character, this.characterScheduledAttack, this.enemy);
             this.characterScheduledAttack = null;
-            console.log(`Player attacking monster for ${damage} damage`);
+            // console.log(`Player attacking monster for ${damage} damage`);
             this.enemy.takeDamage(damage);
+
+            this.damageDealt += damage;
+
             if (this.enemy.health <= 0) {
                 this.end();
-                return;
+                this.enemy.die();
+                return this.createCombatReport();
             }
         }
+
         if (this.enemy.cooldown <= 0 && this.enemyScheduledAttack) {
             const damage = this.calculateDamage(this.enemy, this.enemyScheduledAttack, this.character);
             this.enemyScheduledAttack = null;
-            console.log(`Monster attacking player for ${damage} damage`);
+            // console.log(`Monster attacking player for ${damage} damage`);
 
             this.character.takeDamage(damage);
+            this.damageTaken += damage;
 
             if (this.character.health <= 0) {
                 this.end();
-                return;
+                this.character.die();
+                return this.createCombatReport();
             }
         }
 
@@ -53,6 +64,8 @@ export class Combat {
         if (this.enemyScheduledAttack == null) {
             this.enemyScheduledAttack = this.enemy.attack();
         }
+
+        return null;
     }
 
     calculateDamage(attacker: Fightable, attack: Attack, defender: Fightable): number {
@@ -66,8 +79,15 @@ export class Combat {
         const defenseStat = defender.getDefenseValue(attackType);
 
         const baseDamage = (attackStat * 100) / (100 + defenseStat);
-        return baseDamage;
+        return Math.floor(baseDamage);
         // return Math.ceil(baseDamage * (isCritical ? 2 : 1));
+    }
+
+    private createCombatReport(): CombatReport {
+        return {
+            damageDealt: this.damageDealt,
+            damageTaken: this.damageTaken,
+        };
     }
 
     end(): void {
