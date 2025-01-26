@@ -47,7 +47,7 @@ export class Character extends IgtFeature implements Fightable {
     cooldown: number = $state(0);
     meleeAttack: number = $state(0);
     meleeDefense: number = $state(0);
-    isAlive: boolean = $state(false);
+    travelSpeed: number = $state(0);
 
     public constructor() {
         super('character');
@@ -68,7 +68,8 @@ export class Character extends IgtFeature implements Fightable {
         };
         this.meleeAttack = this._powers.getMultiplier(PowerType.Attack);
         this.meleeDefense = this._powers.getMultiplier(PowerType.Defense);
-        this.maxHealth = 10;
+        this.maxHealth = 10 * this._powers.getMultiplier(PowerType.Health);
+        this.travelSpeed = this._powers.getMultiplier(PowerType.TravelSpeed);
         this.health = this.maxHealth;
     }
 
@@ -95,11 +96,17 @@ export class Character extends IgtFeature implements Fightable {
                 this.roadObstaclesCompleted += 1;
                 this.runStats.damageTaken += report.damageTaken;
                 this.runStats.damageDealt += report.damageDealt;
+
+                if (report.playerWon) {
+                    this.runStats.monstersDefeated++;
+                } else {
+                    this.die();
+                }
             }
             return;
         }
 
-        this.roadProgress += delta;
+        this.roadProgress += delta * this.travelSpeed;
 
         const roadId = this.actionQueue[0].roadId;
         const road = this._worldMap.getRoad(roadId);
@@ -149,7 +156,6 @@ export class Character extends IgtFeature implements Fightable {
 
     die(): void {
         this._onDeath.dispatch(this.runStats);
-        this.isAlive = false;
         this.endRun();
     }
 
@@ -165,6 +171,8 @@ export class Character extends IgtFeature implements Fightable {
         this.currentObstacle = null;
         this.roadObstaclesCompleted = 0;
         this.roadProgress = 0;
+        this.runStats.locationsVisited++;
+
         const action = this.actionQueue[0];
         const road = this._worldMap.getRoad(action.roadId);
         const destination = action.reverse ? road.from : road.to;
@@ -203,12 +211,12 @@ export class Character extends IgtFeature implements Fightable {
         this.actionQueue.shift();
     }
 
-    load(data: SaveData): void {
-        // throw new Error('Method not implemented.');
+    load(): void {
+        // Empty
     }
 
     save(): SaveData {
-        // throw new Error('Method not implemented.');
+        return {};
     }
 
     private _onRoadCompletion = new SimpleEventDispatcher<Road>();

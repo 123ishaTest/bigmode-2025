@@ -12,7 +12,6 @@ export interface Fightable extends Stats {
     health: number;
     cooldown: number;
     maxCooldown: number;
-    isAlive: boolean;
 
     meleeAttack: number;
     meleeDefense: number;
@@ -35,6 +34,4 @@ export interface Fightable extends Stats {
     getAttackValue(type: WeaponType): number;
 
     getDefenseValue(type: WeaponType): number;
-
-    die(): void;
 }

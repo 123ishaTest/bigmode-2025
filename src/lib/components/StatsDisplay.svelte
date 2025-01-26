@@ -21,11 +21,15 @@
             </tr>
             <tr>
                 <td>Attack</td>
-                <td>{character.meleeAttack}</td>
+                <td>{character.meleeAttack.toFixed(2)}</td>
             </tr>
             <tr>
                 <td>Defense</td>
-                <td>{character.meleeDefense}</td>
+                <td>{character.meleeDefense.toFixed(2)}</td>
+            </tr>
+            <tr>
+                <td>Travel Speed</td>
+                <td>{character.travelSpeed.toFixed(2)}</td>
             </tr>
         </tbody>
     </table>

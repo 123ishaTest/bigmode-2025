@@ -120,11 +120,3 @@
         {/if}
     </div>
 </div>
-
-<style>
-    .pixelated {
-        image-rendering: -moz-crisp-edges;
-        image-rendering: pixelated;
-        -ms-interpolation-mode: nearest-neighbor;
-    }
-</style>

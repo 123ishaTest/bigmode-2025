@@ -4,6 +4,7 @@
     import type { IgtGame } from '$lib/game/IgtGame';
     import { getContext } from 'svelte';
     import type { Power } from '$lib/game/features/powers/Power';
+    import { toCapitalizedWords } from '$lib/util/format/String';
 
     let openState = $state(false);
 
@@ -26,23 +27,38 @@
 <Modal
     bind:open={openState}
     triggerBase="hidden"
-    contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm"
+    contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm w-1/2"
     backdropClasses="backdrop-blur-sm"
 >
     {#snippet content()}
         <header class="flex justify-between">
-            <h2 class="h2">Run Completed</h2>
+            <h2 class="h2">You died.</h2>
         </header>
         <article>
-            <p class="opacity-60">Congratulations on your run. Here are your stats</p>
-            <span>{JSON.stringify(stats, null, 2)}</span>
+            <h2 class="h2">Stats</h2>
+            <table class="table">
+                <tbody>
+                    {#each Object.entries(stats) as stat}
+                        <tr>
+                            <td>{toCapitalizedWords(stat[0])}</td>
+                            <td>{stat[1]}</td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
 
-            <div class="flex flex-col space-y-2">
-                <p class="opacity-60">Congratulations on your run. Here are your stats</p>
-                {#each powersGained as power}
-                    <span>You power {power.name} is now level {game.features.powers.getPowerLevel(power.id)}</span>
-                {/each}
-            </div>
+            <h2 class="h2">Powers Gained</h2>
+            <table class="table">
+                <tbody>
+                    {#each powersGained as power}
+                        <tr>
+                            <td>{power.name}</td>
+                            <td>Lvl. {game.features.powers.getPowerLevel(power.id)}</td>
+                            <td>{game.features.powers.getPowerMultiplier(power.id).toFixed(2)}x</td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
         </article>
         <footer class="flex justify-end gap-4">
             <button type="button" class="btn preset-filled" onclick={modalClose}>Next Run!</button>

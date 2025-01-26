@@ -14,6 +14,7 @@
     </div>
     <div class="flex w-96 flex-col space-y-2 p-4">
         <PowersDisplay />
+
         <p class="h-64 border-2 border-primary-200 p-2">Key Items go here</p>
     </div>
 </div>

@@ -8,8 +8,6 @@ export class Combat {
     character: Fightable;
     enemy: Enemy;
 
-    isActive: boolean = true;
-
     characterScheduledAttack: Attack | null = null;
     enemyScheduledAttack: Attack | null = null;
 
@@ -31,30 +29,25 @@ export class Combat {
         if (this.character.cooldown <= 0 && this.characterScheduledAttack) {
             const damage = this.calculateDamage(this.character, this.characterScheduledAttack, this.enemy);
             this.characterScheduledAttack = null;
-            // console.log(`Player attacking monster for ${damage} damage`);
             this.enemy.takeDamage(damage);
 
             this.damageDealt += damage;
+            console.log(this.damageDealt);
 
             if (this.enemy.health <= 0) {
-                this.end();
-                this.enemy.die();
-                return this.createCombatReport();
+                return this.createCombatReport(true);
             }
         }
 
         if (this.enemy.cooldown <= 0 && this.enemyScheduledAttack) {
-            const damage = this.calculateDamage(this.enemy, this.enemyScheduledAttack, this.character);
+            const damage = Math.max(1, this.calculateDamage(this.enemy, this.enemyScheduledAttack, this.character));
             this.enemyScheduledAttack = null;
-            // console.log(`Monster attacking player for ${damage} damage`);
 
             this.character.takeDamage(damage);
             this.damageTaken += damage;
 
             if (this.character.health <= 0) {
-                this.end();
-                this.character.die();
-                return this.createCombatReport();
+                return this.createCombatReport(false);
             }
         }
 
@@ -83,15 +76,12 @@ export class Combat {
         // return Math.ceil(baseDamage * (isCritical ? 2 : 1));
     }
 
-    private createCombatReport(): CombatReport {
+    private createCombatReport(playerWon: boolean): CombatReport {
         return {
+            playerWon: playerWon,
+            enemy: this.enemy,
             damageDealt: this.damageDealt,
             damageTaken: this.damageTaken,
         };
-    }
-
-    end(): void {
-        console.log('ending combat');
-        this.isActive = false;
     }
 }

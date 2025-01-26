@@ -8,12 +8,12 @@
         const road = game.features.world.getRoad(action.roadId);
         const fromName = game.features.world.getLocation(road.from).name;
         const toName = game.features.world.getLocation(road.to).name;
-        return `From ${action.reverse ? toName : fromName} to ${action.reverse ? fromName : toName}`;
+        return `${action.reverse ? toName : fromName} -> ${action.reverse ? fromName : toName}`;
     };
 </script>
 
 <div class="flex w-64 flex-col border-2 border-b-0 border-primary-200 p-2">
     {#each game.features.character.actionQueue as action}
-        <p>{getRoadDescription(action)}</p>
+        <p class="text-sm">{getRoadDescription(action)}</p>
     {/each}
 </div>
