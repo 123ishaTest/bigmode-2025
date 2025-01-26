@@ -13,7 +13,6 @@ import type { Bestiary } from '$lib/game/features/bestiary/Bestiary';
 import { Attack } from '$lib/game/tools/combat/Attack';
 import { WeaponType } from '$lib/game/tools/combat/WeaponType';
 import type { Fightable } from '$lib/game/tools/combat/Fightable';
-import { MonsterId } from '$lib/game/features/bestiary/MonsterId';
 
 export interface TravelAction {
     roadId: RoadId;
@@ -126,6 +125,7 @@ export class Character extends IgtFeature implements Fightable {
     completeAction(): void {
         // TODO(@Isha): Reward
 
+        this.currentObstacle = null;
         this.roadObstaclesCompleted = 0;
         this.roadProgress = 0;
         const action = this.actionQueue[0];

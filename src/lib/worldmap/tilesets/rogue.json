@@ -1,0 +1,15 @@
+{
+    "columns": 57,
+    "image": "rogue.png",
+    "imageheight": 526,
+    "imagewidth": 968,
+    "margin": 0,
+    "name": "rogue",
+    "spacing": 1,
+    "tilecount": 1767,
+    "tiledversion": "1.11.1.1",
+    "tileheight": 16,
+    "tilewidth": 16,
+    "type": "tileset",
+    "version": "1.10"
+}

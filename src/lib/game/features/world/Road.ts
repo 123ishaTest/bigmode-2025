@@ -9,6 +9,5 @@ export interface Road {
     to: WorldLocationId;
     obstacles: RoadObstacle[];
     duration: number;
-    position: WorldPosition;
     path: WorldPosition[];
 }

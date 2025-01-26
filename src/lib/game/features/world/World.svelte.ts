@@ -1,68 +1,24 @@
 import { IgtFeature } from '$lib/game/IgtFeature';
 import type { SaveData } from '$lib/game/tools/saving/SaveData';
 import type { WorldLocation } from '$lib/game/features/world/WorldLocation';
-import { WorldLocationId } from '$lib/content/WorldLocationId';
 import type { Road } from '$lib/game/features/world/Road';
-import { RoadId } from '$lib/content/RoadId';
-import { MonsterId } from '$lib/game/features/bestiary/MonsterId';
+import { type RoadId } from '$lib/content/RoadId';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
 import type { Character } from '$lib/game/features/character/Character.svelte';
 import { Dijkstra } from '$lib/game/features/world/Dijkstra';
+import type { WorldLocationId } from '$lib/content/WorldLocationId';
 
 export class World extends IgtFeature {
-    locations: WorldLocation[] = [
-        {
-            id: WorldLocationId.House,
-            name: 'House',
-            description: 'A nice house',
-            position: { x: 328 / 16, y: 168 / 16 },
-        },
-        { id: WorldLocationId.Pigs, name: 'Pigs', description: 'Oink oink', position: { x: 152 / 16, y: 56 / 16 } },
-    ];
+    locations: WorldLocation[];
+    roads: Road[];
 
-    roads: Road[] = [
-        {
-            id: RoadId.HouseToPigs,
-            from: WorldLocationId.House,
-            to: WorldLocationId.Pigs,
-            obstacles: [
-                { distance: 5, obstacle: { monster: MonsterId.Chicken, level: 1 } },
-                { distance: 10, obstacle: { monster: MonsterId.Chicken, level: 1 } },
-                { distance: 15, obstacle: { monster: MonsterId.Chicken, level: 2 } },
-            ],
-            duration: 20,
-            position: {
-                x: 328,
-                y: 168,
-            },
-            path: [
-                { x: 0, y: 16 },
-                { x: -16, y: 16 },
-                { x: -32, y: 16 },
-                { x: -32, y: 32 },
-                { x: -48, y: 32 },
-                { x: -64, y: 32 },
-                { x: -80, y: 32 },
-                { x: -96, y: 32 },
-                { x: -112, y: 32 },
-                { x: -128, y: 32 },
-                { x: -144, y: 32 },
-                { x: -144, y: 16 },
-                { x: -160, y: 16 },
-                { x: -160, y: 0 },
-                { x: -176, y: 0 },
-                { x: -176, y: -16 },
-                { x: -176, y: -32 },
-                { x: -176, y: -48 },
-            ],
-        },
-    ];
-
-    playerLocation: WorldLocationId = $state(WorldLocationId.House);
+    playerLocation: WorldLocationId = $state('/home');
     private _character!: Character;
 
-    constructor() {
+    constructor(locations: WorldLocation[], roads: Road[]) {
         super('world');
+        this.locations = locations;
+        this.roads = roads;
     }
 
     public getCurrentLocation(): WorldLocation {
@@ -107,7 +63,7 @@ export class World extends IgtFeature {
         }
 
         const path = this.getPath(startingLocation, target, true);
-        if (path == null) {
+        if (path == null || path.length === 0) {
             console.log(`There is no road from ${startingLocation} to ${target}`);
             return false;
         }

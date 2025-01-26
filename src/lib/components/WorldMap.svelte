@@ -1,6 +1,4 @@
 <script lang="ts">
-    import worldMap from '$lib/worldmap/maps/tutorial/tutorial.json';
-
     import { getContext, onMount } from 'svelte';
 
     import { TiledWrapperSvelte } from '$lib/util/tiled/TiledWrapper.svelte';
@@ -11,6 +9,7 @@
     import ActionQueueDisplay from '$lib/components/ActionQueueDisplay.svelte';
     import RoadProgressDisplay from '$lib/components/RoadProgressDisplay.svelte';
     import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
+    import { map } from '$lib/game.svelte';
 
     let game: IgtGame = getContext('game');
 
@@ -25,13 +24,15 @@
 
     let tiledWrapper: TiledWrapperSvelte = $state(
         new TiledWrapperSvelte(
-            worldMap,
+            map,
             () => {
                 tiledWrapper.render();
                 tiledWrapper.renderPlayer(currentLocation.position.x, currentLocation.position.y);
             },
             (clickBox: TiledObject) => {
                 let locationId = clickBox.properties?.find((p) => p.name === 'hrid')?.value;
+                console.log('clickBox', clickBox, locationId);
+
                 if (!locationId) {
                     console.error('Unknown clickbox', clickBox);
                 }
@@ -44,7 +45,7 @@
 
     const panZoomOptions = {
         disableZoom: false,
-        minScale: 0.8,
+        minScale: 0.6,
         maxScale: 5,
         contain: 'outside',
         canvas: true,
@@ -67,12 +68,7 @@
     const activeRoads = $derived.by(() => {
         return game.features.character.actionQueue.map((a) => {
             let road = game.features.world.getRoad(a.roadId);
-            return road.path.map((p) => {
-                return {
-                    x: (road.position.x + p.x) / 16,
-                    y: (road.position.y + p.y) / 16,
-                };
-            });
+            return road.path;
         });
     });
 
@@ -87,12 +83,8 @@
         if (action.reverse) {
             percentage = 1 - percentage;
         }
-        const index = Math.floor(percentage * road.path.length);
-        const node = road.path[index];
-        return {
-            x: (road.position.x + node.x) / 16,
-            y: (road.position.y + node.y) / 16,
-        };
+        const index = Math.min(Math.floor(percentage * road.path.length), road.path.length - 1);
+        return road.path[index];
     });
 
     $effect(() => {

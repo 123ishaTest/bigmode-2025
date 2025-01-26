@@ -1,4 +1,1 @@
-export enum WorldLocationId {
-    House = '/demo/house',
-    Pigs = '/demo/pigs',
-}
+export type WorldLocationId = string;
