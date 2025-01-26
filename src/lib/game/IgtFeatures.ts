@@ -1,4 +1,3 @@
-import type { IgtWallet } from '$lib/game/features/wallet/IgtWallet';
 import type { Character } from '$lib/game/features/character/Character.svelte';
 import type { World } from '$lib/game/features/world/World.svelte';
 import type { Bestiary } from '$lib/game/features/bestiary/Bestiary';
@@ -9,5 +8,4 @@ export interface IgtFeatures {
     world: World;
     powers: Powers;
     bestiary: Bestiary;
-    wallet: IgtWallet;
 }

@@ -5,6 +5,7 @@
     import type { Power } from '$lib/game/features/powers/Power';
     import { PowerType } from '$lib/game/features/powers/PowerType';
     import { transpose } from '$lib/util/format/Array';
+    import SidePanel from '$lib/components/SidePanel.svelte';
 
     const game: IgtGame = getContext('game');
     let powers = $derived(game.features.powers);
@@ -17,36 +18,41 @@
             powers.getPowers(PowerType.TravelSpeed),
         ]);
     });
-
-    console.log(powersTableData);
 </script>
 
-<div class="border-2 border-primary-200 p-2">
-    <div class="flex flex-row flex-wrap">
-        <table>
-            <thead>
-                <tr>
-                    <td class="text-center">Attack</td>
-                    <td class="text-center">Health</td>
-                    <td class="text-center">Defense</td>
-                    <td class="text-center">Travel</td>
-                </tr>
-            </thead>
-            <tbody>
-                {#each powersTableData as row}
+<SidePanel>
+    {#snippet title()}
+        <h3 class="h3">Powers</h3>
+    {/snippet}
+    {#snippet body()}
+        <div class="flex flex-row flex-wrap">
+            <table class="w-full">
+                <thead>
                     <tr>
-                        {#each row as power}
-                            {#if power == null}
-                                <td></td>
-                            {:else}
-                                <td>
-                                    <PowerIcon {power} />
-                                </td>
-                            {/if}
-                        {/each}
+                        <td class="text-center">Attack</td>
+                        <td class="text-center">Health</td>
+                        <td class="text-center">Defense</td>
+                        <td class="text-center">Travel</td>
                     </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
-</div>
+                </thead>
+                <tbody>
+                    {#each powersTableData as row}
+                        <tr>
+                            {#each row as power}
+                                {#if power == null}
+                                    <td></td>
+                                {:else}
+                                    <td class="">
+                                        <div class="flex w-full flex-row justify-center">
+                                            <PowerIcon {power} />
+                                        </div>
+                                    </td>
+                                {/if}
+                            {/each}
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
+        </div>
+    {/snippet}
+</SidePanel>

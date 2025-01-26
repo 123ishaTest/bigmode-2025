@@ -5,6 +5,7 @@
     import { getContext } from 'svelte';
     import type { Power } from '$lib/game/features/powers/Power';
     import { toCapitalizedWords } from '$lib/util/format/String';
+    import PowerIcon from '$lib/components/PowerIcon.svelte';
 
     let openState = $state(false);
 
@@ -35,7 +36,7 @@
             <h2 class="h2">You died.</h2>
         </header>
         <article>
-            <h2 class="h2">Stats</h2>
+            <h2 class="h2">Summary</h2>
             <table class="table">
                 <tbody>
                     {#each Object.entries(stats) as stat}
@@ -52,6 +53,7 @@
                 <tbody>
                     {#each powersGained as power}
                         <tr>
+                            <td><PowerIcon {power} size="small" showLevel={false} /></td>
                             <td>{power.name}</td>
                             <td>Lvl. {game.features.powers.getPowerLevel(power.id)}</td>
                             <td>{game.features.powers.getPowerMultiplier(power.id).toFixed(2)}x</td>

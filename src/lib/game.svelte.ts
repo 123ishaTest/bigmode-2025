@@ -1,6 +1,4 @@
 import { IgtGame } from '$lib/game/IgtGame';
-import { CurrencyType } from '$lib/game/features/wallet/CurrencyType';
-import { IgtWallet } from '$lib/game/features/wallet/IgtWallet';
 import { World } from '$lib/game/features/world/World.svelte';
 import { Character } from '$lib/game/features/character/Character.svelte';
 import { Bestiary } from '$lib/game/features/bestiary/Bestiary';
@@ -12,10 +10,14 @@ import { PowerType } from '$lib/game/features/powers/PowerType';
 import { Powers } from '$lib/game/features/powers/Powers.svelte';
 import { PowerId } from '$lib/game/features/powers/PowerId';
 import { RequirementType } from '$lib/game/tools/requirements/RequirementType';
+import { Monster } from '$lib/game/features/bestiary/Monster';
+import { Attack } from '$lib/game/tools/combat/Attack';
+import { WeaponType } from '$lib/game/tools/combat/WeaponType';
 
-export const map: TiledMap = worldMap;
+// TODO(@Isha): Look into why height is missing somewhere?
+export const map: TiledMap = worldMap as TiledMap;
 
-const builder = new WorldBuilder(worldMap);
+const builder = new WorldBuilder(map);
 
 const locations = builder.parseWorldLocations();
 const roads = builder.parsePaths();
@@ -112,7 +114,7 @@ const powers: Power[] = [
         maxCount: Infinity,
     },
     {
-        id: PowerId.Visit3Locations,
+        id: PowerId.Visit7Locations,
         name: 'Visit 7 Locations',
         requirement: { type: RequirementType.LocationsVisited, amount: 7 },
         icon: '/powers/empty.png',
@@ -123,12 +125,17 @@ const powers: Power[] = [
     },
 ];
 
+const monsters: Monster[] = [
+    new Monster('chicken', 'Chicken', 'Cluck cluck', { health: 10, meleeAttack: 1, meleeDefense: 1 }, [
+        new Attack('Peck', WeaponType.Melee, 2, 0, 3),
+    ]),
+];
+
 export const game = new IgtGame({
     character: new Character(),
     world: new World(locations, roads),
     powers: new Powers(powers),
-    bestiary: new Bestiary(),
-    wallet: new IgtWallet([CurrencyType.Gold, CurrencyType.Ore, CurrencyType.Bark]),
+    bestiary: new Bestiary(monsters),
 });
 
 game.initialize();

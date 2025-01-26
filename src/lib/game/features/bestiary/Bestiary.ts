@@ -2,38 +2,45 @@ import { IgtFeature } from '$lib/game/IgtFeature';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
 import type { SaveData } from '$lib/game/tools/saving/SaveData';
 import { Monster } from '$lib/game/features/bestiary/Monster';
-import { MonsterId } from '$lib/game/features/bestiary/MonsterId';
-import { Attack } from '$lib/game/tools/combat/Attack';
-import { WeaponType } from '$lib/game/tools/combat/WeaponType';
+import { type MonsterId } from '$lib/game/features/bestiary/MonsterId';
+import type { BestiarySaveData } from '$lib/game/features/bestiary/BestiarySaveData';
 
 export class Bestiary extends IgtFeature {
-    monsters: Monster[] = [
-        new Monster(
-            MonsterId.Chicken,
-            'Chicken',
-            'Cluck cluck',
-            { health: 10, meleeAttack: 1, meleeDefense: 1 },
-            [new Attack('Peck', WeaponType.Melee, 2, 0, 3)],
-            1,
-        ),
-    ];
+    monsters: Monster[];
+    kills: Partial<Record<MonsterId, number>> = {};
 
-    // TODO(@Isha): Make dynamic
-    kills: Record<MonsterId, number> = {
-        [MonsterId.Chicken]: 0,
-    };
-
-    constructor() {
+    constructor(monsters: Monster[]) {
         super('bestiary');
+        this.monsters = monsters;
     }
 
-    initialize(features: IgtFeatures): void {}
+    public getKills(id: MonsterId): number {
+        return this.kills[id] ?? 0;
+    }
+
+    public incrementKill(id: MonsterId): void {
+        if (!this.kills[id]) {
+            this.kills[id] = 1;
+        } else {
+            this.kills[id]++;
+        }
+    }
+
+    initialize(features: IgtFeatures): void {
+        features.character.onEnemyDefeated.subscribe((enemy) => {
+            this.incrementKill(enemy.monster.id);
+        });
+    }
 
     update(): void {
         // Empty
     }
 
-    load(data: SaveData): void {}
+    load(data: BestiarySaveData): void {
+        Object.keys(data.kills).map((key: string) => {
+            this.kills[key as MonsterId] = data.kills[key as MonsterId];
+        });
+    }
 
     save(): SaveData {
         return this.kills;

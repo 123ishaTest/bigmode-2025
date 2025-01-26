@@ -45,9 +45,9 @@ export class World extends IgtFeature {
         return location;
     }
 
-    public getPath(from: WorldLocationId, to: WorldLocationId, withRequirements: boolean = true): Road[] | null {
+    public getPath(from: WorldLocationId, to: WorldLocationId): Road[] | null {
         const dijkstra = new Dijkstra(this.roads);
-        return dijkstra.solve(from, to, withRequirements);
+        return dijkstra.solve(from, to);
     }
 
     /**
@@ -62,7 +62,7 @@ export class World extends IgtFeature {
             return false;
         }
 
-        const path = this.getPath(startingLocation, target, true);
+        const path = this.getPath(startingLocation, target);
         if (path == null || path.length === 0) {
             console.log(`There is no road from ${startingLocation} to ${target}`);
             return false;
@@ -74,8 +74,7 @@ export class World extends IgtFeature {
             const road = path[i];
             const reverse = road.to === lastSource;
             this._character.addRoad(road.id, reverse);
-            // TODO(@Isha): Potential bug
-            lastSource = reverse ? road.to : road.from;
+            lastSource = reverse ? road.from : road.to;
         }
         return true;
     }

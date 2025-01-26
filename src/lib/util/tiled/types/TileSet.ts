@@ -6,7 +6,7 @@ export interface TileSet {
     firstgid: number;
     imageCache: HTMLImageElement;
     columns: number;
-    editorsettings: {
+    editorsettings?: {
         export: {
             format: string;
             target: string;
@@ -21,7 +21,7 @@ export interface TileSet {
     tilecount: number;
     tiledversion: string;
     tileheight: number;
-    tiles: [
+    tiles?: [
         {
             id: number;
             probability: number;

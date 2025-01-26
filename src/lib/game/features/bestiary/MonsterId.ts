@@ -1,4 +1,1 @@
-export enum MonsterId {
-    Player = 'Player',
-    Chicken = 'Chicken',
-}
+export type MonsterId = 'chicken' | 'duck' | 'cow';

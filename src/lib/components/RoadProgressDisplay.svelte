@@ -13,8 +13,11 @@
     let road = $derived(world.getRoad(action.roadId));
 </script>
 
-{#if character.isAtObstacle()}
+<!-- Svelte Compiler too stupid to use character.isAtObstacle :( -->
+{#if character.currentObstacle != null}
     <CombatDisplay combat={character.currentObstacle} />
 {:else}
-    <Progress value={character.roadProgress} max={road.duration} meterBg="bg-orange-800">Traveling</Progress>
+    <Progress value={character.roadProgress} max={road.duration} meterBg="bg-orange-800">
+        <h4 class="h4">Traveling...</h4>
+    </Progress>
 {/if}

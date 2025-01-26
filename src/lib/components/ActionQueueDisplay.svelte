@@ -8,7 +8,7 @@
         const road = game.features.world.getRoad(action.roadId);
         const fromName = game.features.world.getLocation(road.from).name;
         const toName = game.features.world.getLocation(road.to).name;
-        return `${action.reverse ? toName : fromName} -> ${action.reverse ? fromName : toName}`;
+        return `${action.reverse} ${action.reverse ? toName : fromName} -> ${action.reverse ? fromName : toName}`;
     };
 </script>
 

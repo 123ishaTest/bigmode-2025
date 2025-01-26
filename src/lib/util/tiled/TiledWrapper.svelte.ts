@@ -1,4 +1,3 @@
-import type { ClickBox } from '$lib/util/tiled/clickboxes/ClickBox';
 import type { TiledMap } from '$lib/util/tiled/types/TiledMap';
 import type { TileSet } from '$lib/util/tiled/types/TileSet';
 import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
@@ -15,7 +14,7 @@ import type { TiledObject } from '$lib/util/tiled/types/objects/TiledObject';
  */
 export class TiledWrapperSvelte {
     worldMap: TiledMap;
-    clickBoxes: ClickBox[] = [];
+    clickBoxes: TiledObject[] = [];
 
     canvas!: HTMLCanvasElement;
     playerCanvas!: HTMLCanvasElement;
@@ -62,7 +61,7 @@ export class TiledWrapperSvelte {
         this.tileWidth = this.worldMap.tilewidth;
 
         this.tileSets = worldMap.tilesets.map((tileSet) => {
-            const jsonId = this.getJsonId(tileSet.source);
+            const jsonId: string = this.getJsonId(tileSet.source);
 
             const imageCache = new Image();
 
@@ -72,6 +71,7 @@ export class TiledWrapperSvelte {
                 this.tileSetsLoaded++;
                 this.checkIfReady();
             };
+
             return {
                 imageCache: imageCache,
                 firstgid: tileSet.firstgid,

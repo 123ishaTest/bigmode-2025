@@ -36,7 +36,7 @@
                 if (!locationId) {
                     console.error('Unknown clickbox', clickBox);
                 }
-                travel(locationId);
+                travel(locationId as string);
             },
         ),
     );
@@ -116,7 +116,7 @@
         {#if game.features.character.actionQueue.length > 0}
             <RoadProgressDisplay />
         {:else}
-            <span>Idling...</span>
+            <h4 class="h4">Click on a location on the map to start travelling...</h4>
         {/if}
     </div>
 </div>

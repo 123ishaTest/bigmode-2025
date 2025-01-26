@@ -1,1 +1,1 @@
-export interface SaveData {}
+export type SaveData = object;

@@ -99,6 +99,7 @@ export class Character extends IgtFeature implements Fightable {
 
                 if (report.playerWon) {
                     this.runStats.monstersDefeated++;
+                    this._onEnemyDefeated.dispatch(report.enemy);
                 } else {
                     this.die();
                 }
@@ -110,7 +111,6 @@ export class Character extends IgtFeature implements Fightable {
 
         const roadId = this.actionQueue[0].roadId;
         const road = this._worldMap.getRoad(roadId);
-        // TODO(@Isha): Fix by "spawning" obstacles one by one
 
         if (
             this.roadObstaclesCompleted < road.obstacles.length &&
@@ -139,7 +139,7 @@ export class Character extends IgtFeature implements Fightable {
     }
 
     takeDamage(damage: number): void {
-        this.health -= Math.floor(damage);
+        this.health -= damage;
     }
 
     idle(delta: number): void {
@@ -163,6 +163,12 @@ export class Character extends IgtFeature implements Fightable {
 
     public get onDeath(): ISimpleEvent<RunStats> {
         return this._onDeath.asEvent();
+    }
+
+    private _onEnemyDefeated = new SimpleEventDispatcher<Enemy>();
+
+    public get onEnemyDefeated(): ISimpleEvent<Enemy> {
+        return this._onEnemyDefeated.asEvent();
     }
 
     completeAction(): void {
@@ -200,7 +206,6 @@ export class Character extends IgtFeature implements Fightable {
     }
 
     public addRoad(roadId: RoadId, reverse: boolean): void {
-        // TODO(@Isha): Check if correct
         this.actionQueue.push({
             roadId: roadId,
             reverse: reverse,

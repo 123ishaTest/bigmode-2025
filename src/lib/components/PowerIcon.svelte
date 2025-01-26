@@ -7,17 +7,28 @@
 
     interface Props {
         power: Power;
+        size?: 'small' | 'medium' | 'large';
+        showLevel?: boolean;
     }
 
-    let { power }: Props = $props();
+    let { power, size = 'medium', showLevel = true }: Props = $props();
     let path = $derived(power.icon);
 
     let game: IgtGame = getContext('game');
     let powers: Powers = $derived(game.features.powers);
     let level: number = $derived(powers.getPowerLevel(power.id));
-    let isGranted: number = $derived(level > 0);
+    let isGranted: boolean = $derived(level > 0);
     let multiplier: number = $derived(powers.getPowerMultiplier(power.id));
-
+    let sizeClass = $derived.by(() => {
+        switch (size) {
+            case 'small':
+                return 'w-8 h-8';
+            case 'medium':
+                return 'w-16 h-16';
+            case 'large':
+                return 'w-24 h-24';
+        }
+    });
     import { Tooltip } from '@skeletonlabs/skeleton-svelte';
 
     let openState = $state(false);
@@ -32,8 +43,8 @@
 >
     {#snippet trigger()}
         <div class="relative flex flex-col border-2" title={power.name}>
-            <img class="pixelated h-16 w-16 {level === 0 ? 'grayscale' : ''}" src="{base}/images/{path}" alt={path} />
-            {#if isGranted}
+            <img class="pixelated {sizeClass} {level === 0 ? 'grayscale' : ''}" src="{base}/images/{path}" alt={path} />
+            {#if isGranted && showLevel}
                 <span class="absolute bottom-0 right-1 p-1">{level}</span>
             {/if}
         </div>

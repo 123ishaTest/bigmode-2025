@@ -5,7 +5,6 @@ import type { ObjectGroup } from '$lib/util/tiled/types/layers/ObjectGroup';
 import type { WorldLocationId } from '$lib/content/WorldLocationId';
 import type { TiledLayer } from '$lib/util/tiled/types/layers/TiledLayer';
 import type { TiledMap } from '$lib/util/tiled/types/TiledMap';
-import { MonsterId } from '$lib/game/features/bestiary/MonsterId';
 import type { WorldLocation } from '$lib/game/features/world/WorldLocation';
 
 export class WorldBuilder {
@@ -24,14 +23,14 @@ export class WorldBuilder {
         };
     }
 
-    getPropertyValue(properties: ObjectProperty[] | undefined, targetName: string) {
+    getPropertyValue<T>(properties: ObjectProperty[] | undefined, targetName: string): T | null {
         if (properties == undefined) {
             return null;
         }
         const property = properties.find((property) => {
             return property.name === targetName;
         });
-        return property?.value;
+        return property?.value as T;
     }
 
     parsePaths(): Road[] {
@@ -44,8 +43,8 @@ export class WorldBuilder {
             })
             .map((object) => {
                 const properties = object.properties as ObjectProperty[];
-                const from = this.getPropertyValue(properties, 'from');
-                const to = this.getPropertyValue(properties, 'to');
+                const from = this.getPropertyValue<string>(properties, 'from') ?? '/error/unknown';
+                const to = this.getPropertyValue<string>(properties, 'to') ?? '/error/unknown';
                 const id = `${from}-${to}` as WorldLocationId;
                 // const baseDuration = this.getPropertyValue(properties, "baseDuration")
 
@@ -62,10 +61,12 @@ export class WorldBuilder {
                     to,
                     path: points,
                     duration: points.length,
+                    // TODO(@Isha): Get obstacles from somewhere.
+                    //  Merge static data into Tiled data probably?
                     obstacles: [
-                        { distance: 5, obstacle: { monster: MonsterId.Chicken, level: 1 } },
-                        { distance: 10, obstacle: { monster: MonsterId.Chicken, level: 1 } },
-                        { distance: 15, obstacle: { monster: MonsterId.Chicken, level: 2 } },
+                        { distance: 5, obstacle: { monster: 'chicken', level: 1 } },
+                        { distance: 10, obstacle: { monster: 'chicken', level: 1 } },
+                        { distance: 15, obstacle: { monster: 'chicken', level: 2 } },
                     ],
                 };
             });
@@ -88,9 +89,9 @@ export class WorldBuilder {
             })
             .map((object) => {
                 return {
-                    id: this.getPropertyValue(object.properties, 'hrid'),
+                    id: this.getPropertyValue<string>(object.properties, 'hrid') ?? '/error/unknown',
                     position: this.globalToTilePosition({ x: object.x, y: object.y }),
-                    name: this.getPropertyValue(object.properties, 'name') ?? 'Name',
+                    name: this.getPropertyValue<string>(object.properties, 'name') ?? 'Name',
                 };
             });
     }

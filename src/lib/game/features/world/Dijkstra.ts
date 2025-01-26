@@ -18,7 +18,7 @@ export class Dijkstra {
         });
     }
 
-    solve(source: WorldLocationId, target: WorldLocationId, withRequirements: boolean): Road[] | null {
+    solve(source: WorldLocationId, target: WorldLocationId): Road[] | null {
         let Q: WorldLocationId[] = [];
         const distance: Record<WorldLocationId, number> = {} as Record<WorldLocationId, number>;
         const previous: Record<WorldLocationId, Road | null> = {} as Record<WorldLocationId, Road | null>;
@@ -49,7 +49,7 @@ export class Dijkstra {
                 return !(identifier === u);
             });
 
-            const neighbourRoads = this.getNeighbourRoads(u, withRequirements);
+            const neighbourRoads = this.getNeighbourRoads(u);
 
             neighbourRoads.forEach((road) => {
                 const v = road.from === u ? road.to : road.from;
@@ -78,19 +78,13 @@ export class Dijkstra {
         return path.reverse();
     }
 
-    getNeighbourRoads(location: WorldLocationId, withRequirements: boolean): Road[] {
+    getNeighbourRoads(location: WorldLocationId): Road[] {
         const res: Road[] = [];
-        this.roads
-            .filter((_road) => {
-                // TODO(@Isha): Requirements?
-                // return withRequirements ? road.requirement.isCompleted : true;
-                return true;
-            })
-            .forEach((road) => {
-                if (road.from === location || (road.to === location && !res.includes(road))) {
-                    res.push(road);
-                }
-            });
+        this.roads.forEach((road) => {
+            if (road.from === location || (road.to === location && !res.includes(road))) {
+                res.push(road);
+            }
+        });
         return res;
     }
 }

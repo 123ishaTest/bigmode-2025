@@ -12,5 +12,5 @@ export enum PowerId {
     Defeat10Monsters = 'defeat-10-monsters',
     Defeat100Monsters = 'defeat-100-monsters',
     Visit3Locations = 'visit-3-locations',
-    Visit10Locations = 'visit-10-locations',
+    Visit7Locations = 'visit-7-locations',
 }
