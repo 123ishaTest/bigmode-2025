@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/tutorial/tutorial.json",
+    "activeFile": "maps/bigmode.json",
     "expandedProjectPaths": [
-        "tilesets",
         "maps",
+        "tilesets",
         "maps/tutorial",
         "."
     ],
@@ -15,11 +15,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 0.75,
+            "scale": 11,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 763.3333333333333,
-                "y": 1046.6666666666665
+                "x": 702.3181818181819,
+                "y": 793.909090909091
             }
         },
         "maps/bigmode.tmj": {
@@ -67,7 +67,7 @@
         },
         "tilesets/grass.json": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 4
         },
         "tilesets/house.json": {
             "scaleInDock": 1,
@@ -83,7 +83,7 @@
         },
         "tilesets/scenery.json": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 5.5
         }
     },
     "last.externalTilesetPath": "/Users/isha/Documents/Development/lands-unknown/packages/content/data/worldmap/tilesets",
@@ -97,22 +97,25 @@
     "map.tileWidth": 16,
     "map.width": 100,
     "openFiles": [
+        "maps/bigmode.json",
         "maps/tutorial/tutorial.json",
         "tilesets/fence.json",
         "tilesets/grass.json",
         "tilesets/scenery.json",
-        "tilesets/house.json"
+        "tilesets/house.json",
+        "tilesets/rogue.json"
     ],
     "project": "lands-unknown.tiled-project",
     "recentFiles": [
-        "tilesets/rogue.tsj",
         "tilesets/rogue.json",
-        "maps/bigmode.tmj",
-        "tilesets/fence.json",
         "tilesets/house.json",
         "tilesets/scenery.json",
         "tilesets/grass.json",
+        "tilesets/fence.json",
         "maps/tutorial/tutorial.json",
+        "maps/bigmode.json",
+        "tilesets/rogue.tsj",
+        "maps/bigmode.tmj",
         "maps/tutorial/demo2.json"
     ],
     "tileset.lastUsedFormat": "json",

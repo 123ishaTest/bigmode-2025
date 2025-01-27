@@ -10,9 +10,7 @@ import { PowerType } from '$lib/game/features/powers/PowerType';
 import { Powers } from '$lib/game/features/powers/Powers.svelte';
 import { PowerId } from '$lib/game/features/powers/PowerId';
 import { RequirementType } from '$lib/game/tools/requirements/RequirementType';
-import { Monster } from '$lib/game/features/bestiary/Monster';
-import { Attack } from '$lib/game/tools/combat/Attack';
-import { WeaponType } from '$lib/game/tools/combat/WeaponType';
+import { monsters } from '$lib/content/MonsterContent';
 
 // TODO(@Isha): Look into why height is missing somewhere?
 export const map: TiledMap = worldMap as TiledMap;
@@ -123,12 +121,6 @@ const powers: Power[] = [
         incrementBonus: 0.2,
         maxCount: Infinity,
     },
-];
-
-const monsters: Monster[] = [
-    new Monster('chicken', 'Chicken', 'Cluck cluck', { health: 10, meleeAttack: 1, meleeDefense: 1 }, [
-        new Attack('Peck', WeaponType.Melee, 2, 0, 3),
-    ]),
 ];
 
 export const game = new IgtGame({

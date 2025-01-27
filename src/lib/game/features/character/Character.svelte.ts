@@ -76,6 +76,7 @@ export class Character extends IgtFeature implements Fightable {
     public endRun(): void {
         this.actionQueue = [];
         this.currentObstacle = null;
+        this.roadObstaclesCompleted = 0;
         this.roadProgress = 0;
         this._worldMap.setCurrentLocation('/home');
 

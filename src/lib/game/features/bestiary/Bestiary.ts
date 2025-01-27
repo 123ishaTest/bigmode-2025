@@ -1,7 +1,7 @@
 import { IgtFeature } from '$lib/game/IgtFeature';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
 import type { SaveData } from '$lib/game/tools/saving/SaveData';
-import { Monster } from '$lib/game/features/bestiary/Monster';
+import { type Monster } from '$lib/game/features/bestiary/Monster';
 import { type MonsterId } from '$lib/game/features/bestiary/MonsterId';
 import type { BestiarySaveData } from '$lib/game/features/bestiary/BestiarySaveData';
 
