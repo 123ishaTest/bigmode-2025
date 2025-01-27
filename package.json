@@ -25,6 +25,7 @@
         "@sveltejs/kit": "^2.16.0",
         "@sveltejs/vite-plugin-svelte": "^5.0.0",
         "@tailwindcss/typography": "^0.5.16",
+        "@types/howler": "^2.2.12",
         "@types/node": "^22.10.10",
         "autoprefixer": "^10.4.20",
         "eslint": "^9.18.0",
@@ -44,6 +45,7 @@
     },
     "dependencies": {
         "@panzoom/panzoom": "^4.6.0",
+        "howler": "^2.2.4",
         "lucide-svelte": "^0.474.0",
         "strongly-typed-events": "^3.0.11",
         "zod": "^3.24.1"
