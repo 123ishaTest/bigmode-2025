@@ -8,42 +8,15 @@
     import { game } from '$lib/game.svelte';
     import { base } from '$app/paths';
     import RunEndModal from '$lib/components/RunEndModal.svelte';
+    import AudioHandler from '$lib/components/AudioHandler.svelte';
 
     let { children } = $props();
 
     setContext('game', game);
-
-    import { Howl } from 'howler';
-
-    const guitar = new Howl({
-        src: [`${base}/soundtracks/guitar-theme.mp3`],
-        volume: 0,
-    });
-
-    const desert = new Howl({
-        src: [`${base}/soundtracks/desert.mp3`],
-        volume: 0,
-    });
-
-    guitar.play();
-    desert.play();
-
-    const startGuitar = () => {
-        desert.fade(desert.volume(), 0, 4000);
-        guitar.fade(guitar.volume(), 0.3, 6000);
-    };
-
-    const startDesert = () => {
-        guitar.fade(guitar.volume(), 0, 4000);
-        desert.fade(desert.volume(), 0.3, 6000);
-    };
-
 </script>
 
-<button class="btn" onclick={() => startGuitar()}>Guitar</button>
-<button class="btn" onclick={() => startDesert()}>Desert</button>
-
 <RunEndModal />
+<AudioHandler />
 <AppBar>
     {#snippet lead()}
         <p>Super secret game name</p>

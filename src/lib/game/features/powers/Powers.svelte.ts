@@ -1,12 +1,12 @@
 import { IgtFeature } from '$lib/game/IgtFeature';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
-import type { SaveData } from '$lib/game/tools/saving/SaveData';
 import type { Power } from '$lib/game/features/powers/Power';
 import type { PowerType } from '$lib/game/features/powers/PowerType';
 import type { PowerId } from '$lib/game/features/powers/PowerId';
 import type { RunStats } from '$lib/game/features/powers/RunStats';
 import { hasRequirement } from '$lib/game/tools/requirements/Requirements';
 import { EventDispatcher, type IEvent } from 'strongly-typed-events';
+import type { PowersSaveData } from '$lib/game/features/powers/PowersSaveData';
 
 export class Powers extends IgtFeature {
     powers: Power[];
@@ -86,11 +86,15 @@ export class Powers extends IgtFeature {
         // Empty
     }
 
-    load(): void {
-        // Empty
+    load(data: PowersSaveData): void {
+        Object.keys(data.powerLevels).map((key: string) => {
+            this.powerLevels[key as PowerId] = data.powerLevels[key as PowerId];
+        });
     }
 
-    save(): SaveData {
-        return {};
+    save(): PowersSaveData {
+        return {
+            powerLevels: this.powerLevels,
+        };
     }
 }

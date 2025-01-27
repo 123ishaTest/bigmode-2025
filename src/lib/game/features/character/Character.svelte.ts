@@ -1,7 +1,6 @@
 import { IgtFeature } from '$lib/game/IgtFeature';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
 import type { SaveData } from '$lib/game/tools/saving/SaveData';
-import type { Road } from '$lib/game/features/world/Road';
 import { type ISimpleEvent, SimpleEventDispatcher } from 'strongly-typed-events';
 import type { WorldLocationId } from '$lib/content/WorldLocationId';
 import type { RoadId } from '$lib/content/RoadId';
@@ -9,7 +8,7 @@ import type { World } from '$lib/game/features/world/World.svelte';
 import { Combat } from '$lib/game/tools/combat/Combat';
 import type { RoadObstacle } from '$lib/game/features/world/RoadObstacle';
 import { Enemy } from '$lib/game/features/bestiary/Enemy.svelte';
-import type { Bestiary } from '$lib/game/features/bestiary/Bestiary';
+import type { Bestiary } from '$lib/game/features/bestiary/Bestiary.svelte';
 import { Attack } from '$lib/game/tools/combat/Attack';
 import { WeaponType } from '$lib/game/tools/combat/WeaponType';
 import type { Fightable } from '$lib/game/tools/combat/Fightable';
@@ -223,12 +222,6 @@ export class Character extends IgtFeature implements Fightable {
 
     save(): SaveData {
         return {};
-    }
-
-    private _onRoadCompletion = new SimpleEventDispatcher<Road>();
-
-    public get onRoadCompletion(): ISimpleEvent<Road> {
-        return this._onRoadCompletion.asEvent();
     }
 
     isOnRoad() {

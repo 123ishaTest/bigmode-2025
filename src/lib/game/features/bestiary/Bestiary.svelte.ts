@@ -1,13 +1,12 @@
 import { IgtFeature } from '$lib/game/IgtFeature';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
-import type { SaveData } from '$lib/game/tools/saving/SaveData';
 import { type Monster } from '$lib/game/features/bestiary/Monster';
 import { type MonsterId } from '$lib/game/features/bestiary/MonsterId';
 import type { BestiarySaveData } from '$lib/game/features/bestiary/BestiarySaveData';
 
 export class Bestiary extends IgtFeature {
     monsters: Monster[];
-    kills: Partial<Record<MonsterId, number>> = {};
+    kills: Partial<Record<MonsterId, number>> = $state({});
 
     constructor(monsters: Monster[]) {
         super('bestiary');
@@ -42,8 +41,10 @@ export class Bestiary extends IgtFeature {
         });
     }
 
-    save(): SaveData {
-        return this.kills;
+    save(): BestiarySaveData {
+        return {
+            kills: this.kills,
+        };
     }
 
     getMonster(id: MonsterId): Monster {

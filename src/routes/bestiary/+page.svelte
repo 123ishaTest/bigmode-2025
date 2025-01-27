@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { IgtGame } from '$lib/game/IgtGame';
     import { getContext } from 'svelte';
-    import type { Bestiary } from '$lib/game/features/bestiary/Bestiary';
+    import type { Bestiary } from '$lib/game/features/bestiary/Bestiary.svelte';
     import BestiaryCard from '$lib/components/BestiaryCard.svelte';
 
     let game: IgtGame = getContext('game');

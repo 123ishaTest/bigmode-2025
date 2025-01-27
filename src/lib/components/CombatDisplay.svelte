@@ -41,7 +41,7 @@
     </div>
 
     <div class="flex w-48 flex-col space-y-2">
-        <p title={combat.enemy.monster.description} class="text-center">
+        <p class="text-center">
             {combat.enemy.monster.name} (Lvl. {combat.enemy.level})
         </p>
 

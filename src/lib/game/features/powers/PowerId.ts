@@ -1,16 +1,15 @@
-export enum PowerId {
-    Deal5Damage = 'deal-5-damage',
-    Deal20Damage = 'deal-20-damage',
-    Deal50Damage = 'deal-50-damage',
-    Deal1000Damage = 'deal-1000-damage',
-    Take5Damage = 'take-5-damage',
-    Take20Damage = 'take-20-damage',
-    Take50Damage = 'take-50-damage',
-    Take1000Damage = 'take-1000-damage',
-    Defeat1Monster = 'defeat-1-monster',
-    Defeat5Monsters = 'defeat-5-monsters',
-    Defeat10Monsters = 'defeat-10-monsters',
-    Defeat100Monsters = 'defeat-100-monsters',
-    Visit3Locations = 'visit-3-locations',
-    Visit7Locations = 'visit-7-locations',
-}
+export type PowerId =
+    | 'deal-5-damage'
+    | 'deal-20-damage'
+    | 'deal-50-damage'
+    | 'deal-1000-damage'
+    | 'take-5-damage'
+    | 'take-20-damage'
+    | 'take-50-damage'
+    | 'take-1000-damage'
+    | 'defeat-1-monster'
+    | 'defeat-5-monsters'
+    | 'defeat-10-monsters'
+    | 'defeat-100-monsters'
+    | 'visit-3-locations'
+    | 'visit-7-locations';

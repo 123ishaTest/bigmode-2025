@@ -66,9 +66,9 @@
 
         setTimeout(() => {
             // TODO(@Isha): Find coordinates from tilemap + canvas size somehow?
-            worldPanZoom.pan(-350, -500)
-            playerPanZoom.pan(-350, -500)
-        }, 0)
+            worldPanZoom.pan(-350, -500);
+            playerPanZoom.pan(-350, -500);
+        }, 0);
     });
 
     const activeRoads = $derived.by(() => {

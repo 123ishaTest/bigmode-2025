@@ -152,6 +152,7 @@ export class IgtGame {
         for (const feature of this.featureList) {
             const featureSaveData: Record<string, unknown> = saveData[feature.saveKey] as Record<string, unknown>;
             if (featureSaveData == null) {
+                console.warn('Skipping feature', feature.saveKey);
                 continue;
             }
             feature.load(featureSaveData);

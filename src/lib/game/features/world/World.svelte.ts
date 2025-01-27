@@ -4,9 +4,11 @@ import type { WorldLocation } from '$lib/game/features/world/WorldLocation';
 import type { Road } from '$lib/game/features/world/Road';
 import { type RoadId } from '$lib/content/RoadId';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
-import type { Character } from '$lib/game/features/character/Character.svelte';
+import type { Character, TravelAction } from '$lib/game/features/character/Character.svelte';
 import { Dijkstra } from '$lib/game/features/world/Dijkstra';
 import type { WorldLocationId } from '$lib/content/WorldLocationId';
+import { AreaId } from '$lib/game/features/world/AreaId';
+import { type ISimpleEvent, SimpleEventDispatcher } from 'strongly-typed-events';
 
 export class World extends IgtFeature {
     locations: WorldLocation[];
@@ -25,8 +27,15 @@ export class World extends IgtFeature {
         return this.getLocation(this.playerLocation);
     }
 
+    private _onLocationChanged = new SimpleEventDispatcher<WorldLocationId>();
+
+    public get onLocationChanged(): ISimpleEvent<WorldLocationId> {
+        return this._onLocationChanged.asEvent();
+    }
+
     setCurrentLocation(target: WorldLocationId) {
         this.playerLocation = target;
+        this._onLocationChanged.dispatch(target);
     }
 
     public getRoad(id: RoadId): Road {
@@ -91,5 +100,13 @@ export class World extends IgtFeature {
 
     save(): SaveData {
         return {};
+    }
+
+    getAreaForLocation(destination: WorldLocationId) {
+        // TODO(@Isha): Change
+        if (destination == '/home') {
+            return AreaId.Home;
+        }
+        return AreaId.Desert;
     }
 }

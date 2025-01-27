@@ -32,7 +32,6 @@ export class Combat {
             this.enemy.takeDamage(damage);
 
             this.damageDealt += damage;
-            console.log(this.damageDealt);
 
             if (this.enemy.health <= 0) {
                 return this.createCombatReport(true);
