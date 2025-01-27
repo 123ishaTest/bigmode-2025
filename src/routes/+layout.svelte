@@ -1,6 +1,7 @@
 <script lang="ts">
     import '../app.css';
     import { setContext } from 'svelte';
+    import { ToastProvider } from '@skeletonlabs/skeleton-svelte';
 
     import { AppBar } from '@skeletonlabs/skeleton-svelte';
     import GitHub from 'lucide-svelte/icons/github';
@@ -35,4 +36,6 @@
     </div>
 </AppBar>
 
-{@render children()}
+<ToastProvider placement="top-start">
+    {@render children()}
+</ToastProvider>

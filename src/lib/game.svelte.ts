@@ -11,6 +11,8 @@ import { Soundtracks } from '$lib/game/features/soundtracks/Soundtracks.svelte';
 import { soundtracks } from '$lib/content/SoundtrackContent';
 import { Settings } from '$lib/game/features/settings/Settings.svelte';
 import { powers } from '$lib/content/PowerContent';
+import { KeyItems } from '$lib/game/features/keyitems/KeyItems.svelte';
+import { keyItems } from '$lib/content/KeyItemContent';
 
 // TODO(@Isha): Look into why height is missing somewhere?
 export const map: TiledMap = worldMap as TiledMap;
@@ -24,6 +26,7 @@ export const game = new IgtGame({
     character: new Character(),
     world: new World(locations, roads),
     powers: new Powers(powers),
+    keyItems: new KeyItems(keyItems),
     bestiary: new Bestiary(monsters),
     soundtracks: new Soundtracks(soundtracks),
     settings: new Settings(),
