@@ -155,7 +155,11 @@ export class IgtGame {
                 console.warn('Skipping feature', feature.saveKey);
                 continue;
             }
-            feature.load(featureSaveData);
+            try {
+                feature.load(featureSaveData);
+            } catch (e) {
+                console.error('Error loading ', feature.saveKey, e);
+            }
         }
     }
 
