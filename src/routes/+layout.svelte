@@ -30,12 +30,12 @@
 
     const startGuitar = () => {
         desert.fade(desert.volume(), 0, 4000);
-        guitar.fade(guitar.volume(), 0.6, 6000);
+        guitar.fade(guitar.volume(), 0.3, 6000);
     };
 
     const startDesert = () => {
         guitar.fade(guitar.volume(), 0, 4000);
-        desert.fade(desert.volume(), 0.6, 6000);
+        desert.fade(desert.volume(), 0.3, 6000);
     };
 
 </script>
