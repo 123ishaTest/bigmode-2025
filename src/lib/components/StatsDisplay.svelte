@@ -13,14 +13,14 @@
         <h3 class="h3">Stats</h3>
     {/snippet}
     {#snippet body()}
-        <table class="table">
+        <table class="table table-fixed">
             <tbody>
                 <tr>
                     <td>Health</td>
                     <td>
-                        <Progress value={character.health} max={character.maxHealth} meterBg="bg-red-500"
-                            >{character.health.toFixed()}/{character.maxHealth.toFixed(0)}</Progress
-                        >
+                        <Progress value={character.health} max={character.maxHealth} meterBg="bg-red-500">
+                            {character.health.toFixed()}/{character.maxHealth.toFixed(0)}
+                        </Progress>
                     </td>
                 </tr>
                 <tr>

@@ -53,7 +53,7 @@
         <div class="flex flex-col space-y-2">
             <span>{power.name}</span>
             {#if isGranted}
-                <span>Lvl. {level} -> {multiplier}x {power.type}</span>
+                <span>Lvl. {level} -> {multiplier.toFixed(2)}x {power.type}</span>
             {:else}
                 <p>You have not been granted this power.</p>
             {/if}

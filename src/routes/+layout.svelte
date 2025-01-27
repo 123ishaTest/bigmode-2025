@@ -20,8 +20,7 @@
         <p>Super secret game name</p>
     {/snippet}
     {#snippet trail()}
-        <!-- TODO(@Isha): Fix url-->
-        <a href="http://github.com/123ishatest/the-road-less-travelled" target="_blank" title="Github">
+        <a href="http://github.com/123ishatest/bigmode-2025" target="_blank" title="Github">
             <GitHub />
         </a>
     {/snippet}

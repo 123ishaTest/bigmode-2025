@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Combat } from '$lib/game/tools/combat/Combat';
     import { Progress } from '@skeletonlabs/skeleton-svelte';
+    import type { Fightable } from '$lib/game/tools/combat/Fightable';
 
     interface Props {
         combat: Combat;
@@ -11,28 +12,54 @@
 
 <div class="flex w-full flex-row justify-around space-x-2">
     <div class="flex w-48 flex-col space-y-2">
-        <p>Character</p>
-        <!-- TODO(@Isha): Check if updates correctly -->
-        <span>{combat.characterScheduledAttack?.description ?? ''}</span>
+        <p class="text-center">You</p>
 
-        <Progress value={combat.character.health} max={combat.character.maxHealth} meterBg="bg-red-500"
-            >{combat.character.health.toFixed()}</Progress
-        >
-        <Progress value={combat.character.cooldown} max={combat.character.maxCooldown} meterBg="bg-blue-500"
-            >{combat.character.cooldown.toFixed(2)}</Progress
-        >
+        <table class="table table-fixed">
+            <tbody>
+                <tr>
+                    <td>{combat.character.health.toFixed()}/{combat.character.maxHealth.toFixed()}</td>
+                    <td>
+                        <Progress
+                            value={combat.character.health}
+                            max={combat.character.maxHealth}
+                            meterBg="bg-red-500"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>{combat.characterScheduledAttack?.description ?? ''}</span></td>
+                    <td>
+                        <Progress
+                            value={combat.character.cooldown}
+                            max={combat.character.maxCooldown}
+                            meterBg="bg-blue-500"
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="flex w-48 flex-col space-y-2">
-        <p title={combat.enemy.monster.description}>
+        <p title={combat.enemy.monster.description} class="text-center">
             {combat.enemy.monster.name} (Lvl. {combat.enemy.level})
         </p>
-        <span>{combat.enemyScheduledAttack?.description ?? ''}</span>
-        <Progress value={combat.enemy.health} max={combat.enemy.maxHealth} meterBg="bg-red-500"
-            >{combat.enemy.health.toFixed()}</Progress
-        >
-        <Progress value={combat.enemy.cooldown} max={combat.enemy.maxCooldown} meterBg="bg-blue-500"
-            >{combat.enemy.cooldown.toFixed(2)}</Progress
-        >
+
+        <table class="table table-fixed">
+            <tbody>
+                <tr>
+                    <td>{combat.enemy.health.toFixed()}/{combat.enemy.maxHealth.toFixed()}</td>
+                    <td>
+                        <Progress value={combat.enemy.health} max={combat.enemy.maxHealth} meterBg="bg-red-500" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>{combat.enemyScheduledAttack?.description ?? ''}</span></td>
+                    <td>
+                        <Progress value={combat.enemy.cooldown} max={combat.enemy.maxCooldown} meterBg="bg-blue-500" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
