@@ -24,7 +24,7 @@ export class IgtGame {
     /**
      * How often the game should be saved
      */
-    protected readonly SAVE_INTERVAL: number = 30;
+    protected readonly SAVE_INTERVAL: number = 10;
     protected _nextSave: number;
     protected saveEncoder: IgtSaveEncoder;
 

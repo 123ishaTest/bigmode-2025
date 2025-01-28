@@ -12,8 +12,13 @@
     import AudioHandler from '$lib/components/AudioHandler.svelte';
 
     let { children } = $props();
+    import { page } from '$app/state';
 
     setContext('game', game);
+
+    let highlightIfSelected = (path: string) => {
+        return page.url.pathname === `${base}/${path}` ? 'underline' : '';
+    };
 </script>
 
 <RunEndModal />
@@ -28,11 +33,10 @@
         </a>
     {/snippet}
     <div class="flex flex-row justify-center space-x-4">
-        <a href="{base}/" class="underline">Game</a>
-        <a href="{base}/bestiary">Bestiary</a>
-        <a href="{base}/lore">Lore</a>
-        <a href="{base}/achievements">Achievements</a>
-        <a href="{base}/settings">Settings</a>
+        <a href="{base}/" class={highlightIfSelected('')}>Game</a>
+        <a href="{base}/bestiary" class={highlightIfSelected('bestiary')}>Bestiary</a>
+        <a href="{base}/lore" class={highlightIfSelected('lore')}>Lore</a>
+        <a href="{base}/achievements" class={highlightIfSelected('achievements')}>Achievements</a>
     </div>
 </AppBar>
 

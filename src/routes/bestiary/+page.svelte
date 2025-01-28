@@ -8,17 +8,16 @@
     let bestiary: Bestiary = $derived(game.features.bestiary);
 </script>
 
-<div class="mx-auto flex flex-row justify-center p-4">
+<div class="mx-auto flex flex-row justify-center">
     <div class="flex w-1/2 min-w-fit flex-col">
-        <h2 class="h2 w-full text-center">Bestiary</h2>
-        <hr class="hr border-t-8" />
-
-        <!--        <div class="flex flex-row w-full justify-center">-->
-        <div class="grid-auto-flow-column grid grid-cols-6 gap-2 p-4">
+        <div class="grid-auto-flow-column grid grid-cols-6 gap-2 gap-y-4 p-4">
             {#each bestiary.monsters as monster}
-                <BestiaryCard {monster} />
+                <BestiaryCard
+                    {monster}
+                    killed={bestiary.getKills(monster.id)}
+                    killedBy={bestiary.getDeaths(monster.id)}
+                />
             {/each}
         </div>
-        <!--        </div>-->
     </div>
 </div>

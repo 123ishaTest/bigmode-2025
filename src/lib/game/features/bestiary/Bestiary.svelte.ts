@@ -7,6 +7,7 @@ import type { BestiarySaveData } from '$lib/game/features/bestiary/BestiarySaveD
 export class Bestiary extends IgtFeature {
     monsters: Monster[];
     kills: Partial<Record<MonsterId, number>> = $state({});
+    deaths: Partial<Record<MonsterId, number>> = $state({});
 
     constructor(monsters: Monster[]) {
         super('bestiary');
@@ -17,6 +18,10 @@ export class Bestiary extends IgtFeature {
         return this.kills[id] ?? 0;
     }
 
+    public getDeaths(id: MonsterId): number {
+        return this.deaths[id] ?? 0;
+    }
+
     public incrementKill(id: MonsterId): void {
         if (!this.kills[id]) {
             this.kills[id] = 1;
@@ -25,9 +30,20 @@ export class Bestiary extends IgtFeature {
         }
     }
 
+    public incrementDeath(id: MonsterId): void {
+        if (!this.deaths[id]) {
+            this.deaths[id] = 1;
+        } else {
+            this.deaths[id]++;
+        }
+    }
+
     initialize(features: IgtFeatures): void {
         features.character.onEnemyDefeated.subscribe((enemy) => {
             this.incrementKill(enemy.monster.id);
+        });
+        features.character.onDeath.subscribe((stats) => {
+            this.incrementDeath(stats.killer.monster.id);
         });
     }
 
@@ -39,11 +55,15 @@ export class Bestiary extends IgtFeature {
         Object.keys(data.kills).map((key: string) => {
             this.kills[key as MonsterId] = data.kills[key as MonsterId];
         });
+        Object.keys(data.deaths).map((key: string) => {
+            this.deaths[key as MonsterId] = data.deaths[key as MonsterId];
+        });
     }
 
     save(): BestiarySaveData {
         return {
             kills: this.kills,
+            deaths: this.deaths,
         };
     }
 

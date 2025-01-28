@@ -26,7 +26,7 @@ export class Character extends IgtFeature implements Fightable {
     private _worldMap!: World;
     private _powers!: Powers;
 
-    runStats: RunStats = $state({
+    runStats: Omit<RunStats, 'killer'> = $state({
         damageDealt: 0,
         damageTaken: 0,
         monstersDefeated: 0,
@@ -101,7 +101,7 @@ export class Character extends IgtFeature implements Fightable {
                     this.runStats.monstersDefeated++;
                     this._onEnemyDefeated.dispatch(report.enemy);
                 } else {
-                    this.die();
+                    this.die(report.enemy);
                 }
             }
             return;
@@ -154,8 +154,11 @@ export class Character extends IgtFeature implements Fightable {
         return this.meleeDefense;
     }
 
-    die(): void {
-        this._onDeath.dispatch(this.runStats);
+    die(killer: Enemy): void {
+        this._onDeath.dispatch({
+            ...this.runStats,
+            killer: killer,
+        });
         this.endRun();
     }
 

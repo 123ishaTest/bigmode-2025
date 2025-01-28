@@ -5,9 +5,11 @@
 
     interface Props {
         monster: Monster;
+        killed: number;
+        killedBy: number;
     }
 
-    let { monster }: Props = $props();
+    let { monster, killed, killedBy }: Props = $props();
 
     let bgClass = $derived.by(() => {
         switch (monster.area) {
@@ -24,26 +26,33 @@
                 return '';
         }
     });
+
+    const handleError = (ev: Event) => {
+        (ev.target as HTMLImageElement).src = `${base}/images/powers/empty.png`;
+    };
+
+    let isDiscovered: boolean = $derived(killed > 0);
 </script>
 
-<div class="card card-hover block divide-y overflow-hidden border-[1px] {bgClass}">
-    <header>
+<div class="card card-hover block divide-y overflow-hidden border-[1px] {bgClass} min-w-36">
+    <header class="flex flex-col items-center">
         <img
-            src="{base}/images/{monster.icon ?? 'powers/empty.png'}"
+            src="{base}/images{monster.icon ?? '/powers/empty.png'}"
             alt={monster.name}
-            class="aspect-[21/16] w-full"
+            onerror={handleError}
+            class="pixelated w-24 {!isDiscovered ? 'brightness-0' : ''}"
         />
     </header>
 
-    <article class="space-y-4 p-4">
+    <article class="p-4">
         <div class="flex flex-col">
-            <h4 class="h4 text-center">{monster.name}</h4>
+            <h5 class="h5 text-center">{isDiscovered ? monster.name : '???'}</h5>
 
             <div class="flex-1"></div>
 
             <div class="flex flex-row justify-between">
-                <h6 class="h6">⚔️ {3}</h6>
-                <h6 class="h6">☠️ {1}</h6>
+                <h6 class="h6">⚔️ {killed}</h6>
+                <h6 class="h6">☠️ {killedBy}</h6>
             </div>
         </div>
     </article>

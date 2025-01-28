@@ -6,7 +6,7 @@ import { AreaId } from '$lib/game/features/world/AreaId';
 export interface Monster {
     id: MonsterId;
     name: string;
-    icon?: string;
+    icon: string;
     area: AreaId;
     stats: Stats;
     attacks: Attack[];

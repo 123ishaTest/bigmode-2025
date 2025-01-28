@@ -5,8 +5,8 @@
     },
     "activeFile": "maps/bigmode.json",
     "expandedProjectPaths": [
-        "maps",
         "tilesets",
+        "maps",
         "maps/tutorial",
         "."
     ],
@@ -15,11 +15,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 11,
+            "scale": 0.33,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 800,
-                "y": 799.5
+                "x": 840.9090909090908,
+                "y": 754.5454545454545
             }
         },
         "maps/bigmode.tmj": {

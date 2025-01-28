@@ -1,1 +1,1 @@
-<p>Bestiary goes here</p>
+<p>Achievements goes here</p>
