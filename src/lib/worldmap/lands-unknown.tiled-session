@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/bigmode.json",
+    "activeFile": "tilesets/scenery.json",
     "expandedProjectPaths": [
+        "maps/tutorial",
         "tilesets",
         "maps",
-        "maps/tutorial",
         "."
     ],
     "fileStates": {
@@ -15,11 +15,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 0.33,
-            "selectedLayer": 4,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 840.9090909090908,
-                "y": 754.5454545454545
+                "x": 652.5,
+                "y": 788
             }
         },
         "maps/bigmode.tmj": {
@@ -29,6 +29,10 @@
                 "x": 800.2227791701476,
                 "y": 800.2227791701476
             }
+        },
+        "maps/river.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
         },
         "maps/tutorial/demo2.json": {
             "scale": 1.5,
@@ -57,21 +61,25 @@
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 240,
-                "y": 159.75
+                "x": 240.25,
+                "y": 159.5
             }
         },
         "tilesets/fence.json": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 1
         },
         "tilesets/grass.json": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 4
         },
         "tilesets/house.json": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 1
+        },
+        "tilesets/path.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
         },
         "tilesets/rogue.json": {
             "scaleInDock": 2,
@@ -82,7 +90,7 @@
             "scaleInEditor": 1
         },
         "tilesets/scenery.json": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 5.5
         }
     },
@@ -97,16 +105,14 @@
     "map.tileWidth": 16,
     "map.width": 100,
     "openFiles": [
-        "maps/bigmode.json",
-        "maps/tutorial/tutorial.json",
-        "tilesets/fence.json",
-        "tilesets/grass.json",
         "tilesets/scenery.json",
         "tilesets/house.json",
         "tilesets/rogue.json"
     ],
     "project": "lands-unknown.tiled-project",
     "recentFiles": [
+        "tilesets/path.tsj",
+        "maps/river.json",
         "tilesets/rogue.json",
         "tilesets/house.json",
         "tilesets/scenery.json",

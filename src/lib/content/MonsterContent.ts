@@ -208,7 +208,7 @@ export const monsters: Monster[] = [
     {
         id: 'giant-spider',
         name: 'Giant Spider',
-        icon: '/monsters/giantSpider.png',
+        icon: '/monsters/giant-spider.png',
         tier: MonsterTier.Boss,
         area: AreaId.Forest,
         attacks: [new Attack('Giant Spider', WeaponType.Melee, 2.1, 100, 120)],

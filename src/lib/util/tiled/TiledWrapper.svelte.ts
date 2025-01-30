@@ -177,7 +177,7 @@ export class TiledWrapperSvelte {
                 this.ctx.beginPath();
                 this.ctx.strokeStyle = 'black';
                 this.ctx.rect(object.x, object.y, object.width, object.height);
-                this.ctx.stroke();
+                // this.ctx.stroke();
                 this.clickBoxes.push(object);
             }
         }
