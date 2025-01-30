@@ -4,5 +4,6 @@ export type KeyItemId =
     | 'wooden-shield'
     | 'boots-of-lightness'
     | 'silver-tiara'
+    | 'eternal-water'
     | 'pickaxe'
     | 'lantern';
