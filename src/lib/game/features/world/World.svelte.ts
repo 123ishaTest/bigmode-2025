@@ -4,7 +4,7 @@ import type { WorldLocation } from '$lib/game/features/world/WorldLocation';
 import type { Road } from '$lib/game/features/world/Road';
 import { type RoadId } from '$lib/content/RoadId';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
-import type { Character, TravelAction } from '$lib/game/features/character/Character.svelte';
+import type { Character } from '$lib/game/features/character/Character.svelte';
 import { Dijkstra } from '$lib/game/features/world/Dijkstra';
 import type { WorldLocationId } from '$lib/content/WorldLocationId';
 import { AreaId } from '$lib/game/features/world/AreaId';

@@ -1,7 +1,6 @@
 <script lang="ts">
     import type { Combat } from '$lib/game/tools/combat/Combat';
     import { Progress } from '@skeletonlabs/skeleton-svelte';
-    import type { Fightable } from '$lib/game/tools/combat/Fightable';
     import MonsterIcon from '$lib/components/MonsterIcon.svelte';
 
     interface Props {
@@ -15,7 +14,7 @@
     <div class="flex w-48 flex-col items-center space-y-2">
         <p>You</p>
 
-        <MonsterIcon monster={combat.enemy.monster} size="large"></MonsterIcon>
+        <div class="h-24 w-24"></div>
 
         <table class="table table-fixed">
             <tbody>

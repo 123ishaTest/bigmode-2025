@@ -13,7 +13,7 @@
         <h3 class="h3">Items</h3>
     {/snippet}
     {#snippet body()}
-        <div class="flex flex-row flex-wrap gap-2 justify-center">
+        <div class="flex flex-row flex-wrap justify-center gap-2">
             {#each keyItems.keyItems as keyItem}
                 <KeyItem {keyItem} />
             {/each}

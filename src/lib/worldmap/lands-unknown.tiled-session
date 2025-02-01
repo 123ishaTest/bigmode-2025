@@ -3,23 +3,23 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "tilesets/scenery.json",
+    "activeFile": "maps/bigmode.json",
     "expandedProjectPaths": [
+        ".",
         "maps/tutorial",
-        "tilesets",
         "maps",
-        "."
+        "tilesets"
     ],
     "fileStates": {
         "maps/bigmode.json": {
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 652.5,
-                "y": 788
+                "x": 659.5,
+                "y": 328.33333333333337
             }
         },
         "maps/bigmode.tmj": {
@@ -75,7 +75,7 @@
         },
         "tilesets/house.json": {
             "scaleInDock": 2,
-            "scaleInEditor": 1
+            "scaleInEditor": 4
         },
         "tilesets/path.tsj": {
             "scaleInDock": 1,
@@ -83,7 +83,7 @@
         },
         "tilesets/rogue.json": {
             "scaleInDock": 2,
-            "scaleInEditor": 2
+            "scaleInEditor": 4
         },
         "tilesets/rogue.tsj": {
             "scaleInDock": 1,
@@ -91,7 +91,7 @@
         },
         "tilesets/scenery.json": {
             "scaleInDock": 2,
-            "scaleInEditor": 5.5
+            "scaleInEditor": 4
         }
     },
     "last.externalTilesetPath": "/Users/isha/Documents/Development/lands-unknown/packages/content/data/worldmap/tilesets",
@@ -105,21 +105,22 @@
     "map.tileWidth": 16,
     "map.width": 100,
     "openFiles": [
+        "maps/bigmode.json",
         "tilesets/scenery.json",
         "tilesets/house.json",
         "tilesets/rogue.json"
     ],
     "project": "lands-unknown.tiled-project",
     "recentFiles": [
-        "tilesets/path.tsj",
-        "maps/river.json",
         "tilesets/rogue.json",
         "tilesets/house.json",
         "tilesets/scenery.json",
+        "maps/bigmode.json",
+        "tilesets/path.tsj",
+        "maps/river.json",
         "tilesets/grass.json",
         "tilesets/fence.json",
         "maps/tutorial/tutorial.json",
-        "maps/bigmode.json",
         "tilesets/rogue.tsj",
         "maps/bigmode.tmj",
         "maps/tutorial/demo2.json"

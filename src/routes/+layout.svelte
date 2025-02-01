@@ -25,7 +25,7 @@
 <AudioHandler />
 <AppBar>
     {#snippet lead()}
-        <p>Super secret game name</p>
+        <p>The Road Not Taken</p>
     {/snippet}
     {#snippet trail()}
         <a href="http://github.com/123ishatest/bigmode-2025" target="_blank" title="Github">

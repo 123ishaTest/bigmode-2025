@@ -33,6 +33,14 @@ export class WorldBuilder {
         return property?.value as T;
     }
 
+    getMarkerAtPosition(position: WorldPosition) {
+        const pathLayer = this.getLayer('Paths') as ObjectGroup;
+        const points = pathLayer?.objects?.filter((object) => {
+            return object.point;
+        });
+        return points?.find((p) => p.x === position.x && p.y === position.y);
+    }
+
     parsePaths(): Road[] {
         const pathLayer = this.getLayer('Paths') as ObjectGroup;
 
@@ -42,9 +50,19 @@ export class WorldBuilder {
                 return object.polyline;
             })
             .map((object) => {
-                const properties = object.properties as ObjectProperty[];
-                const from = this.getPropertyValue<string>(properties, 'from') ?? '/error/unknown';
-                const to = this.getPropertyValue<string>(properties, 'to') ?? '/error/unknown';
+                const fromLocation = this.getMarkerAtPosition({
+                    x: object.x + (object.polyline?.[0].x ?? 0),
+                    y: object.y + (object.polyline?.[0].y ?? 0),
+                });
+
+                const from = this.getPropertyValue<string>(fromLocation?.properties, 'hrid') ?? 'unknown';
+                const toLocation = this.getMarkerAtPosition({
+                    x: object.x + (object.polyline?.[(object.polyline?.length ?? 1) - 1]?.x ?? 0),
+                    y: object.y + (object.polyline?.[(object.polyline?.length ?? 1) - 1]?.y ?? 0),
+                });
+
+                const to = this.getPropertyValue<string>(toLocation?.properties, 'hrid') ?? 'unknown';
+
                 const id = `${from}-${to}` as WorldLocationId;
                 // const baseDuration = this.getPropertyValue(properties, "baseDuration")
 
