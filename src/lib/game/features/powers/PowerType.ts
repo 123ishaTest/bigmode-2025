@@ -1,6 +1,6 @@
 export enum PowerType {
-    Attack = 'Attack',
-    Defense = 'Defense',
-    Health = 'Health',
-    TravelSpeed = 'Travel Speed',
+    Attack = 'swords',
+    Defense = 'helmet',
+    Health = 'heart',
+    TravelSpeed = 'boots',
 }

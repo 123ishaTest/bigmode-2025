@@ -17,6 +17,9 @@
     let playerCanvas: HTMLCanvasElement;
 
     let travel = (target: WorldLocationId) => {
+        if (isPanning) {
+            return;
+        }
         game.features.world.moveToLocation(target);
     };
 
@@ -55,6 +58,9 @@
         contain: 'outside',
         canvas: true,
     };
+
+    let isPanning = $state(false);
+
     onMount(() => {
         tiledWrapper.bindCanvii(worldCanvas, playerCanvas);
 
@@ -65,15 +71,18 @@
         tiledWrapper.canvas?.parentElement?.addEventListener('wheel', () => {
             tiledWrapper.currentScale = worldPanZoom.getScale();
         });
+        tiledWrapper.canvas?.addEventListener('panzoompan', () => {
+            isPanning = true;
+        });
+        tiledWrapper.canvas?.addEventListener('panzoomend', () => {
+            // Very ugly hack
+            setTimeout(() => {
+                isPanning = false;
+            }, 30);
+        });
         tiledWrapper.playerCanvas?.parentElement?.addEventListener('wheel', playerPanZoom.zoomWithWheel);
 
         tiledWrapper.currentScale = worldPanZoom.getScale();
-
-        setTimeout(() => {
-            // TODO(@Isha): Find coordinates from tilemap + canvas size somehow?
-            worldPanZoom.pan(-350, -500);
-            playerPanZoom.pan(-350, -500);
-        }, 0);
     });
 
     const worldMapPosition: WorldPosition = $derived.by(() => {
@@ -120,17 +129,17 @@
         {/snippet}
     </SidePanel>
 
-    <div class="relative flex h-64 flex-row items-center justify-between">
-        <SidePanel>
-            {#snippet body()}
-                <div class="flex h-full flex-row items-center">
-                    {#if game.features.character.actionQueue.length > 0}
-                        <RoadProgressDisplay />
-                    {:else}
-                        <h4 class="h4">Click on a location on the map to start travelling...</h4>
-                    {/if}
-                </div>
-            {/snippet}
-        </SidePanel>
-    </div>
+    <!--    <div class="relative flex h-64 flex-row items-center justify-between">-->
+    <!--        <SidePanel>-->
+    <!--            {#snippet body()}-->
+    <!--                <div class="flex h-full flex-row items-center">-->
+    <!--                    {#if game.features.character.actionQueue.length > 0}-->
+    <!--                        <RoadProgressDisplay />-->
+    <!--                    {:else}-->
+    <!--                        <h4 class="h4">Click on a location on the map to start travelling...</h4>-->
+    <!--                    {/if}-->
+    <!--                </div>-->
+    <!--            {/snippet}-->
+    <!--        </SidePanel>-->
+    <!--    </div>-->
 </div>

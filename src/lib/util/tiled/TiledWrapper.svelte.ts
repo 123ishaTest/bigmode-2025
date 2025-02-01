@@ -78,7 +78,6 @@ export class TiledWrapperSvelte {
                 this.monstersLoaded++;
                 this.checkIfReady();
             };
-            console.log(MonsterImages[m.id]);
             image.src = MonsterImages[m.id];
             this.monsterImages[m.id] = image;
         });
@@ -145,10 +144,12 @@ export class TiledWrapperSvelte {
                 const y = road.path[obstacle.distance].y * this.tileHeight;
 
                 ctx.drawImage(this.monsterImages[obstacle.obstacle.monster], x, y, this.tileWidth, this.tileHeight);
-                this.ctx.textAlign = 'center';
-                this.ctx.textBaseline = 'middle';
-                this.ctx.fillStyle = 'white';
-                this.ctx.fillText(obstacle.obstacle.level.toString(), x + 12, y + 12);
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = 'red';
+                ctx.font = '12px pixel';
+                ctx.textRendering = 'geometricPrecision';
+                ctx.fillText(obstacle.obstacle.level.toString(), x + 16, y + 12);
             });
         });
     }
@@ -184,9 +185,9 @@ export class TiledWrapperSvelte {
             ctx.stroke();
         });
 
-        ctx.drawImage(this.playerImage, x * this.tileWidth, y * this.tileHeight, this.tileWidth, this.tileHeight);
-
         this.renderMonsters(allRoads);
+
+        ctx.drawImage(this.playerImage, x * this.tileWidth, y * this.tileHeight, this.tileWidth, this.tileHeight);
     }
 
     getJsonId(source: string): string {

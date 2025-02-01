@@ -7,12 +7,12 @@ import type { MonsterId } from '$lib/game/features/bestiary/MonsterId';
 import { AreaId } from '$lib/game/features/world/AreaId';
 
 const tierStats: Record<MonsterTier, Stats> = {
-    [MonsterTier.Critter]: { health: 1, meleeAttack: 1, meleeDefense: 1 },
-    [MonsterTier.Passive]: { health: 2, meleeAttack: 2, meleeDefense: 2 },
-    [MonsterTier.Neutral]: { health: 3, meleeAttack: 3, meleeDefense: 3 },
-    [MonsterTier.Aggressive]: { health: 4, meleeAttack: 4, meleeDefense: 4 },
-    [MonsterTier.MiniBoss]: { health: 5, meleeAttack: 5, meleeDefense: 5 },
-    [MonsterTier.Boss]: { health: 6, meleeAttack: 6, meleeDefense: 6 },
+    [MonsterTier.Critter]: { health: 5, meleeAttack: 1, meleeDefense: 1 },
+    [MonsterTier.Passive]: { health: 10, meleeAttack: 2, meleeDefense: 2 },
+    [MonsterTier.Neutral]: { health: 15, meleeAttack: 3, meleeDefense: 3 },
+    [MonsterTier.Aggressive]: { health: 20, meleeAttack: 4, meleeDefense: 4 },
+    [MonsterTier.MiniBoss]: { health: 25, meleeAttack: 5, meleeDefense: 5 },
+    [MonsterTier.Boss]: { health: 30, meleeAttack: 6, meleeDefense: 6 },
 };
 
 export const monsters: Monster[] = [
@@ -219,9 +219,4 @@ export const monsters: Monster[] = [
         id: m.id as MonsterId,
         stats: tierStats[m.tier],
     };
-});
-
-monsters.forEach((m) => {
-    console.log(`import { default as ${m.id}Img } from '$lib/monsters/${m.icon}.png';
-`);
 });

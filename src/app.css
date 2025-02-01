@@ -7,3 +7,8 @@
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
 }
+
+@font-face {
+    font-family: pixel;
+    src: url('https://dl.dropboxusercontent.com/s/hsdwvz761xqphhb/pixel.ttf');
+}

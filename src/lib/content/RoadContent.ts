@@ -14,10 +14,6 @@ export const roadContent: RoadInput[] = [
         obstacles: [
             { monster: 'chicken', level: 1 },
             { monster: 'chicken', level: 1 },
-            {
-                monster: 'chicken',
-                level: 1,
-            },
         ],
     },
     {
@@ -25,9 +21,9 @@ export const roadContent: RoadInput[] = [
         to: '/desert/village',
         obstacles: [
             { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'mosquito', level: 1 },
             {
-                monster: 'chicken',
+                monster: 'camel',
                 level: 1,
             },
         ],
@@ -36,11 +32,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/village',
         to: '/desert/camp',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'mosquito', level: 2 },
+            { monster: 'camel', level: 1 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'camel',
+                level: 2,
             },
         ],
     },
@@ -48,11 +44,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/camp',
         to: '/desert/mirror',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'snake', level: 15 },
+            { monster: 'snake', level: 15 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'crocodile',
+                level: 20,
             },
         ],
     },
@@ -60,11 +56,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/oasis',
         to: '/desert/remains',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'snake', level: 20 },
+            { monster: 'crocodile', level: 25 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'scorpion',
+                level: 50,
             },
         ],
     },
@@ -72,11 +68,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/camp',
         to: '/desert/statue',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'mosquito', level: 3 },
+            { monster: 'camel', level: 4 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'snake',
+                level: 5,
             },
         ],
     },
@@ -84,11 +80,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/cactii',
         to: '/desert/statue',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'mosquito', level: 1 },
+            { monster: 'camel', level: 3 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'snake',
+                level: 5,
             },
         ],
     },
@@ -96,11 +92,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/village',
         to: '/desert/cactii',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'mosquito', level: 2 },
+            { monster: 'camel', level: 1 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'camel',
+                level: 2,
             },
         ],
     },
@@ -108,11 +104,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/cactii',
         to: '/desert/monolith',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'crocodile', level: 30 },
+            { monster: 'crocodile', level: 35 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'scorpion',
+                level: 45,
             },
         ],
     },
@@ -120,11 +116,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/monolith',
         to: '/desert/pyramid',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'scorpion', level: 50 },
+            { monster: 'scorpion', level: 75 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'mummy',
+                level: 100,
             },
         ],
     },
@@ -348,11 +344,11 @@ export const roadContent: RoadInput[] = [
         from: '/mountains/summit',
         to: '/mountains/crystals',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'giant', level: 100 },
+            { monster: 'skeleton', level: 75 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'skeleton',
+                level: 50,
             },
         ],
     },
@@ -456,11 +452,11 @@ export const roadContent: RoadInput[] = [
         from: '/desert/mirror',
         to: '/desert/oasis',
         obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
+            { monster: 'camel', level: 10 },
+            { monster: 'snake', level: 20 },
             {
-                monster: 'chicken',
-                level: 1,
+                monster: 'crocodile',
+                level: 25,
             },
         ],
     },

@@ -6,6 +6,7 @@
     import type { Power } from '$lib/game/features/powers/Power';
     import { toCapitalizedWords } from '$lib/util/format/String';
     import PowerIcon from '$lib/components/PowerIcon.svelte';
+    import MonsterIcon from '$lib/components/MonsterIcon.svelte';
 
     let openState = $state(false);
 
@@ -32,19 +33,30 @@
     backdropClasses="backdrop-blur-sm"
 >
     {#snippet content()}
-        <header class="flex justify-between">
-            <h2 class="h2">You died.</h2>
+        <header class="flex flex-row items-center justify-between">
+            <h2 class="h2">You died to a {stats.killer.monster.name}</h2>
+            <MonsterIcon monster={stats.killer.monster}></MonsterIcon>
         </header>
         <article>
             <h2 class="h2">Summary</h2>
             <table class="table">
                 <tbody>
-                    {#each Object.entries(stats) as stat}
-                        <tr>
-                            <td>{toCapitalizedWords(stat[0])}</td>
-                            <td>{stat[1]}</td>
-                        </tr>
-                    {/each}
+                    <tr>
+                        <td>Damage dealt</td>
+                        <td>{stats.damageDealt.toFixed(0)}</td>
+                    </tr>
+                    <tr>
+                        <td>Damage taken</td>
+                        <td>{stats.damageTaken.toFixed(0)}</td>
+                    </tr>
+                    <tr>
+                        <td>Monsters defeated</td>
+                        <td>{stats.monstersDefeated}</td>
+                    </tr>
+                    <tr>
+                        <td>Locations visited</td>
+                        <td>{stats.locationsVisited}</td>
+                    </tr>
                 </tbody>
             </table>
 

@@ -1,67 +1,125 @@
 <script lang="ts">
-    import type { Combat } from '$lib/game/tools/combat/Combat';
     import { Progress } from '@skeletonlabs/skeleton-svelte';
     import MonsterIcon from '$lib/components/MonsterIcon.svelte';
+    import type { IgtGame } from '$lib/game/IgtGame';
+    import { getContext } from 'svelte';
+    import { base } from '$app/paths';
+    import SidePanel from '$lib/components/SidePanel.svelte';
+    import KeyItemsDisplay from '$lib/components/KeyItemsDisplay.svelte';
+    import UIcon from '$lib/components/UIcon.svelte';
 
-    interface Props {
-        combat: Combat;
-    }
+    let game: IgtGame = getContext('game');
+    let character = $derived(game.features.character);
 
-    let { combat }: Props = $props();
+    let combat = $derived(character.currentObstacle);
+
+    let format = (n: number): string => {
+        if (n > 10) {
+            return n.toFixed(0);
+        }
+        return n.toFixed(2);
+    };
 </script>
 
-<div class="flex w-full flex-row justify-around space-x-2">
-    <div class="flex w-48 flex-col items-center space-y-2">
-        <p>You</p>
+<SidePanel>
+    {#snippet title()}
+        <h3 class="h3">Combat</h3>
+    {/snippet}
+    {#snippet body()}
+        <div class="flex flex-col space-y-2">
+            <KeyItemsDisplay />
+            <div class="flex flex-col items-center space-y-2">
+                <img class="pixelated h-24 w-24" src="{base}/images/character.png" alt="You" />
 
-        <div class="h-24 w-24"></div>
+                <table class="table table-fixed">
+                    <tbody>
+                        <tr>
+                            <td>{character.health.toFixed()}/{character.maxHealth.toFixed()}</td>
+                            <td>
+                                <Progress value={character.health} max={character.maxHealth} meterBg="bg-red-500" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <Progress
+                                    value={combat?.character.cooldown ?? 1}
+                                    max={combat?.character.maxCooldown ?? 1}
+                                    meterBg="bg-blue-500"
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <table class="table table-fixed">
-            <tbody>
-                <tr>
-                    <td>{combat.character.health.toFixed()}/{combat.character.maxHealth.toFixed()}</td>
-                    <td>
-                        <Progress
-                            value={combat.character.health}
-                            max={combat.character.maxHealth}
-                            meterBg="bg-red-500"
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>{combat.characterScheduledAttack?.description ?? ''}</span></td>
-                    <td>
-                        <Progress
-                            value={combat.character.cooldown}
-                            max={combat.character.maxCooldown}
-                            meterBg="bg-blue-500"
-                        />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            <div class="flex w-full flex-row justify-around">
+                <div class="flex flex-col items-center">
+                    <UIcon icon="heart" />
+                    <span>{format(character.maxHealth)}</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <UIcon icon="swords" />
+                    <span>{format(character.meleeAttack)}</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <UIcon icon="helmet" />
+                    <span>{format(character.meleeDefense)}</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <UIcon icon="boots" />
+                    <span>{format(character.travelSpeed)}</span>
+                </div>
+            </div>
+        </div>
 
-    <div class="flex w-48 flex-col items-center space-y-2">
-        <p>{combat.enemy.monster.name} (Lvl. {combat.enemy.level})</p>
+        <div class="flex flex-grow flex-col items-center space-y-2">
+            {#if combat}
+                <p>{combat.enemy.monster.name} (Lvl. {combat.enemy.level})</p>
 
-        <MonsterIcon monster={combat.enemy.monster} size="large"></MonsterIcon>
+                <MonsterIcon monster={combat.enemy.monster} size="large"></MonsterIcon>
 
-        <table class="table table-fixed">
-            <tbody>
-                <tr>
-                    <td>{combat.enemy.health.toFixed()}/{combat.enemy.maxHealth.toFixed()}</td>
-                    <td>
-                        <Progress value={combat.enemy.health} max={combat.enemy.maxHealth} meterBg="bg-red-500" />
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>{combat.enemyScheduledAttack?.description ?? ''}</span></td>
-                    <td>
-                        <Progress value={combat.enemy.cooldown} max={combat.enemy.maxCooldown} meterBg="bg-blue-500" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <table class="table table-fixed">
+                    <tbody>
+                        <tr>
+                            <td>{combat.enemy.health.toFixed()}/{combat.enemy.maxHealth.toFixed()}</td>
+                            <td>
+                                <Progress
+                                    value={combat.enemy.health}
+                                    max={combat.enemy.maxHealth}
+                                    meterBg="bg-red-500"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>{combat.enemyScheduledAttack?.description ?? ''}</span></td>
+                            <td>
+                                <Progress
+                                    value={combat.enemy.cooldown}
+                                    max={combat.enemy.maxCooldown}
+                                    meterBg="bg-blue-500"
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="flex w-full flex-row justify-around">
+                    <div class="flex flex-col items-center">
+                        <UIcon icon="heart" />
+                        <span>{format(combat.enemy.maxHealth)}</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <UIcon icon="swords" />
+                        <span>{format(combat.enemy.meleeAttack)}</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <UIcon icon="helmet" />
+                        <span>{format(combat.enemy.meleeDefense)}</span>
+                    </div>
+                    <div class="flex flex-col items-center"></div>
+                </div>
+            {/if}
+        </div>
+    {/snippet}
+</SidePanel>

@@ -30,6 +30,7 @@
         }
     });
     import { Tooltip } from '@skeletonlabs/skeleton-svelte';
+    import UIcon from '$lib/components/UIcon.svelte';
 
     let openState = $state(false);
 </script>
@@ -53,7 +54,10 @@
         <div class="flex flex-col space-y-2">
             <span>{power.name}</span>
             {#if isGranted}
-                <span>Lvl. {level} -> {multiplier.toFixed(2)}x {power.type}</span>
+                <div class="flex flex-row items-center space-x-1">
+                    <span>Lvl. {level} -> {multiplier.toFixed(2)}x</span>
+                    <UIcon icon={power.type} />
+                </div>
             {:else}
                 <p>You have not been granted this power.</p>
             {/if}

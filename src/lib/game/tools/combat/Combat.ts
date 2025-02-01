@@ -27,7 +27,10 @@ export class Combat {
         this.enemy.idle(delta);
 
         if (this.character.cooldown <= 0 && this.characterScheduledAttack) {
-            const damage = this.calculateDamage(this.character, this.characterScheduledAttack, this.enemy);
+            const damage = Math.min(
+                this.enemy.health,
+                this.calculateDamage(this.character, this.characterScheduledAttack, this.enemy),
+            );
             this.characterScheduledAttack = null;
             this.enemy.takeDamage(damage);
 
@@ -39,7 +42,10 @@ export class Combat {
         }
 
         if (this.enemy.cooldown <= 0 && this.enemyScheduledAttack) {
-            const damage = Math.max(1, this.calculateDamage(this.enemy, this.enemyScheduledAttack, this.character));
+            const damage = Math.min(
+                this.character.health,
+                Math.max(1, this.calculateDamage(this.enemy, this.enemyScheduledAttack, this.character)),
+            );
             this.enemyScheduledAttack = null;
 
             this.character.takeDamage(damage);
