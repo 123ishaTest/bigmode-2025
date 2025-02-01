@@ -4,8 +4,13 @@ import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
 import type { ObjectGroup } from '$lib/util/tiled/types/layers/ObjectGroup';
 import type { TileLayer } from '$lib/util/tiled/types/layers/TileLayer';
 import type { TiledLayer } from '$lib/util/tiled/types/layers/TiledLayer';
-import { Images, TileSets } from '$lib/worldmap/tilesets';
+import { Images, MonsterImages, TileSets } from '$lib/worldmap/tilesets';
 import type { TiledObject } from '$lib/util/tiled/types/objects/TiledObject';
+import type { Road } from '$lib/game/features/world/Road';
+import type { MonsterId } from '$lib/game/features/bestiary/MonsterId';
+import { monsters } from '$lib/content/MonsterContent';
+import type { TravelAction } from '$lib/game/features/character/Character.svelte';
+import type { IgtGame } from '$lib/game/IgtGame';
 
 /**
  * Wrapper to work with Tiled maps.
@@ -13,6 +18,7 @@ import type { TiledObject } from '$lib/util/tiled/types/objects/TiledObject';
  * Text is also shown, but not all properties are supported.
  */
 export class TiledWrapperSvelte {
+    game: IgtGame;
     worldMap: TiledMap;
     clickBoxes: TiledObject[] = [];
 
@@ -28,7 +34,8 @@ export class TiledWrapperSvelte {
     isHoveringOverClickBox: boolean = $state(false);
 
     tileSetsLoaded = 0;
-
+    monstersLoaded = 0;
+    monstersNeeded = monsters.length;
     /**
      * Called when all images are loaded. Don't render before this
      */
@@ -39,11 +46,18 @@ export class TiledWrapperSvelte {
     onClickBoxClicked: (box: TiledObject) => void;
 
     playerImage: HTMLImageElement;
+    monsterImages!: Record<MonsterId, HTMLImageElement>;
     playerImagedLoaded = false;
 
     currentScale: number = 1;
 
-    constructor(worldMap: TiledMap, onInitialized: () => void, onClickBoxClicked: (box: TiledObject) => void) {
+    constructor(
+        game: IgtGame,
+        worldMap: TiledMap,
+        onInitialized: () => void,
+        onClickBoxClicked: (box: TiledObject) => void,
+    ) {
+        this.game = game;
         this.worldMap = worldMap;
 
         this.onInitialized = onInitialized;
@@ -56,6 +70,18 @@ export class TiledWrapperSvelte {
         };
 
         this.playerImage.src = Images.character;
+
+        this.monsterImages = {} as Record<MonsterId, HTMLImageElement>;
+        monsters.forEach((m) => {
+            const image = new Image();
+            image.onload = () => {
+                this.monstersLoaded++;
+                this.checkIfReady();
+            };
+            console.log(MonsterImages[m.id]);
+            image.src = MonsterImages[m.id];
+            this.monsterImages[m.id] = image;
+        });
 
         this.tileHeight = this.worldMap.tileheight;
         this.tileWidth = this.worldMap.tilewidth;
@@ -111,26 +137,56 @@ export class TiledWrapperSvelte {
         this.onInitialized();
     }
 
-    renderPlayer(x: number, y: number, roads: WorldPosition[][] = [[]]) {
+    renderMonsters(roads: Road[]): void {
+        const ctx = this.playerCanvas.getContext('2d') as CanvasRenderingContext2D;
+        roads.forEach((road) => {
+            road.obstacles.forEach((obstacle) => {
+                const x = road.path[obstacle.distance].x * this.tileWidth;
+                const y = road.path[obstacle.distance].y * this.tileHeight;
+
+                ctx.drawImage(this.monsterImages[obstacle.obstacle.monster], x, y, this.tileWidth, this.tileHeight);
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillStyle = 'white';
+                this.ctx.fillText(obstacle.obstacle.level.toString(), x + 12, y + 12);
+            });
+        });
+    }
+
+    renderPlayer(x: number, y: number, allRoads: Road[], actions: TravelAction[] = []) {
         const ctx = this.playerCanvas.getContext('2d') as CanvasRenderingContext2D;
         ctx.clearRect(0, 0, this.playerCanvas.width, this.playerCanvas.height);
 
         // Paths
         ctx.lineWidth = 2;
-        roads.forEach((worldPositions) => {
-            ctx.strokeStyle = 'red';
+        // Only start drawing from the player
+        let foundPlayer = false;
+        actions.forEach((action) => {
+            ctx.strokeStyle = 'blue';
 
             ctx.beginPath();
 
+            const road = this.game.features.world.getRoad(action.roadId);
+
+            const worldPositions = action.reverse ? road.path.toReversed() : road.path;
+
             worldPositions.forEach((position) => {
-                const x = (position.x + 0.5) * this.tileWidth;
-                const y = (position.y + 0.5) * this.tileHeight;
-                ctx.lineTo(x, y);
+                if (position.x === x && position.y === y) {
+                    foundPlayer = true;
+                }
+                const drawX = (position.x + 0.5) * this.tileWidth;
+                const drawY = (position.y + 0.5) * this.tileHeight;
+
+                if (foundPlayer) {
+                    ctx.lineTo(drawX, drawY);
+                }
             });
             ctx.stroke();
         });
 
         ctx.drawImage(this.playerImage, x * this.tileWidth, y * this.tileHeight, this.tileWidth, this.tileHeight);
+
+        this.renderMonsters(allRoads);
     }
 
     getJsonId(source: string): string {

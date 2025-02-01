@@ -7,12 +7,12 @@ import type { MonsterId } from '$lib/game/features/bestiary/MonsterId';
 import { AreaId } from '$lib/game/features/world/AreaId';
 
 const tierStats: Record<MonsterTier, Stats> = {
-    [MonsterTier.Critter]: { health: 10, meleeAttack: 1, meleeDefense: 1 },
-    [MonsterTier.Passive]: { health: 50, meleeAttack: 5, meleeDefense: 5 },
-    [MonsterTier.Neutral]: { health: 100, meleeAttack: 10, meleeDefense: 10 },
-    [MonsterTier.Aggressive]: { health: 250, meleeAttack: 25, meleeDefense: 25 },
-    [MonsterTier.MiniBoss]: { health: 500, meleeAttack: 50, meleeDefense: 50 },
-    [MonsterTier.Boss]: { health: 1000, meleeAttack: 100, meleeDefense: 100 },
+    [MonsterTier.Critter]: { health: 1, meleeAttack: 1, meleeDefense: 1 },
+    [MonsterTier.Passive]: { health: 2, meleeAttack: 2, meleeDefense: 2 },
+    [MonsterTier.Neutral]: { health: 3, meleeAttack: 3, meleeDefense: 3 },
+    [MonsterTier.Aggressive]: { health: 4, meleeAttack: 4, meleeDefense: 4 },
+    [MonsterTier.MiniBoss]: { health: 5, meleeAttack: 5, meleeDefense: 5 },
+    [MonsterTier.Boss]: { health: 6, meleeAttack: 6, meleeDefense: 6 },
 };
 
 export const monsters: Monster[] = [
@@ -190,9 +190,9 @@ export const monsters: Monster[] = [
         attacks: [new Attack('Splish Splash', WeaponType.Melee, 1.0, 10, 15)],
     },
     {
-        id: 'haunted-tree',
+        id: 'hauntedTree',
         name: 'Haunted Tree',
-        icon: '/monsters/haunted-tree.png',
+        icon: '/monsters/hauntedTree.png',
         tier: MonsterTier.Aggressive,
         area: AreaId.Forest,
         attacks: [new Attack('Sweep', WeaponType.Melee, 2.3, 30, 35)],
@@ -206,9 +206,9 @@ export const monsters: Monster[] = [
         attacks: [new Attack('Hex', WeaponType.Melee, 4, 60, 66)],
     },
     {
-        id: 'giant-spider',
+        id: 'giantSpider',
         name: 'Giant Spider',
-        icon: '/monsters/giant-spider.png',
+        icon: '/monsters/giantSpider.png',
         tier: MonsterTier.Boss,
         area: AreaId.Forest,
         attacks: [new Attack('Giant Spider', WeaponType.Melee, 2.1, 100, 120)],
@@ -219,4 +219,9 @@ export const monsters: Monster[] = [
         id: m.id as MonsterId,
         stats: tierStats[m.tier],
     };
+});
+
+monsters.forEach((m) => {
+    console.log(`import { default as ${m.id}Img } from '$lib/monsters/${m.icon}.png';
+`);
 });

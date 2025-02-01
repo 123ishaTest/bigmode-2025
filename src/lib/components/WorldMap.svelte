@@ -24,10 +24,15 @@
 
     let tiledWrapper: TiledWrapperSvelte = $state(
         new TiledWrapperSvelte(
+            game,
             map,
             () => {
                 tiledWrapper.render();
-                tiledWrapper.renderPlayer(currentLocation.position.x, currentLocation.position.y);
+                tiledWrapper.renderPlayer(
+                    currentLocation.position.x,
+                    currentLocation.position.y,
+                    game.features.world.roads,
+                );
             },
             (clickBox: TiledObject) => {
                 let locationId = clickBox.properties?.find((p) => p.name === 'hrid')?.value;
@@ -71,13 +76,6 @@
         }, 0);
     });
 
-    const activeRoads = $derived.by(() => {
-        return game.features.character.actionQueue.map((a) => {
-            let road = game.features.world.getRoad(a.roadId);
-            return road.path;
-        });
-    });
-
     const worldMapPosition: WorldPosition = $derived.by(() => {
         const action = game.features.character.getCurrentRoadAction();
 
@@ -94,7 +92,12 @@
     });
 
     $effect(() => {
-        tiledWrapper.renderPlayer(worldMapPosition.x, worldMapPosition.y, activeRoads);
+        tiledWrapper.renderPlayer(
+            worldMapPosition.x,
+            worldMapPosition.y,
+            game.features.world.roads,
+            game.features.character.actionQueue,
+        );
     });
 </script>
 

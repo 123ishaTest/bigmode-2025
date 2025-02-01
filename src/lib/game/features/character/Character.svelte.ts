@@ -14,7 +14,6 @@ import type { Fightable } from '$lib/game/tools/combat/Fightable';
 import type { RunStats } from '$lib/game/features/powers/RunStats';
 import type { Powers } from '$lib/game/features/powers/Powers.svelte';
 import { PowerType } from '$lib/game/features/powers/PowerType';
-import type { EnemyDetail } from '$lib/game/features/bestiary/EnemyDetail';
 import type { RoadObstacle } from '$lib/game/features/world/RoadObstacle';
 
 export interface TravelAction {
