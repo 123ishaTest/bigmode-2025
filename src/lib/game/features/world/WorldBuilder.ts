@@ -2,10 +2,12 @@ import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
 import type { ObjectProperty } from '$lib/util/tiled/types/objects/ObjectProperty';
 import type { Road } from '$lib/game/features/world/Road';
 import type { ObjectGroup } from '$lib/util/tiled/types/layers/ObjectGroup';
-import type { WorldLocationId } from '$lib/content/WorldLocationId';
 import type { TiledLayer } from '$lib/util/tiled/types/layers/TiledLayer';
 import type { TiledMap } from '$lib/util/tiled/types/TiledMap';
 import type { WorldLocation } from '$lib/game/features/world/WorldLocation';
+import type { RoadId } from '$lib/content/RoadId';
+import { roadContent } from '$lib/content/RoadContent';
+import type { RoadObstacle } from '$lib/game/features/world/RoadObstacle';
 
 export class WorldBuilder {
     worldMap: TiledMap;
@@ -63,7 +65,7 @@ export class WorldBuilder {
 
                 const to = this.getPropertyValue<string>(toLocation?.properties, 'hrid') ?? 'unknown';
 
-                const id = `${from}-${to}` as WorldLocationId;
+                const id = `${from}-${to}` as RoadId;
                 // const baseDuration = this.getPropertyValue(properties, "baseDuration")
 
                 const points =
@@ -73,19 +75,25 @@ export class WorldBuilder {
                             y: position.y + object.y,
                         });
                     }) ?? [];
+                // console.log(`{from: '${from}', to: '${to}', obstacles:[{monster: 'chicken', level: 1},{monster: 'chicken', level: 1},{monster: 'chicken', level: 1}]},`)
+
+                const enemies = roadContent.find((r) => r.from === from && r.to === to)?.obstacles ?? [];
+
+                const obstacles: RoadObstacle[] = enemies.map((e, index) => {
+                    const percentage = [0.25, 0.5, 0.75][index];
+                    return {
+                        distance: Math.ceil(percentage * points.length),
+                        obstacle: e,
+                    };
+                });
+
                 return {
                     id,
                     from,
                     to,
                     path: points,
                     duration: points.length,
-                    // TODO(@Isha): Get obstacles from somewhere.
-                    //  Merge static data into Tiled data probably?
-                    obstacles: [
-                        { distance: 5, obstacle: { monster: 'chicken', level: 1 } },
-                        { distance: 10, obstacle: { monster: 'chicken', level: 1 } },
-                        { distance: 15, obstacle: { monster: 'chicken', level: 2 } },
-                    ],
+                    obstacles,
                 };
             });
     }

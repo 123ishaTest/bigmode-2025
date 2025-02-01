@@ -4466,7 +4466,7 @@
                         {
                             "name": "hrid",
                             "type": "string",
-                            "value": "\/mountains\/outpost"
+                            "value": "\/mountains\/cabin"
                         }
                     ],
                     "rotation": 0,
@@ -4485,7 +4485,7 @@
                         {
                             "name": "hrid",
                             "type": "string",
-                            "value": "\/mountains\/outpost"
+                            "value": "\/mountains\/cabin"
                         }
                     ],
                     "rotation": 0,
