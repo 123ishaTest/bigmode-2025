@@ -79,7 +79,7 @@
 
         <div class="flex flex-grow flex-col items-center space-y-2">
             {#if combat}
-                <p>{combat.enemy.monster.name} (Lvl. {combat.enemy.level})</p>
+                <p>Lvl. {combat.enemy.level} {combat.enemy.monster.name}</p>
 
                 <MonsterIcon monster={combat.enemy.monster} size="large"></MonsterIcon>
 

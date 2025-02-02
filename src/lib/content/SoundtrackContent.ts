@@ -34,12 +34,4 @@ export const soundtracks: Soundtrack[] = [
         fadeOutDuration: 4000,
         volume: 1,
     },
-    {
-        name: 'Desert',
-        area: AreaId.Desert,
-        track: '/soundtracks/desert.mp3',
-        fadeInDuration: 6000,
-        fadeOutDuration: 4000,
-        volume: 1,
-    },
 ];

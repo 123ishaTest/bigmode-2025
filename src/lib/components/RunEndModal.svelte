@@ -7,6 +7,7 @@
     import PowerIcon from '$lib/components/PowerIcon.svelte';
     import MonsterIcon from '$lib/components/MonsterIcon.svelte';
     import { fromArray } from '$lib/game/tools/random/Random';
+    import UIcon from '$lib/components/UIcon.svelte';
 
     let openState = $state(false);
 
@@ -45,9 +46,10 @@
     {#snippet content()}
         <header class="flex flex-row items-center justify-between">
             {#if stats.killer}
-                <h2 class="h2">
-                    #{game.features.character.runCount}. You died to a {stats.killer?.monster.name ?? getRandomDeath()}
-                </h2>
+                <h3 class="h3">
+                    #{game.features.character.runCount}. You were defeated
+                    by {stats.killer?.monster.an ?? 'a'} {stats.killer?.monster.name ?? getRandomDeath()}
+                </h3>
             {:else}
                 <h2 class="h2">#{game.features.character.runCount}. {getRandomDeath()}</h2>
             {/if}
@@ -58,22 +60,42 @@
         <article>
             <table class="table">
                 <tbody>
-                    <tr>
-                        <td>Damage dealt</td>
-                        <td>{stats.damageDealt.toFixed(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>Damage taken</td>
-                        <td>{stats.damageTaken.toFixed(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>Monsters defeated</td>
-                        <td>{stats.monstersDefeated}</td>
-                    </tr>
-                    <tr>
-                        <td>Locations visited</td>
-                        <td>{stats.locationsVisited.length}</td>
-                    </tr>
+                <tr>
+                    <td>
+                        <div class="flex flex-row items-center space-x-2">
+                            <UIcon icon="swords" />
+                            <span>Damage dealt</span>
+                        </div>
+                    </td>
+                    <td>{stats.damageDealt.toFixed(0)}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="flex flex-row items-center space-x-2">
+                            <UIcon icon="helmet" />
+                            <span>Damage taken</span>
+                        </div>
+                    </td>
+                    <td>{stats.damageTaken.toFixed(0)}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="flex flex-row items-center space-x-2">
+                            <UIcon icon="skull" />
+                            <span>Monsters defeated</span>
+                        </div>
+                    </td>
+                    <td>{stats.monstersDefeated}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="flex flex-row items-center space-x-2">
+                            <UIcon icon="marker" />
+                            <span>Locations visited</span>
+                        </div>
+                    </td>
+                    <td>{stats.locationsVisited.length}</td>
+                </tr>
                 </tbody>
             </table>
 

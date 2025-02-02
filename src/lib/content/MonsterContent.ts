@@ -167,11 +167,12 @@ export const monsters: Monster[] = [
     // Forest
     {
         id: 'owl',
-        name: 'owl',
+        name: 'Owl',
         icon: '/monsters/owl.png',
         tier: MonsterTier.Critter,
         area: AreaId.Forest,
         attacks: [new Attack('Peck', WeaponType.Melee, 2)],
+        an: true,
     },
     {
         id: 'spider',
@@ -199,7 +200,7 @@ export const monsters: Monster[] = [
     },
     {
         id: 'witch',
-        name: 'witch',
+        name: 'Witch',
         icon: '/monsters/witch.png',
         tier: MonsterTier.MiniBoss,
         area: AreaId.Forest,

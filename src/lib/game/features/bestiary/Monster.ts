@@ -10,4 +10,6 @@ export interface Monster {
     area: AreaId;
     stats: Stats;
     attacks: Attack[];
+
+    an?: boolean;
 }
