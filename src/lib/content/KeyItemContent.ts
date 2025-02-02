@@ -12,7 +12,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'torch',
         name: 'Torch',
-        description: 'TODO',
+        description: 'Deal 10% more damage',
         icon: '/items/torch.png',
         unlockHint: 'Illuminating a fallen hero',
         unlockLocation: '/desert/statue',
@@ -36,18 +36,18 @@ export const keyItems: KeyItem[] = [
     {
         id: 'silver-tiara',
         name: 'Silver Tiara',
-        description: 'TODO',
+        description: 'Increases combat speed by 25%',
         icon: '/items/tiara.png',
-        unlockHint: 'TODO',
-        unlockLocation: '/TODO',
+        unlockHint: 'Worn by only the prettiest spirits',
+        unlockLocation: '/riverlands/docks',
     },
     {
         id: 'eternal-water',
         name: 'Eternal Water',
-        description: 'TODO',
+        description: 'Increases health by 25% ',
         icon: '/items/eternal-water.png',
-        unlockHint: 'TODO',
-        unlockLocation: '/TODO',
+        unlockHint: 'Locally sourced and organic!',
+        unlockLocation: '/riverlands/fountain',
     },
     {
         id: 'pickaxe',

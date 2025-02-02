@@ -4,7 +4,6 @@
     import type { IgtGame } from '$lib/game/IgtGame';
     import { getContext } from 'svelte';
     import type { Power } from '$lib/game/features/powers/Power';
-    import { toCapitalizedWords } from '$lib/util/format/String';
     import PowerIcon from '$lib/components/PowerIcon.svelte';
     import MonsterIcon from '$lib/components/MonsterIcon.svelte';
     import { fromArray } from '$lib/game/tools/random/Random';
@@ -27,7 +26,13 @@
     });
 
     const getRandomDeath = () => {
-        return fromArray(['random hurricane']);
+        return fromArray([
+            'You got swept up by a hurricane',
+            'You got hit by a falling anvil',
+            'You just sort of gave up',
+            'You got struck by lightning',
+            'Sssst, you got hit by the silent killer',
+        ]);
     };
 </script>
 
@@ -39,7 +44,11 @@
 >
     {#snippet content()}
         <header class="flex flex-row items-center justify-between">
-            <h2 class="h2">You died to a {stats.killer?.monster.name ?? getRandomDeath()}</h2>
+            {#if stats.killer}
+                <h2 class="h2">You died to a {stats.killer?.monster.name ?? getRandomDeath()}</h2>
+            {:else}
+                <h2 class="h2">{getRandomDeath()}</h2>
+            {/if}
             {#if stats.killer}
                 <MonsterIcon monster={stats.killer.monster}></MonsterIcon>
             {/if}
