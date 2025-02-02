@@ -1,6 +1,5 @@
 import type { Fightable } from '$lib/game/tools/combat/Fightable';
 import type { Attack } from '$lib/game/tools/combat/Attack';
-import { intBetween } from '$lib/game/tools/random/Random';
 import type { Enemy } from '$lib/game/features/bestiary/Enemy.svelte';
 import type { CombatReport } from '$lib/game/tools/combat/CombatReport';
 
