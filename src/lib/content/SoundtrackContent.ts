@@ -3,15 +3,39 @@ import { AreaId } from '$lib/game/features/world/AreaId';
 
 export const soundtracks: Soundtrack[] = [
     {
-        name: 'Guitar Theme',
+        name: 'Home',
         area: AreaId.Home,
-        track: '/soundtracks/guitar-theme.mp3',
+        track: '/soundtracks/home.mp3',
         fadeInDuration: 5000,
         fadeOutDuration: 2000,
-        volume: 0.3,
+        volume: 1,
     },
     {
-        name: 'Desert Theme',
+        name: 'Riverlands',
+        area: AreaId.Riverlands,
+        track: '/soundtracks/riverlands.mp3',
+        fadeInDuration: 6000,
+        fadeOutDuration: 4000,
+        volume: 1,
+    },
+    {
+        name: 'Mountains',
+        area: AreaId.Mountains,
+        track: '/soundtracks/mountains.mp3',
+        fadeInDuration: 6000,
+        fadeOutDuration: 4000,
+        volume: 1,
+    },
+    {
+        name: 'Forest',
+        area: AreaId.Forest,
+        track: '/soundtracks/forest.mp3',
+        fadeInDuration: 6000,
+        fadeOutDuration: 4000,
+        volume: 1,
+    },
+    {
+        name: 'Desert',
         area: AreaId.Desert,
         track: '/soundtracks/desert.mp3',
         fadeInDuration: 6000,

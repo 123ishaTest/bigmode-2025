@@ -14,6 +14,8 @@
     let { children } = $props();
     import { page } from '$app/state';
     import { Bot } from 'lucide-svelte';
+    import TutorialModal from '$lib/components/TutorialModal.svelte';
+    import GameCompletedModal from '$lib/components/GameCompletedModal.svelte';
 
     setContext('game', game);
 
@@ -22,7 +24,9 @@
     };
 </script>
 
+<TutorialModal />
 <RunEndModal />
+<GameCompletedModal />
 <AudioHandler />
 <AppBar>
     {#snippet lead()}

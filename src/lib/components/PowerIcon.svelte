@@ -22,7 +22,7 @@
     let sizeClass = $derived.by(() => {
         switch (size) {
             case 'small':
-                return 'w-8 h-8';
+                return 'w-12 h-12';
             case 'medium':
                 return 'w-16 h-16';
             case 'large':
@@ -46,7 +46,7 @@
         <div class="relative flex flex-col border-2" title={power.name}>
             <img class="pixelated {sizeClass} {level === 0 ? 'grayscale' : ''}" src="{base}/images/{path}" alt={path} />
             {#if isGranted && showLevel}
-                <span class="absolute bottom-0 right-1 p-1">{level}</span>
+                <span class="absolute bottom-0 right-0.5 p-0.5">{level}</span>
             {/if}
         </div>
     {/snippet}

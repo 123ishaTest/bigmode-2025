@@ -10,14 +10,14 @@ interface RoadInput {
 export const roadContent: RoadInput[] = [
     {
         from: '/home',
-        to: '/forest/cabin',
+        to: '/home/cabin',
         obstacles: [
             { monster: 'chicken', level: 1 },
             { monster: 'chicken', level: 1 },
         ],
     },
     {
-        from: '/forest/cabin',
+        from: '/home/cabin',
         to: '/desert/village',
         obstacles: [
             { monster: 'chicken', level: 1 },
@@ -107,7 +107,7 @@ export const roadContent: RoadInput[] = [
         ],
     },
     {
-        from: '/forest/cabin',
+        from: '/home/cabin',
         to: '/forest/clearing',
         obstacles: [
             { monster: 'chicken', level: 1 },
@@ -188,8 +188,8 @@ export const roadContent: RoadInput[] = [
         ],
     },
     {
-        from: '/forest/cabin',
-        to: '/riverlands/guard',
+        from: '/home/cabin',
+        to: '/home/guard',
         obstacles: [
             { monster: 'chicken', level: 2 },
             { monster: 'cow', level: 3 },
@@ -197,7 +197,7 @@ export const roadContent: RoadInput[] = [
         ],
     },
     {
-        from: '/riverlands/guard',
+        from: '/home/guard',
         to: '/riverlands/crossroads',
         obstacles: [
             { monster: 'cow', level: 5 },

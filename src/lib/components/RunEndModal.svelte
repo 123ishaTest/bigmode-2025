@@ -31,7 +31,7 @@
             'You got hit by a falling anvil',
             'You just sort of gave up',
             'You got struck by lightning',
-            'Sssst, you got hit by the silent killer',
+            'Sssshh, you got hit by the silent killer',
         ]);
     };
 </script>
@@ -45,16 +45,17 @@
     {#snippet content()}
         <header class="flex flex-row items-center justify-between">
             {#if stats.killer}
-                <h2 class="h2">You died to a {stats.killer?.monster.name ?? getRandomDeath()}</h2>
+                <h2 class="h2">
+                    #{game.features.character.runCount}. You died to a {stats.killer?.monster.name ?? getRandomDeath()}
+                </h2>
             {:else}
-                <h2 class="h2">{getRandomDeath()}</h2>
+                <h2 class="h2">#{game.features.character.runCount}. {getRandomDeath()}</h2>
             {/if}
             {#if stats.killer}
                 <MonsterIcon monster={stats.killer.monster}></MonsterIcon>
             {/if}
         </header>
         <article>
-            <h2 class="h2">Summary</h2>
             <table class="table">
                 <tbody>
                     <tr>
@@ -71,24 +72,17 @@
                     </tr>
                     <tr>
                         <td>Locations visited</td>
-                        <td>{stats.locationsVisited}</td>
+                        <td>{stats.locationsVisited.length}</td>
                     </tr>
                 </tbody>
             </table>
 
             <h2 class="h2">Powers Gained</h2>
-            <table class="table">
-                <tbody>
-                    {#each powersGained as power}
-                        <tr>
-                            <td><PowerIcon {power} size="small" showLevel={false} /></td>
-                            <td>{power.name}</td>
-                            <td>Lvl. {game.features.powers.getPowerLevel(power.id)}</td>
-                            <td>{game.features.powers.getPowerMultiplier(power.id).toFixed(2)}x</td>
-                        </tr>
-                    {/each}
-                </tbody>
-            </table>
+            <div class="flex flex-row flex-wrap space-x-2">
+                {#each powersGained as power}
+                    <PowerIcon {power} size="small" showLevel={false} />
+                {/each}
+            </div>
         </article>
         <footer class="flex justify-end gap-4">
             <button type="button" class="btn preset-filled" onclick={modalClose}>Next Run!</button>

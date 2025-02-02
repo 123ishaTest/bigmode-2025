@@ -102,11 +102,19 @@ export class World extends IgtFeature {
         return {};
     }
 
-    getAreaForLocation(destination: WorldLocationId) {
-        // TODO(@Isha): Change
-        if (destination == '/home') {
-            return AreaId.Home;
+    getAreaForLocation(l: WorldLocationId) {
+        if (l.startsWith('/desert')) {
+            return AreaId.Desert;
         }
-        return AreaId.Desert;
+        if (l.startsWith('/mountains')) {
+            return AreaId.Mountains;
+        }
+        if (l.startsWith('/riverlands')) {
+            return AreaId.Riverlands;
+        }
+        if (l.startsWith('/forest')) {
+            return AreaId.Forest;
+        }
+        return AreaId.Home;
     }
 }

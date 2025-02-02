@@ -27,7 +27,7 @@
             currentSound.play();
             currentSound.fade(0, track.volume, track.fadeInDuration);
         });
-        game.features.soundtracks.playSound('Guitar Theme');
+        game.features.soundtracks.playSound('Home');
         game.features.settings.onIsMutedChanged.subscribe((muted: boolean) => {
             Howler.volume(muted ? 0 : 1);
         });

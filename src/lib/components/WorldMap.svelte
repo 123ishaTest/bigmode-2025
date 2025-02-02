@@ -9,6 +9,8 @@
     import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
     import { map } from '$lib/game.svelte';
     import SidePanel from '$lib/components/SidePanel.svelte';
+    import { toCapitalizedWords } from '$lib/util/format/String';
+    import UIcon from '$lib/components/UIcon.svelte';
 
     let game: IgtGame = getContext('game');
 
@@ -77,7 +79,7 @@
             // Very ugly hack
             setTimeout(() => {
                 isPanning = false;
-            }, 30);
+            }, 5);
         });
         tiledWrapper.playerCanvas?.parentElement?.addEventListener('wheel', playerPanZoom.zoomWithWheel);
 
@@ -111,6 +113,11 @@
     const endRun = () => {
         game.features.character.die();
     };
+
+    let locationName = $derived.by(() => {
+        let split = currentLocation.id.split('/');
+        return toCapitalizedWords(split[split.length - 1]);
+    });
 </script>
 
 <div class="flex min-h-[calc(100vh-96px)] flex-col space-y-4">
@@ -127,8 +134,14 @@
                         class="pixelated absolute {showPointer ? 'cursor-pointer' : 'cursor-default'}"
                     ></canvas>
                 </div>
-                <span class="absolute w-24 bg-primary-800 p-2 text-center">{currentLocation.name}</span>
-                <button onclick={endRun} class="absolute right-0 w-24 bg-red-500 p-2 text-center">End run</button>
+                <span class="absolute w-24 bg-primary-800 p-2 text-center">{locationName}</span>
+                <button
+                    onclick={endRun}
+                    class="absolute right-0 flex flex-row items-center space-x-1 bg-red-500 px-2 py-1 text-center"
+                >
+                    <UIcon icon="skull" />
+                    <span>End run</span>
+                </button>
             </div>
         {/snippet}
     </SidePanel>

@@ -19,16 +19,20 @@
     {/snippet}
     {#snippet body()}
         <label class="flex items-center space-x-2">
+            <span>Mute</span>
             <input class="checkbox" type="checkbox" onchange={toggleMute} checked={settings.isMuted} />
-            <span>Muted</span>
         </label>
         <button
             type="button"
-            class="btn preset-filled-warning-500"
+            class="btn bg-red-500"
             onclick={() => {
-                game.deleteSave();
-                location.reload();
-            }}>Hard Reset</button
-        >
+                const res = confirm('Are you sure you want to completely reset your save?');
+                if (res) {
+                    game.deleteSave();
+                    location.reload();
+                }
+            }}
+            >Hard Reset
+        </button>
     {/snippet}
 </SidePanel>

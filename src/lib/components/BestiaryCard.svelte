@@ -53,12 +53,12 @@
 
             <div class="flex flex-row justify-between">
                 <div class="flex flex-col items-center" title="Kills">
-                    <UIcon icon="swords"/>
-                    <h6 class="h6"> {killed}</h6>
+                    <UIcon icon="swords" />
+                    <h6 class="h6">{killed}</h6>
                 </div>
                 <div class="flex flex-col items-center" title="Deaths">
-                    <UIcon icon="skull"/>
-                    <h6 class="h6"> {killedBy}</h6>
+                    <UIcon icon="skull" />
+                    <h6 class="h6">{killedBy}</h6>
                 </div>
             </div>
         </div>

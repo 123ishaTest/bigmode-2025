@@ -3,4 +3,5 @@ export enum PowerType {
     Defense = 'helmet',
     Health = 'heart',
     TravelSpeed = 'boots',
+    CombatSpeed = 'clock',
 }

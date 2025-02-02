@@ -15,6 +15,8 @@ import type { RunStats } from '$lib/game/features/powers/RunStats';
 import type { Powers } from '$lib/game/features/powers/Powers.svelte';
 import { PowerType } from '$lib/game/features/powers/PowerType';
 import type { RoadObstacle } from '$lib/game/features/world/RoadObstacle';
+import type { KeyItems } from '$lib/game/features/keyitems/KeyItems.svelte';
+import type { CharacterSaveData } from '$lib/game/features/character/CharacterSaveData';
 
 export interface TravelAction {
     roadId: RoadId;
@@ -25,12 +27,15 @@ export class Character extends IgtFeature implements Fightable {
     private _bestiary!: Bestiary;
     private _worldMap!: World;
     private _powers!: Powers;
+    private _keyItems!: KeyItems;
+
+    public runCount = 0;
 
     runStats: Omit<RunStats, 'killer'> = $state({
         damageDealt: 0,
         damageTaken: 0,
         monstersDefeated: 0,
-        locationsVisited: 0,
+        locationsVisited: [],
     });
 
     roadProgress: number = $state(0);
@@ -47,6 +52,7 @@ export class Character extends IgtFeature implements Fightable {
     meleeAttack: number = $state(0);
     meleeDefense: number = $state(0);
     travelSpeed: number = $state(0);
+    combatSpeed: number = $state(0);
 
     public constructor() {
         super('character');
@@ -56,6 +62,7 @@ export class Character extends IgtFeature implements Fightable {
         this._worldMap = features.world;
         this._bestiary = features.bestiary;
         this._powers = features.powers;
+        this._keyItems = features.keyItems;
     }
 
     public startRun(): void {
@@ -63,12 +70,37 @@ export class Character extends IgtFeature implements Fightable {
             damageDealt: 0,
             damageTaken: 0,
             monstersDefeated: 0,
-            locationsVisited: 0,
+            locationsVisited: [],
         };
-        this.meleeAttack = this._powers.getMultiplier(PowerType.Attack);
-        this.meleeDefense = this._powers.getMultiplier(PowerType.Defense);
+        this.meleeAttack = 2 * this._powers.getMultiplier(PowerType.Attack);
+        if (this._keyItems.hasKeyItem('torch')) {
+            this.meleeAttack *= 2;
+        }
+        if (this._keyItems.hasKeyItem('pickaxe')) {
+            this.meleeAttack *= 3;
+        }
+        this.meleeDefense = 2 * this._powers.getMultiplier(PowerType.Defense);
+        if (this._keyItems.hasKeyItem('wooden-shield')) {
+            this.meleeDefense *= 2;
+        }
         this.maxHealth = 10 * this._powers.getMultiplier(PowerType.Health);
+        if (this._keyItems.hasKeyItem('eternal-water')) {
+            this.health *= 2;
+        }
+        if (this._keyItems.hasKeyItem('ruby-necklace')) {
+            this.health *= 2;
+        }
         this.travelSpeed = this._powers.getMultiplier(PowerType.TravelSpeed);
+        if (this._keyItems.hasKeyItem('boots-of-lightness')) {
+            this.travelSpeed *= 1.5;
+        }
+        this.combatSpeed = this._powers.getMultiplier(PowerType.CombatSpeed);
+        if (this._keyItems.hasKeyItem('silver-tiara')) {
+            this.combatSpeed *= 1.5;
+        }
+        if (this._keyItems.hasKeyItem('lantern')) {
+            this.combatSpeed *= 1.75;
+        }
         this.health = this.maxHealth;
     }
 
@@ -78,7 +110,7 @@ export class Character extends IgtFeature implements Fightable {
         this.roadObstaclesCompleted = 0;
         this.roadProgress = 0;
         this._worldMap.setCurrentLocation('/home');
-
+        this.runCount++;
         // TODO(@Isha): Do this here or wait on user input?
         this.startRun();
     }
@@ -89,7 +121,7 @@ export class Character extends IgtFeature implements Fightable {
         }
 
         if (this.currentObstacle != null) {
-            const report = this.currentObstacle.tick(delta);
+            const report = this.currentObstacle.tick(delta * this.combatSpeed);
 
             if (report != null) {
                 this.currentObstacle = null;
@@ -116,6 +148,7 @@ export class Character extends IgtFeature implements Fightable {
             this.roadObstaclesCompleted < obstacles.length &&
             this.roadProgress >= obstacles[this.roadObstaclesCompleted].distance
         ) {
+            this.roadProgress = obstacles[this.roadObstaclesCompleted].distance;
             this.startObstacle(obstacles[this.roadObstaclesCompleted]);
         }
 
@@ -180,12 +213,14 @@ export class Character extends IgtFeature implements Fightable {
         this.currentObstacle = null;
         this.roadObstaclesCompleted = 0;
         this.roadProgress = 0;
-        this.runStats.locationsVisited++;
 
         const action = this.actionQueue[0];
         const road = this._worldMap.getRoad(action.roadId);
         const destination = action.reverse ? road.from : road.to;
         this._worldMap.setCurrentLocation(destination);
+
+        this.runStats.locationsVisited.push(destination);
+
         this.removeFirstAction();
     }
 
@@ -219,12 +254,14 @@ export class Character extends IgtFeature implements Fightable {
         this.actionQueue.shift();
     }
 
-    load(): void {
-        // Empty
+    load(data: CharacterSaveData): void {
+        this.runCount = data?.runCount ?? 0;
     }
 
-    save(): SaveData {
-        return {};
+    save(): CharacterSaveData {
+        return {
+            runCount: this.runCount,
+        };
     }
 
     isOnRoad() {

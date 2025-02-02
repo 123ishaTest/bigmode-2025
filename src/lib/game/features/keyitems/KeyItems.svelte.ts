@@ -4,7 +4,6 @@ import type { KeyItem } from '$lib/game/features/keyitems/KeyItem';
 import { SimpleEventDispatcher, type ISimpleEvent } from 'strongly-typed-events';
 import type { KeyItemsSaveData } from '$lib/game/features/keyitems/KeyItemsSaveData';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
-import { keyItems } from '$lib/content/KeyItemContent';
 
 export class KeyItems extends IgtFeature {
     keyItems: KeyItem[];
@@ -38,7 +37,6 @@ export class KeyItems extends IgtFeature {
             return;
         }
         const item = this.getKeyItem(id);
-        console.log('gained keyitem', item);
         this.unlockedKeyItems.push(id);
         this._onKeyItemGain.dispatch(item);
     }

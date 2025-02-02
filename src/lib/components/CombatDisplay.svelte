@@ -70,6 +70,10 @@
                     <UIcon icon="boots" />
                     <span>{format(character.travelSpeed)}</span>
                 </div>
+                <div class="flex flex-col items-center">
+                    <UIcon icon="clock" />
+                    <span>{format(character.combatSpeed)}</span>
+                </div>
             </div>
         </div>
 
@@ -117,7 +121,6 @@
                         <UIcon icon="helmet" />
                         <span>{format(combat.enemy.meleeDefense)}</span>
                     </div>
-                    <div class="flex flex-col items-center"></div>
                 </div>
             {/if}
         </div>

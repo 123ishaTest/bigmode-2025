@@ -4,7 +4,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'ruby-necklace',
         name: 'Ruby Necklace',
-        description: 'Boosts your health by 10%',
+        description: 'Boosts your health by 100%',
         icon: '/items/ruby-necklace.png',
         unlockHint: 'Buried deep in the desert',
         unlockLocation: '/desert/remains/',
@@ -12,7 +12,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'torch',
         name: 'Torch',
-        description: 'Deal 10% more damage',
+        description: 'Improve attack by 100%',
         icon: '/items/torch.png',
         unlockHint: 'Illuminating a fallen hero',
         unlockLocation: '/desert/statue',
@@ -20,7 +20,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'wooden-shield',
         name: 'Wooden Shield',
-        description: 'Negate 25% of incoming damage',
+        description: 'Increases your defence by 100%',
         icon: '/items/wooden-shield.png',
         unlockHint: 'Surely I can find this in the woods',
         unlockLocation: '/forest/witch',
@@ -28,7 +28,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'boots-of-lightness',
         name: 'Boots of Lightness',
-        description: 'Improve Travel speed by 25%',
+        description: 'Improve Travel speed by 50%',
         icon: '/items/boots.png',
         unlockHint: 'Made from the silkiest silk',
         unlockLocation: '/forest/spider-den',
@@ -36,7 +36,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'silver-tiara',
         name: 'Silver Tiara',
-        description: 'Increases combat speed by 25%',
+        description: 'Increases combat speed by 50%',
         icon: '/items/tiara.png',
         unlockHint: 'Worn by only the prettiest spirits',
         unlockLocation: '/riverlands/docks',
@@ -44,7 +44,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'eternal-water',
         name: 'Eternal Water',
-        description: 'Increases health by 25% ',
+        description: 'Increases health by 100% ',
         icon: '/items/eternal-water.png',
         unlockHint: 'Locally sourced and organic!',
         unlockLocation: '/riverlands/fountain',
@@ -52,7 +52,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'pickaxe',
         name: 'Pickaxe',
-        description: 'Deal 20% more damage',
+        description: 'Improve attack by 200%',
         icon: '/items/pickaxe.png',
         unlockHint: 'I want this to be mine...',
         unlockLocation: '/mountains/mine',
@@ -60,7 +60,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'lantern',
         name: 'Lantern',
-        description: 'Speed up your attacks by 25%',
+        description: 'Speed up combat by 75%',
         icon: '/items/lantern.png',
         unlockHint: 'Maybe someone left one behind?',
         unlockLocation: '/mountains/outpost',

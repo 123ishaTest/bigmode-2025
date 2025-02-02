@@ -16,7 +16,7 @@
             powers.getPowers(PowerType.Health),
             powers.getPowers(PowerType.Attack),
             powers.getPowers(PowerType.Defense),
-            powers.getPowers(PowerType.TravelSpeed),
+            powers.getPowers(PowerType.TravelSpeed).concat(powers.getPowers(PowerType.CombatSpeed)),
         ]);
     });
 </script>
@@ -45,7 +45,7 @@
                                 {:else}
                                     <td class="">
                                         <div class="flex w-full flex-row justify-center">
-                                            <PowerIcon {power} />
+                                            <PowerIcon {power} size="small" />
                                         </div>
                                     </td>
                                 {/if}
