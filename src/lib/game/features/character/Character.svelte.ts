@@ -65,10 +65,10 @@ export class Character extends IgtFeature implements Fightable {
             monstersDefeated: 0,
             locationsVisited: 0,
         };
-        this.meleeAttack = 1000 * this._powers.getMultiplier(PowerType.Attack);
-        this.meleeDefense = 1000 * this._powers.getMultiplier(PowerType.Defense);
-        this.maxHealth = 10000 * this._powers.getMultiplier(PowerType.Health);
-        this.travelSpeed = 10 * this._powers.getMultiplier(PowerType.TravelSpeed);
+        this.meleeAttack = this._powers.getMultiplier(PowerType.Attack);
+        this.meleeDefense = this._powers.getMultiplier(PowerType.Defense);
+        this.maxHealth = 10 * this._powers.getMultiplier(PowerType.Health);
+        this.travelSpeed = this._powers.getMultiplier(PowerType.TravelSpeed);
         this.health = this.maxHealth;
     }
 
@@ -132,7 +132,7 @@ export class Character extends IgtFeature implements Fightable {
     }
 
     attack(): Attack {
-        const attack = new Attack('Punch', WeaponType.Melee, 2, 2, 4);
+        const attack = new Attack('Punch', WeaponType.Melee, 2);
         this.maxCooldown = attack.cooldown;
         this.cooldown = this.maxCooldown;
         return attack;
