@@ -61,7 +61,7 @@ export class IgtGame {
      */
     public update(now: number, delta: number): void {
         for (const feature of this.featureList) {
-            feature.update(delta);
+            feature.update(delta * 10);
         }
 
         this._lastUpdate = now;
@@ -131,7 +131,6 @@ export class IgtGame {
         for (const feature of this.featureList) {
             res[feature.saveKey] = feature.save();
         }
-        console.log("saving")
         LocalStorage.store(this.SAVE_KEY, res, this.saveEncoder);
     }
 

@@ -40,7 +40,6 @@
             },
             (clickBox: TiledObject) => {
                 let locationId = clickBox.properties?.find((p) => p.name === 'hrid')?.value;
-                console.log('clickBox', clickBox, locationId);
 
                 if (!locationId) {
                     console.error('Unknown clickbox', clickBox);

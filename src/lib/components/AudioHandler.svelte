@@ -17,12 +17,13 @@
         game.features.soundtracks.onPlaySoundtrack.subscribe((track: Soundtrack) => {
             oldSound?.unload();
             oldSound = currentSound;
-            oldSound?.fade(oldSound?.volume(), 0, 2000);
+            oldSound?.fade(oldSound?.volume(), 0, 1500);
             setTimeout(() => {
                 oldSound?.unload();
-            }, 2000);
+            }, 1500);
             currentSound = new Howl({
                 src: [`${base}${track.track}`],
+                loop: true,
             });
             currentSound.play();
             currentSound.fade(0, track.volume, track.fadeInDuration);

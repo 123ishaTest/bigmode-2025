@@ -27,7 +27,6 @@ export class Settings extends IgtFeature {
     }
 
     load(data: SettingsSaveData): void {
-        console.log('loading', data);
         this.isMuted = data.isMuted ?? false;
     }
 
