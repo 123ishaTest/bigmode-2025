@@ -14,7 +14,9 @@
     bind:open={openState}
     triggerBase="hidden"
     contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm md:w-1/2"
-    backdropClasses="backdrop-blur-sm"
+    backdropClasses="backdrop-blur-3xl"
+    closeOnInteractOutside={false}
+    closeOnEscape={false}
 >
     {#snippet content()}
         <article>
@@ -36,7 +38,9 @@
             </div>
         </article>
         <footer class="flex justify-end gap-4">
-            <button type="button" class="btn preset-filled" onclick={modalClose}>Start!</button>
+            <button type="button" class="btn preset-filled" onclick={modalClose}>
+                <a href="{base}">Start!</a>
+            </button>
         </footer>
     {/snippet}
 </Modal>

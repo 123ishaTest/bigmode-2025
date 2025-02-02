@@ -61,7 +61,7 @@ export class IgtGame {
      */
     public update(now: number, delta: number): void {
         for (const feature of this.featureList) {
-            feature.update(delta * 10);
+            feature.update(delta);
         }
 
         this._lastUpdate = now;
