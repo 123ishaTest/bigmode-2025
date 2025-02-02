@@ -2,6 +2,7 @@
     import type { Monster } from '$lib/game/features/bestiary/Monster';
     import { base } from '$app/paths';
     import { AreaId } from '$lib/game/features/world/AreaId';
+    import UIcon from '$lib/components/UIcon.svelte';
 
     interface Props {
         monster: Monster;
@@ -51,8 +52,14 @@
             <div class="flex-1"></div>
 
             <div class="flex flex-row justify-between">
-                <h6 class="h6">⚔️ {killed}</h6>
-                <h6 class="h6">☠️ {killedBy}</h6>
+                <div class="flex flex-col items-center" title="Kills">
+                    <UIcon icon="swords"/>
+                    <h6 class="h6"> {killed}</h6>
+                </div>
+                <div class="flex flex-col items-center" title="Deaths">
+                    <UIcon icon="skull"/>
+                    <h6 class="h6"> {killedBy}</h6>
+                </div>
             </div>
         </div>
     </article>
