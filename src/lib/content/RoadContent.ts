@@ -260,36 +260,36 @@ export const roadContent: RoadInput[] = [
         from: '/mountains/summit',
         to: '/mountains/crystals',
         obstacles: [
-            { monster: 'giant', level: 100 },
-            { monster: 'skeleton', level: 75 },
-            { monster: 'skeleton', level: 50 },
+            { monster: 'giant', level: 85 },
+            { monster: 'skeleton', level: 70 },
+            { monster: 'skeleton', level: 65 },
         ],
     },
     {
         from: '/mountains/crystals',
         to: '/mountains/spring',
         obstacles: [
-            { monster: 'skeleton', level: 40 },
-            { monster: 'wolf', level: 35 },
-            { monster: 'wolf', level: 30 },
+            { monster: 'skeleton', level: 60 },
+            { monster: 'wolf', level: 55 },
+            { monster: 'wolf', level: 50 },
         ],
     },
     {
         from: '/mountains/spring',
         to: '/mountains/outpost',
         obstacles: [
-            { monster: 'wolf', level: 30 },
-            { monster: 'rockCrab', level: 25 },
-            { monster: 'rockCrab', level: 25 },
+            { monster: 'wolf', level: 50 },
+            { monster: 'rockCrab', level: 45 },
+            { monster: 'rockCrab', level: 40 },
         ],
     },
     {
         from: '/mountains/outpost',
         to: '/mountains/cabin',
         obstacles: [
-            { monster: 'rockCrab', level: 20 },
-            { monster: 'goat', level: 10 },
-            { monster: 'goat', level: 10 },
+            { monster: 'rockCrab', level: 35 },
+            { monster: 'goat', level: 30 },
+            { monster: 'goat', level: 25 },
         ],
     },
     {

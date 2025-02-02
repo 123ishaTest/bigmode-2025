@@ -131,6 +131,7 @@ export class IgtGame {
         for (const feature of this.featureList) {
             res[feature.saveKey] = feature.save();
         }
+        console.log("saving")
         LocalStorage.store(this.SAVE_KEY, res, this.saveEncoder);
     }
 

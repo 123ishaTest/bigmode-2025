@@ -29,7 +29,7 @@ export class Character extends IgtFeature implements Fightable {
     private _keyItems!: KeyItems;
 
     public runCount = 0;
-    public gameStart = 0;
+    public gameStart = Date.now();
 
     runStats: Omit<RunStats, 'killer'> = $state({
         damageDealt: 0,

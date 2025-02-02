@@ -69,7 +69,7 @@ export const hasRequirement = (requirement: Requirement, stats: RunStats): boole
             return new Set(stats.locationsVisited).size >= requirement.amount;
         case RequirementType.RegionVisited:
             return (
-                Array.from(new Set(stats.locationsVisited)).filter((l) => getArea(l) === requirement.region).length >
+                Array.from(new Set(stats.locationsVisited)).filter((l) => getArea(l) === requirement.region).length >=
                 requirement.amount
             );
         case RequirementType.AllRegionsVisited:
