@@ -38,9 +38,9 @@
         <p>The Road Not Taken</p>
     {/snippet}
     {#snippet trail()}
-        <a href="http://github.com/123ishatest/bigmode-2025" target="_blank" title="Github">
-            <Bot />
-        </a>
+<!--        <a href="http://github.com/123ishatest/bigmode-2025" target="_blank" title="Github">-->
+<!--            <Bot />-->
+<!--        </a>-->
         <a href="http://github.com/123ishatest/bigmode-2025" target="_blank" title="Github">
             <GitHub />
         </a>
