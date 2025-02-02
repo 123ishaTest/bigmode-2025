@@ -48,7 +48,7 @@
             {#if stats.killer}
                 <h3 class="h3">
                     #{game.features.character.runCount}. You were defeated
-                    by {stats.killer?.monster.an ?? 'a'} {stats.killer?.monster.name ?? getRandomDeath()}
+                    by {stats.killer?.monster.an ? 'an' : 'a'} {stats.killer?.monster.name ?? getRandomDeath()}
                 </h3>
             {:else}
                 <h2 class="h2">#{game.features.character.runCount}. {getRandomDeath()}</h2>

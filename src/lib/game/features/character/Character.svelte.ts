@@ -74,10 +74,10 @@ export class Character extends IgtFeature implements Fightable {
         };
         this.meleeAttack = 2 * this._powers.getMultiplier(PowerType.Attack);
         if (this._keyItems.hasKeyItem('torch')) {
-            this.meleeAttack *= 2;
+            this.meleeAttack *= 1.75;
         }
-        if (this._keyItems.hasKeyItem('pickaxe')) {
-            this.meleeAttack *= 3;
+        if (this._keyItems.hasKeyItem('silver-tiara')) {
+            this.meleeAttack *= 2;
         }
         this.meleeDefense = 2 * this._powers.getMultiplier(PowerType.Defense);
         if (this._keyItems.hasKeyItem('wooden-shield')) {
@@ -95,11 +95,12 @@ export class Character extends IgtFeature implements Fightable {
             this.travelSpeed *= 1.5;
         }
         this.combatSpeed = this._powers.getMultiplier(PowerType.CombatSpeed);
-        if (this._keyItems.hasKeyItem('silver-tiara')) {
-            this.combatSpeed *= 1.5;
-        }
+
         if (this._keyItems.hasKeyItem('lantern')) {
             this.combatSpeed *= 1.75;
+        }
+        if (this._keyItems.hasKeyItem('pickaxe')) {
+            this.combatSpeed *= 1.5;
         }
         this.health = this.maxHealth;
     }

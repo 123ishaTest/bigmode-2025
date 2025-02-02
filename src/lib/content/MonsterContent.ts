@@ -31,7 +31,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/camel.png',
         tier: MonsterTier.Passive,
         area: AreaId.Desert,
-        attacks: [new Attack('Stomp', WeaponType.Melee, 3)],
+        attacks: [new Attack('Stomp', WeaponType.Melee, 2.4)],
     },
     {
         id: 'snake',
@@ -55,7 +55,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/scorpion.png',
         tier: MonsterTier.MiniBoss,
         area: AreaId.Desert,
-        attacks: [new Attack('Sting', WeaponType.Melee, 4)],
+        attacks: [new Attack('Sting', WeaponType.Melee, 2.4)],
     },
     {
         id: 'mummy',
@@ -80,7 +80,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/goat.png',
         tier: MonsterTier.Passive,
         area: AreaId.Mountains,
-        attacks: [new Attack('Horn Ram', WeaponType.Melee, 3)],
+        attacks: [new Attack('Horn Ram', WeaponType.Melee, 2.4)],
     },
     {
         id: 'rockCrab',
@@ -104,7 +104,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/skeleton.png',
         tier: MonsterTier.MiniBoss,
         area: AreaId.Mountains,
-        attacks: [new Attack('Rattling Bones', WeaponType.Melee, 4)],
+        attacks: [new Attack('Rattling Bones', WeaponType.Melee, 2.4)],
     },
     {
         id: 'giant',
@@ -129,7 +129,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/cow.png',
         tier: MonsterTier.Passive,
         area: AreaId.Riverlands,
-        attacks: [new Attack('Bull Rush', WeaponType.Melee, 3)],
+        attacks: [new Attack('Bull Rush', WeaponType.Melee, 2.4)],
     },
     {
         id: 'goblin',
@@ -145,7 +145,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/troll.png',
         tier: MonsterTier.Aggressive,
         area: AreaId.Riverlands,
-        attacks: [new Attack('Club Swing', WeaponType.Melee, 4)],
+        attacks: [new Attack('Club Swing', WeaponType.Melee, 2.4)],
     },
     {
         id: 'dragon',
@@ -180,7 +180,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/spider.png',
         tier: MonsterTier.Passive,
         area: AreaId.Forest,
-        attacks: [new Attack('Bite', WeaponType.Melee, 3)],
+        attacks: [new Attack('Bite', WeaponType.Melee, 2.4)],
     },
     {
         id: 'slime',
@@ -204,7 +204,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/witch.png',
         tier: MonsterTier.MiniBoss,
         area: AreaId.Forest,
-        attacks: [new Attack('Hex', WeaponType.Melee, 4)],
+        attacks: [new Attack('Hex', WeaponType.Melee, 2.4)],
     },
     {
         id: 'giantSpider',

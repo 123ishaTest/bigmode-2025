@@ -73,7 +73,7 @@ export const hasRequirement = (requirement: Requirement, stats: RunStats): boole
                 requirement.amount
             );
         case RequirementType.AllRegionsVisited:
-            return new Set(stats.locationsVisited.map((l) => getArea(l))).size === 4;
+            return new Set(stats.locationsVisited.map((l) => getArea(l))).size === 5;
         default:
             console.error(`Cannot handle requirement`, requirement);
             return false;

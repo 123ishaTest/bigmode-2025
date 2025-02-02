@@ -36,7 +36,7 @@
                         <tr>
                             <td>{Math.ceil(character.health).toFixed()}/{Math.ceil(character.maxHealth).toFixed()}</td>
                             <td>
-                                <Progress value={character.health} max={character.maxHealth} meterBg="bg-red-500" />
+                                <Progress value={Math.ceil(character.health)} max={Math.ceil(character.maxHealth)} meterBg="bg-red-500" />
                             </td>
                         </tr>
                         <tr>
@@ -93,8 +93,8 @@
                             >
                             <td>
                                 <Progress
-                                    value={combat.enemy.health}
-                                    max={combat.enemy.maxHealth}
+                                    value={Math.ceil(combat.enemy.health)}
+                                    max={Math.ceil(combat.enemy.maxHealth)}
                                     meterBg="bg-red-500"
                                 />
                             </td>

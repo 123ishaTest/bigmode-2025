@@ -12,7 +12,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'torch',
         name: 'Torch',
-        description: 'Improve attack by 100%',
+        description: 'Improve attack by 75%',
         icon: '/items/torch.png',
         unlockHint: 'Illuminating a fallen hero',
         unlockLocation: '/desert/statue',
@@ -36,7 +36,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'silver-tiara',
         name: 'Silver Tiara',
-        description: 'Increases combat speed by 50%',
+        description: 'Increases attack by 100%',
         icon: '/items/tiara.png',
         unlockHint: 'Worn by only the prettiest spirits',
         unlockLocation: '/riverlands/docks',
@@ -52,7 +52,7 @@ export const keyItems: KeyItem[] = [
     {
         id: 'pickaxe',
         name: 'Pickaxe',
-        description: 'Improve attack by 200%',
+        description: 'Speed up combat by 50%',
         icon: '/items/pickaxe.png',
         unlockHint: 'I want this to be mine...',
         unlockLocation: '/mountains/mine',
