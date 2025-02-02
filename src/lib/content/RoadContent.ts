@@ -35,9 +35,9 @@ export const roadContent: RoadInput[] = [
         from: '/desert/camp',
         to: '/desert/mirror',
         obstacles: [
-            { monster: 'snake', level: 15 },
-            { monster: 'snake', level: 15 },
-            { monster: 'crocodile', level: 20 },
+            { monster: 'snake', level: 10 },
+            { monster: 'snake', level: 12 },
+            { monster: 'crocodile', level: 15 },
         ],
     },
     {
@@ -45,8 +45,8 @@ export const roadContent: RoadInput[] = [
         to: '/desert/remains',
         obstacles: [
             { monster: 'snake', level: 20 },
-            { monster: 'crocodile', level: 25 },
-            { monster: 'scorpion', level: 50 },
+            { monster: 'crocodile', level: 20 },
+            { monster: 'scorpion', level: 25 },
         ],
     },
     {
@@ -80,18 +80,18 @@ export const roadContent: RoadInput[] = [
         from: '/desert/cactii',
         to: '/desert/monolith',
         obstacles: [
-            { monster: 'crocodile', level: 30 },
-            { monster: 'crocodile', level: 35 },
-            { monster: 'scorpion', level: 45 },
+            { monster: 'crocodile', level: 20 },
+            { monster: 'crocodile', level: 22 },
+            { monster: 'scorpion', level: 25 },
         ],
     },
     {
         from: '/desert/monolith',
         to: '/desert/pyramid',
         obstacles: [
-            { monster: 'scorpion', level: 50 },
-            { monster: 'scorpion', level: 75 },
-            { monster: 'mummy', level: 100 },
+            { monster: 'scorpion', level: 30 },
+            { monster: 'scorpion', level: 35 },
+            { monster: 'mummy', level: 40 },
         ],
     },
     {
@@ -116,9 +116,9 @@ export const roadContent: RoadInput[] = [
         from: '/forest/giant-tree',
         to: '/forest/spring',
         obstacles: [
-            { monster: 'spider', level: 15 },
-            { monster: 'hauntedTree', level: 20 },
-            { monster: 'hauntedTree', level: 20 },
+            { monster: 'spider', level: 10 },
+            { monster: 'hauntedTree', level: 12 },
+            { monster: 'hauntedTree', level: 15 },
         ],
     },
     {
@@ -134,18 +134,18 @@ export const roadContent: RoadInput[] = [
         from: '/forest/campfire',
         to: '/forest/crystals',
         obstacles: [
+            { monster: 'hauntedTree', level: 20 },
             { monster: 'hauntedTree', level: 25 },
-            { monster: 'hauntedTree', level: 30 },
-            { monster: 'witch', level: 35 },
+            { monster: 'witch', level: 30 },
         ],
     },
     {
         from: '/forest/spider-den',
         to: '/forest/crystals',
         obstacles: [
-            { monster: 'giantSpider', level: 100 },
-            { monster: 'spider', level: 75 },
-            { monster: 'spider', level: 50 },
+            { monster: 'giantSpider', level: 50 },
+            { monster: 'spider', level: 45 },
+            { monster: 'spider', level: 40 },
         ],
     },
     {
@@ -170,9 +170,9 @@ export const roadContent: RoadInput[] = [
         from: '/forest/spring',
         to: '/forest/witch',
         obstacles: [
-            { monster: 'slime', level: 30 },
-            { monster: 'hauntedTree', level: 40 },
-            { monster: 'witch', level: 50 },
+            { monster: 'slime', level: 15 },
+            { monster: 'hauntedTree', level: 17 },
+            { monster: 'witch', level: 20 },
         ],
     },
     {
@@ -215,27 +215,27 @@ export const roadContent: RoadInput[] = [
         from: '/riverlands/maze',
         to: '/riverlands/crossroads',
         obstacles: [
-            { monster: 'troll', level: 30 },
-            { monster: 'goblin', level: 25 },
+            { monster: 'troll', level: 22 },
             { monster: 'goblin', level: 20 },
+            { monster: 'goblin', level: 17 },
         ],
     },
     {
         from: '/riverlands/fountain',
         to: '/riverlands/maze',
         obstacles: [
-            { monster: 'dragon', level: 50 },
-            { monster: 'troll', level: 40 },
-            { monster: 'goblin', level: 30 },
+            { monster: 'dragon', level: 30 },
+            { monster: 'troll', level: 25 },
+            { monster: 'goblin', level: 25 },
         ],
     },
     {
         from: '/riverlands/castle',
         to: '/riverlands/fisherman',
         obstacles: [
-            { monster: 'goblin', level: 30 },
-            { monster: 'goblin', level: 35 },
-            { monster: 'troll', level: 40 },
+            { monster: 'goblin', level: 20 },
+            { monster: 'goblin', level: 25 },
+            { monster: 'troll', level: 30 },
         ],
     },
     {
@@ -243,8 +243,8 @@ export const roadContent: RoadInput[] = [
         to: '/riverlands/docks',
         obstacles: [
             { monster: 'troll', level: 50 },
-            { monster: 'troll', level: 75 },
-            { monster: 'riverSpirit', level: 100 },
+            { monster: 'troll', level: 55 },
+            { monster: 'riverSpirit', level: 60 },
         ],
     },
     {
@@ -332,9 +332,9 @@ export const roadContent: RoadInput[] = [
         from: '/desert/mirror',
         to: '/desert/oasis',
         obstacles: [
-            { monster: 'camel', level: 10 },
-            { monster: 'snake', level: 20 },
-            { monster: 'crocodile', level: 25 },
+            { monster: 'camel', level: 15 },
+            { monster: 'snake', level: 16 },
+            { monster: 'crocodile', level: 18 },
         ],
     },
 ];

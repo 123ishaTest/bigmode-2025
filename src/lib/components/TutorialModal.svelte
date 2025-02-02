@@ -13,7 +13,7 @@
 <Modal
     bind:open={openState}
     triggerBase="hidden"
-    contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm w-1/2"
+    contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm md:w-1/2"
     backdropClasses="backdrop-blur-sm"
 >
     {#snippet content()}

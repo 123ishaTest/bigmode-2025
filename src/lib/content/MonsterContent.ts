@@ -72,7 +72,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/bat.png',
         tier: MonsterTier.Critter,
         area: AreaId.Mountains,
-        attacks: [new Attack('Sonic', WeaponType.Melee, 2)],
+        attacks: [new Attack('Screech', WeaponType.Melee, 2)],
     },
     {
         id: 'goat',
