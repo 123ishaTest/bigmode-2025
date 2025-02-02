@@ -22,7 +22,12 @@
     let highlightIfSelected = (path: string) => {
         return page.url.pathname === `${base}/${path}` ? 'underline' : '';
     };
+    import Cover from "$lib/cover.png"
 </script>
+
+<svelte:head>
+    <meta property="og:image" content="{Cover}"/>
+</svelte:head>
 
 <TutorialModal />
 <RunEndModal />
