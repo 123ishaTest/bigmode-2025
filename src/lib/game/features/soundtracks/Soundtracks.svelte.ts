@@ -26,7 +26,7 @@ export class Soundtracks extends IgtFeature {
         features.world.onLocationChanged.subscribe((newLocation: WorldLocationId) => {
             const area = features.world.getAreaForLocation(newLocation);
             const track = this.soundtracks.find((s) => s.area === area);
-            console.log(area, track);
+
             if (track) {
                 this.playSound(track.name);
             }
