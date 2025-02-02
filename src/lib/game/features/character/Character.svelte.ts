@@ -72,29 +72,29 @@ export class Character extends IgtFeature implements Fightable {
             monstersDefeated: 0,
             locationsVisited: [],
         };
-        this.meleeAttack = 200 * this._powers.getMultiplier(PowerType.Attack);
+        this.meleeAttack = 2 * this._powers.getMultiplier(PowerType.Attack);
         if (this._keyItems.hasKeyItem('torch')) {
             this.meleeAttack *= 2;
         }
         if (this._keyItems.hasKeyItem('pickaxe')) {
             this.meleeAttack *= 3;
         }
-        this.meleeDefense = 200 * this._powers.getMultiplier(PowerType.Defense);
+        this.meleeDefense = 2 * this._powers.getMultiplier(PowerType.Defense);
         if (this._keyItems.hasKeyItem('wooden-shield')) {
             this.meleeDefense *= 2;
         }
-        this.maxHealth = 1000 * this._powers.getMultiplier(PowerType.Health);
+        this.maxHealth = 10 * this._powers.getMultiplier(PowerType.Health);
         if (this._keyItems.hasKeyItem('eternal-water')) {
             this.health *= 2;
         }
         if (this._keyItems.hasKeyItem('ruby-necklace')) {
             this.health *= 2;
         }
-        this.travelSpeed = 100 * this._powers.getMultiplier(PowerType.TravelSpeed);
+        this.travelSpeed = this._powers.getMultiplier(PowerType.TravelSpeed);
         if (this._keyItems.hasKeyItem('boots-of-lightness')) {
             this.travelSpeed *= 1.5;
         }
-        this.combatSpeed = 200 * this._powers.getMultiplier(PowerType.CombatSpeed);
+        this.combatSpeed = this._powers.getMultiplier(PowerType.CombatSpeed);
         if (this._keyItems.hasKeyItem('silver-tiara')) {
             this.combatSpeed *= 1.5;
         }
