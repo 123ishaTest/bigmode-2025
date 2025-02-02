@@ -7,6 +7,7 @@
     import { toCapitalizedWords } from '$lib/util/format/String';
     import PowerIcon from '$lib/components/PowerIcon.svelte';
     import MonsterIcon from '$lib/components/MonsterIcon.svelte';
+    import { fromArray } from '$lib/game/tools/random/Random';
 
     let openState = $state(false);
 
@@ -24,6 +25,10 @@
         stats = runStats;
         powersGained = powers;
     });
+
+    const getRandomDeath = () => {
+        return fromArray(['random hurricane']);
+    };
 </script>
 
 <Modal
@@ -34,8 +39,10 @@
 >
     {#snippet content()}
         <header class="flex flex-row items-center justify-between">
-            <h2 class="h2">You died to a {stats.killer.monster.name}</h2>
-            <MonsterIcon monster={stats.killer.monster}></MonsterIcon>
+            <h2 class="h2">You died to a {stats.killer?.monster.name ?? getRandomDeath()}</h2>
+            {#if stats.killer}
+                <MonsterIcon monster={stats.killer.monster}></MonsterIcon>
+            {/if}
         </header>
         <article>
             <h2 class="h2">Summary</h2>

@@ -6,7 +6,6 @@
     import type { IgtGame } from '$lib/game/IgtGame';
     import type { TiledObject } from '$lib/util/tiled/types/objects/TiledObject';
     import type { WorldLocationId } from '$lib/content/WorldLocationId';
-    import RoadProgressDisplay from '$lib/components/RoadProgressDisplay.svelte';
     import type { WorldPosition } from '$lib/util/tiled/types/WorldPosition';
     import { map } from '$lib/game.svelte';
     import SidePanel from '$lib/components/SidePanel.svelte';
@@ -108,12 +107,16 @@
             game.features.character.actionQueue,
         );
     });
+
+    const endRun = () => {
+        game.features.character.die();
+    };
 </script>
 
 <div class="flex min-h-[calc(100vh-96px)] flex-col space-y-4">
     <SidePanel>
         {#snippet body()}
-            <div class="flex h-full flex-row">
+            <div class="relative flex h-full flex-row">
                 <div class="relative w-full">
                     <canvas
                         bind:this={worldCanvas}
@@ -125,21 +128,8 @@
                     ></canvas>
                 </div>
                 <span class="absolute w-24 bg-primary-800 p-2 text-center">{currentLocation.name}</span>
+                <button onclick={endRun} class="absolute right-0 w-24 bg-red-500 p-2 text-center">End run</button>
             </div>
         {/snippet}
     </SidePanel>
-
-    <!--    <div class="relative flex h-64 flex-row items-center justify-between">-->
-    <!--        <SidePanel>-->
-    <!--            {#snippet body()}-->
-    <!--                <div class="flex h-full flex-row items-center">-->
-    <!--                    {#if game.features.character.actionQueue.length > 0}-->
-    <!--                        <RoadProgressDisplay />-->
-    <!--                    {:else}-->
-    <!--                        <h4 class="h4">Click on a location on the map to start travelling...</h4>-->
-    <!--                    {/if}-->
-    <!--                </div>-->
-    <!--            {/snippet}-->
-    <!--        </SidePanel>-->
-    <!--    </div>-->
 </div>

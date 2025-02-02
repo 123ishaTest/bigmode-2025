@@ -73,7 +73,7 @@ export class Combat {
         // }
         // const isCritical = booleanWithProbability(attacker.criticalChance);
         const attackType = attack.weaponType;
-        const attackStat = attacker.getAttackValue(attackType) + intBetween(attack.minAttack, attack.maxAttack);
+        const attackStat = attacker.getAttackValue(attackType);
         const defenseStat = defender.getDefenseValue(attackType);
 
         const baseDamage = (attackStat * 100) / (100 + defenseStat);

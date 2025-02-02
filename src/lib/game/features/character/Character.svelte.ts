@@ -65,10 +65,10 @@ export class Character extends IgtFeature implements Fightable {
             monstersDefeated: 0,
             locationsVisited: 0,
         };
-        this.meleeAttack = this._powers.getMultiplier(PowerType.Attack);
-        this.meleeDefense = this._powers.getMultiplier(PowerType.Defense);
-        this.maxHealth = 10 * this._powers.getMultiplier(PowerType.Health);
-        this.travelSpeed = this._powers.getMultiplier(PowerType.TravelSpeed);
+        this.meleeAttack = 1000 * this._powers.getMultiplier(PowerType.Attack);
+        this.meleeDefense = 1000 * this._powers.getMultiplier(PowerType.Defense);
+        this.maxHealth = 10000 * this._powers.getMultiplier(PowerType.Health);
+        this.travelSpeed = 10 * this._powers.getMultiplier(PowerType.TravelSpeed);
         this.health = this.maxHealth;
     }
 
@@ -111,12 +111,12 @@ export class Character extends IgtFeature implements Fightable {
 
         const roadId = this.actionQueue[0].roadId;
         const road = this._worldMap.getRoad(roadId);
-
+        const obstacles = this.actionQueue[0].reverse ? road.obstacles.toReversed() : road.obstacles;
         if (
-            this.roadObstaclesCompleted < road.obstacles.length &&
-            this.roadProgress >= road.obstacles[this.roadObstaclesCompleted].distance
+            this.roadObstaclesCompleted < obstacles.length &&
+            this.roadProgress >= obstacles[this.roadObstaclesCompleted].distance
         ) {
-            this.startObstacle(road.obstacles[this.roadObstaclesCompleted]);
+            this.startObstacle(obstacles[this.roadObstaclesCompleted]);
         }
 
         if (this.roadProgress >= road.duration) {
@@ -154,7 +154,7 @@ export class Character extends IgtFeature implements Fightable {
         return this.meleeDefense;
     }
 
-    die(killer: Enemy): void {
+    die(killer: Enemy | undefined = undefined): void {
         this._onDeath.dispatch({
             ...this.runStats,
             killer: killer,

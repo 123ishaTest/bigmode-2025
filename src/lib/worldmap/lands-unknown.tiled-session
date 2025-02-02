@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/bigmode.json",
+    "activeFile": "tilesets/scenery.json",
     "expandedProjectPaths": [
-        ".",
         "maps/tutorial",
+        "tilesets",
         "maps",
-        "tilesets"
+        "."
     ],
     "fileStates": {
         "maps/bigmode.json": {
@@ -16,10 +16,10 @@
                 4
             ],
             "scale": 3,
-            "selectedLayer": 5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 659.5,
-                "y": 328.33333333333337
+                "x": 541.8333333333333,
+                "y": 647.3333333333333
             }
         },
         "maps/bigmode.tmj": {
@@ -105,7 +105,6 @@
     "map.tileWidth": 16,
     "map.width": 100,
     "openFiles": [
-        "maps/bigmode.json",
         "tilesets/scenery.json",
         "tilesets/house.json",
         "tilesets/rogue.json"

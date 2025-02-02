@@ -43,7 +43,9 @@ export class Bestiary extends IgtFeature {
             this.incrementKill(enemy.monster.id);
         });
         features.character.onDeath.subscribe((stats) => {
-            this.incrementDeath(stats.killer.monster.id);
+            if (stats.killer) {
+                this.incrementDeath(stats.killer.monster.id);
+            }
         });
     }
 

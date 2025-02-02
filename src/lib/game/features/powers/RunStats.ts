@@ -6,5 +6,5 @@ export interface RunStats {
     monstersDefeated: number;
     locationsVisited: number;
 
-    killer: Enemy;
+    killer?: Enemy;
 }
