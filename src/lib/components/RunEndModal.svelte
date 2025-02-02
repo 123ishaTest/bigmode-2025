@@ -78,7 +78,7 @@
             </table>
 
             <h2 class="h2">Powers Gained</h2>
-            <div class="flex flex-row flex-wrap space-x-2">
+            <div class="flex flex-row flex-wrap gap-2">
                 {#each powersGained as power}
                     <PowerIcon {power} size="small" showLevel={false} />
                 {/each}

@@ -8,11 +8,11 @@ import { AreaId } from '$lib/game/features/world/AreaId';
 
 const tierStats: Record<MonsterTier, Stats> = {
     [MonsterTier.Critter]: { health: 5, meleeAttack: 1, meleeDefense: 1 },
-    [MonsterTier.Passive]: { health: 10, meleeAttack: 2, meleeDefense: 2 },
-    [MonsterTier.Neutral]: { health: 15, meleeAttack: 3, meleeDefense: 3 },
-    [MonsterTier.Aggressive]: { health: 20, meleeAttack: 4, meleeDefense: 4 },
-    [MonsterTier.MiniBoss]: { health: 25, meleeAttack: 5, meleeDefense: 5 },
-    [MonsterTier.Boss]: { health: 30, meleeAttack: 6, meleeDefense: 6 },
+    [MonsterTier.Passive]: { health: 7, meleeAttack: 1.5, meleeDefense: 1.5 },
+    [MonsterTier.Neutral]: { health: 10, meleeAttack: 2, meleeDefense: 2 },
+    [MonsterTier.Aggressive]: { health: 15, meleeAttack: 2.5, meleeDefense: 2.5 },
+    [MonsterTier.MiniBoss]: { health: 20, meleeAttack: 3, meleeDefense: 3 },
+    [MonsterTier.Boss]: { health: 25, meleeAttack: 4, meleeDefense: 4 },
 };
 
 export const monsters: Monster[] = [
@@ -39,7 +39,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/snake.png',
         tier: MonsterTier.Neutral,
         area: AreaId.Desert,
-        attacks: [new Attack('Snare', WeaponType.Melee, 1.0)],
+        attacks: [new Attack('Snare', WeaponType.Melee, 1.6)],
     },
     {
         id: 'crocodile',
@@ -88,7 +88,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/rock-crab.png',
         tier: MonsterTier.Neutral,
         area: AreaId.Mountains,
-        attacks: [new Attack('Pinch', WeaponType.Melee, 1.0)],
+        attacks: [new Attack('Pinch', WeaponType.Melee, 2)],
     },
     {
         id: 'wolf',
@@ -137,7 +137,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/goblin.png',
         tier: MonsterTier.Neutral,
         area: AreaId.Riverlands,
-        attacks: [new Attack('Quick Attack', WeaponType.Melee, 1.0)],
+        attacks: [new Attack('Quick Attack', WeaponType.Melee, 1.6)],
     },
     {
         id: 'troll',
@@ -187,7 +187,7 @@ export const monsters: Monster[] = [
         icon: '/monsters/slime.png',
         tier: MonsterTier.Neutral,
         area: AreaId.Forest,
-        attacks: [new Attack('Splish Splash', WeaponType.Melee, 1.0)],
+        attacks: [new Attack('Splish Splash', WeaponType.Melee, 1.6)],
     },
     {
         id: 'hauntedTree',

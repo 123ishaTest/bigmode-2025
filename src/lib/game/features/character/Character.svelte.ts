@@ -1,6 +1,5 @@
 import { IgtFeature } from '$lib/game/IgtFeature';
 import type { IgtFeatures } from '$lib/game/IgtFeatures';
-import type { SaveData } from '$lib/game/tools/saving/SaveData';
 import { type ISimpleEvent, SimpleEventDispatcher } from 'strongly-typed-events';
 import type { WorldLocationId } from '$lib/content/WorldLocationId';
 import type { RoadId } from '$lib/content/RoadId';
@@ -30,6 +29,7 @@ export class Character extends IgtFeature implements Fightable {
     private _keyItems!: KeyItems;
 
     public runCount = 0;
+    public gameStart = 0;
 
     runStats: Omit<RunStats, 'killer'> = $state({
         damageDealt: 0,
@@ -72,29 +72,29 @@ export class Character extends IgtFeature implements Fightable {
             monstersDefeated: 0,
             locationsVisited: [],
         };
-        this.meleeAttack = 2 * this._powers.getMultiplier(PowerType.Attack);
+        this.meleeAttack = 200 * this._powers.getMultiplier(PowerType.Attack);
         if (this._keyItems.hasKeyItem('torch')) {
             this.meleeAttack *= 2;
         }
         if (this._keyItems.hasKeyItem('pickaxe')) {
             this.meleeAttack *= 3;
         }
-        this.meleeDefense = 2 * this._powers.getMultiplier(PowerType.Defense);
+        this.meleeDefense = 200 * this._powers.getMultiplier(PowerType.Defense);
         if (this._keyItems.hasKeyItem('wooden-shield')) {
             this.meleeDefense *= 2;
         }
-        this.maxHealth = 10 * this._powers.getMultiplier(PowerType.Health);
+        this.maxHealth = 1000 * this._powers.getMultiplier(PowerType.Health);
         if (this._keyItems.hasKeyItem('eternal-water')) {
             this.health *= 2;
         }
         if (this._keyItems.hasKeyItem('ruby-necklace')) {
             this.health *= 2;
         }
-        this.travelSpeed = this._powers.getMultiplier(PowerType.TravelSpeed);
+        this.travelSpeed = 100 * this._powers.getMultiplier(PowerType.TravelSpeed);
         if (this._keyItems.hasKeyItem('boots-of-lightness')) {
             this.travelSpeed *= 1.5;
         }
-        this.combatSpeed = this._powers.getMultiplier(PowerType.CombatSpeed);
+        this.combatSpeed = 200 * this._powers.getMultiplier(PowerType.CombatSpeed);
         if (this._keyItems.hasKeyItem('silver-tiara')) {
             this.combatSpeed *= 1.5;
         }
@@ -143,7 +143,21 @@ export class Character extends IgtFeature implements Fightable {
 
         const roadId = this.actionQueue[0].roadId;
         const road = this._worldMap.getRoad(roadId);
-        const obstacles = this.actionQueue[0].reverse ? road.obstacles.toReversed() : road.obstacles;
+
+        // What even is logic anymore?
+        const reverse = this.actionQueue[0].reverse;
+
+        let obstacles = road.obstacles.map((o) => {
+            return {
+                obstacle: o.obstacle,
+                distance: reverse ? road.duration - o.distance - 1 : o.distance,
+            };
+        });
+
+        if (reverse) {
+            obstacles = obstacles.toReversed();
+        }
+
         if (
             this.roadObstaclesCompleted < obstacles.length &&
             this.roadProgress >= obstacles[this.roadObstaclesCompleted].distance
@@ -165,7 +179,7 @@ export class Character extends IgtFeature implements Fightable {
     }
 
     attack(): Attack {
-        const attack = new Attack('Punch', WeaponType.Melee, 2);
+        const attack = new Attack('Punch', WeaponType.Melee, 2.5);
         this.maxCooldown = attack.cooldown;
         this.cooldown = this.maxCooldown;
         return attack;
@@ -208,8 +222,6 @@ export class Character extends IgtFeature implements Fightable {
     }
 
     completeAction(): void {
-        // TODO(@Isha): Reward
-
         this.currentObstacle = null;
         this.roadObstaclesCompleted = 0;
         this.roadProgress = 0;
@@ -256,11 +268,13 @@ export class Character extends IgtFeature implements Fightable {
 
     load(data: CharacterSaveData): void {
         this.runCount = data?.runCount ?? 0;
+        this.gameStart = data?.gameStart ?? Date.now();
     }
 
     save(): CharacterSaveData {
         return {
             runCount: this.runCount,
+            gameStart: this.gameStart,
         };
     }
 

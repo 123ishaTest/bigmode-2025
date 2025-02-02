@@ -1,5 +1,5 @@
 export type PowerId =
-    | 'deal-5-damage'
+    | 'deal-8-damage'
     | 'deal-25-damage'
     | 'deal-50-damage'
     | 'deal-100-damage'

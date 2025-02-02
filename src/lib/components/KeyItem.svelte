@@ -1,7 +1,7 @@
 <script lang="ts">
     import { base } from '$app/paths';
     import type { IgtGame } from '$lib/game/IgtGame';
-    import { getContext, onMount } from 'svelte';
+    import { getContext } from 'svelte';
 
     interface Props {
         keyItem: KeyItem;
@@ -31,20 +31,6 @@
     import type { KeyItems } from '$lib/game/features/keyitems/KeyItems.svelte.js';
 
     let openState = $state(false);
-
-    import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
-
-    export const toast: ToastContext = getContext('toast');
-
-    onMount(() => {
-        keyItems.onKeyItemGain.subscribe((item) => {
-            toast.create({
-                title: `${item.name} unlocked!`,
-                description: `${item.description}`,
-                type: 'success',
-            });
-        });
-    });
 </script>
 
 <Tooltip

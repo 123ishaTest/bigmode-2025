@@ -6,7 +6,7 @@ import { AreaId } from '$lib/game/features/world/AreaId';
 export const powers: Power[] = [
     {
         id: 'visit-5-riverlands',
-        name: 'Visit 5 Locations in the Riverlands',
+        name: 'Visit 5 different Locations in the Riverlands',
         requirement: { type: RequirementType.RegionVisited, amount: 5, region: AreaId.Riverlands },
         icon: '/powers/riverlands.png',
         type: PowerType.TravelSpeed,
@@ -16,7 +16,7 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-5-mountains',
-        name: 'Visit 5 Locations in the Mountains',
+        name: 'Visit 5 different Locations in the Mountains',
         requirement: { type: RequirementType.RegionVisited, amount: 5, region: AreaId.Mountains },
         icon: '/powers/mountains.png',
         type: PowerType.Attack,
@@ -26,7 +26,7 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-5-forest',
-        name: 'Visit 5 Locations in the Forest',
+        name: 'Visit 5 different Locations in the Forest',
         requirement: { type: RequirementType.RegionVisited, amount: 5, region: AreaId.Forest },
         icon: '/powers/forest.png',
         type: PowerType.Defense,
@@ -36,7 +36,7 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-5-desert',
-        name: 'Visit 5 Locations in the Desert',
+        name: 'Visit 5 different Locations in the Desert',
         requirement: { type: RequirementType.RegionVisited, amount: 5, region: AreaId.Desert },
         icon: '/powers/desert.png',
         type: PowerType.Health,
@@ -45,9 +45,9 @@ export const powers: Power[] = [
         maxCount: Infinity,
     },
     {
-        id: 'deal-5-damage',
-        name: 'Deal 5 damage',
-        requirement: { type: RequirementType.DamageDealt, amount: 5 },
+        id: 'deal-8-damage',
+        name: 'Deal 8 damage',
+        requirement: { type: RequirementType.DamageDealt, amount: 8 },
         icon: 'powers/weapon-small.png',
         type: PowerType.Attack,
         baseBonus: 0.05,
@@ -65,23 +65,13 @@ export const powers: Power[] = [
         maxCount: Infinity,
     },
     {
-        id: 'deal-50-damage',
-        name: 'Deal 50 damage',
-        requirement: { type: RequirementType.DamageDealt, amount: 50 },
-        icon: 'powers/weapon-halberd.png',
-        type: PowerType.Attack,
-        baseBonus: 0.25,
-        incrementBonus: 0.25,
-        maxCount: Infinity,
-    },
-    {
         id: 'deal-100-damage',
         name: 'Deal 100 damage',
         requirement: { type: RequirementType.DamageDealt, amount: 100 },
         icon: 'powers/weapon-halberd.png',
         type: PowerType.Attack,
-        baseBonus: 0.5,
-        incrementBonus: 0.5,
+        baseBonus: 0.25,
+        incrementBonus: 0.25,
         maxCount: Infinity,
     },
     {
@@ -90,8 +80,8 @@ export const powers: Power[] = [
         requirement: { type: RequirementType.DamageDealt, amount: 250 },
         icon: 'powers/weapon-halberd.png',
         type: PowerType.Attack,
-        baseBonus: 1,
-        incrementBonus: 1,
+        baseBonus: 0.5,
+        incrementBonus: 0.5,
         maxCount: Infinity,
     },
     {
@@ -100,8 +90,8 @@ export const powers: Power[] = [
         requirement: { type: RequirementType.DamageDealt, amount: 500 },
         icon: 'powers/weapon-halberd.png',
         type: PowerType.Attack,
-        baseBonus: 2,
-        incrementBonus: 2,
+        baseBonus: 1,
+        incrementBonus: 1,
         maxCount: Infinity,
     },
     {
@@ -110,8 +100,8 @@ export const powers: Power[] = [
         requirement: { type: RequirementType.DamageDealt, amount: 1000 },
         icon: 'powers/weapon-halberd.png',
         type: PowerType.Attack,
-        baseBonus: 3,
-        incrementBonus: 3,
+        baseBonus: 2,
+        incrementBonus: 2,
         maxCount: Infinity,
     },
     {
@@ -236,7 +226,7 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-3-locations',
-        name: 'Visit 3 Locations',
+        name: 'Visit 3 different Locations',
         requirement: { type: RequirementType.LocationsVisited, amount: 3 },
         icon: '/powers/empty.png',
         type: PowerType.TravelSpeed,
@@ -246,7 +236,7 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-7-locations',
-        name: 'Visit 7 Locations',
+        name: 'Visit 7 different Locations',
         requirement: { type: RequirementType.LocationsVisited, amount: 7 },
         icon: '/powers/empty.png',
         type: PowerType.TravelSpeed,
@@ -256,7 +246,7 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-15-locations',
-        name: 'Visit 15 Locations',
+        name: 'Visit 15 different Locations',
         requirement: { type: RequirementType.LocationsVisited, amount: 15 },
         icon: '/powers/empty.png',
         type: PowerType.TravelSpeed,
@@ -266,22 +256,12 @@ export const powers: Power[] = [
     },
     {
         id: 'visit-25-locations',
-        name: 'Visit 25 Locations',
+        name: 'Visit 25 different Locations',
         requirement: { type: RequirementType.LocationsVisited, amount: 25 },
         icon: '/powers/empty.png',
         type: PowerType.TravelSpeed,
         baseBonus: 1,
         incrementBonus: 1,
-        maxCount: Infinity,
-    },
-    {
-        id: 'visit-50-locations',
-        name: 'Visit 50 Locations',
-        requirement: { type: RequirementType.LocationsVisited, amount: 50 },
-        icon: '/powers/empty.png',
-        type: PowerType.TravelSpeed,
-        baseBonus: 2,
-        incrementBonus: 2,
         maxCount: Infinity,
     },
     {

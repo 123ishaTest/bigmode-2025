@@ -80,7 +80,7 @@ export class WorldBuilder {
                 const enemies = roadContent.find((r) => r.from === from && r.to === to)?.obstacles ?? [];
 
                 const obstacles: RoadObstacle[] = enemies.map((e, index) => {
-                    const percentage = [0.25, 0.5, 0.75][index];
+                    const percentage = enemies.length === 1 ? 0.5 : [0.25, 0.5, 0.75][index];
                     return {
                         distance: Math.ceil(percentage * points.length),
                         obstacle: e,

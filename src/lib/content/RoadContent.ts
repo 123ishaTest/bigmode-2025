@@ -11,10 +11,7 @@ export const roadContent: RoadInput[] = [
     {
         from: '/home',
         to: '/home/cabin',
-        obstacles: [
-            { monster: 'chicken', level: 1 },
-            { monster: 'chicken', level: 1 },
-        ],
+        obstacles: [{ monster: 'chicken', level: 1 }],
     },
     {
         from: '/home/cabin',

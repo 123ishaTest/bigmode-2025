@@ -7,7 +7,7 @@ export const keyItems: KeyItem[] = [
         description: 'Boosts your health by 100%',
         icon: '/items/ruby-necklace.png',
         unlockHint: 'Buried deep in the desert',
-        unlockLocation: '/desert/remains/',
+        unlockLocation: '/desert/remains',
     },
     {
         id: 'torch',

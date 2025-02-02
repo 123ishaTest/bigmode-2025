@@ -34,7 +34,7 @@
                 <table class="table table-fixed">
                     <tbody>
                         <tr>
-                            <td>{character.health.toFixed()}/{character.maxHealth.toFixed()}</td>
+                            <td>{Math.ceil(character.health).toFixed()}/{Math.ceil(character.maxHealth).toFixed()}</td>
                             <td>
                                 <Progress value={character.health} max={character.maxHealth} meterBg="bg-red-500" />
                             </td>
@@ -86,7 +86,11 @@
                 <table class="table table-fixed">
                     <tbody>
                         <tr>
-                            <td>{combat.enemy.health.toFixed()}/{combat.enemy.maxHealth.toFixed()}</td>
+                            <td
+                                >{Math.ceil(combat.enemy.health).toFixed()}/{Math.ceil(
+                                    combat.enemy.maxHealth,
+                                ).toFixed()}</td
+                            >
                             <td>
                                 <Progress
                                     value={combat.enemy.health}

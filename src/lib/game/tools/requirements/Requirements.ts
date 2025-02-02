@@ -66,9 +66,12 @@ export const hasRequirement = (requirement: Requirement, stats: RunStats): boole
         case RequirementType.MonstersDefeated:
             return stats.monstersDefeated >= requirement.amount;
         case RequirementType.LocationsVisited:
-            return stats.locationsVisited.length >= requirement.amount;
+            return new Set(stats.locationsVisited).size >= requirement.amount;
         case RequirementType.RegionVisited:
-            return stats.locationsVisited.filter((l) => getArea(l) === requirement.region).length > requirement.amount;
+            return (
+                Array.from(new Set(stats.locationsVisited)).filter((l) => getArea(l) === requirement.region).length >
+                requirement.amount
+            );
         case RequirementType.AllRegionsVisited:
             return new Set(stats.locationsVisited.map((l) => getArea(l))).size === 4;
         default:

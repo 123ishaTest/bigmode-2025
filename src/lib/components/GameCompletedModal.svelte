@@ -20,6 +20,12 @@
     });
 
     let runCount = $derived(game.features.character.runCount);
+
+    let minutes = $derived.by(() => {
+        const now = Date.now();
+        const duration = now - game.features.character.gameStart;
+        return Math.floor(duration / 1000 / 60);
+    });
 </script>
 
 <Modal
@@ -34,6 +40,8 @@
                 <h6 class="h6">
                     You have reached the summit in <span class="font-bold">{runCount}</span> runs and completed the game!
                 </h6>
+
+                <p class="text-xs italic">And it only took you {minutes} minutes</p>
 
                 <div class="flex w-full flex-row justify-center">
                     <img class="pixelated h-24 w-24" src="{base}/images/character.png" alt="You" />

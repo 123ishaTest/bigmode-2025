@@ -45,6 +45,7 @@ export class KeyItems extends IgtFeature {
         features.world.onLocationChanged.subscribe((location) => {
             // Gain the keyitem that unlocks at this location
             const keyItem = this.keyItems.find((k) => k.unlockLocation === location);
+            console.log(location, keyItem);
             if (keyItem) {
                 this.gainKeyItem(keyItem.id);
             }
