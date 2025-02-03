@@ -12,6 +12,6 @@
     </p>
     <br>
     <p>
-        Please <a class="underline" href="/{base}">play the game here</a>
+        Please <a class="underline" href="{base}/">play the game here</a>
     </p>
 </div>
