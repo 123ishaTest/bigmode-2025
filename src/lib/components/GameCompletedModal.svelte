@@ -55,7 +55,7 @@
 
                 <h6 class="h6">
                     Make sure to <a
-                        href="https://123ishatest.itch.io/the-road-not-taken"
+                        href="https://itch.io/jam/bigmode-game-jam-2025/rate/3294478"
                         target="_blank"
                         class="underline">give us a rating</a
                     > if you enjoyed the game.

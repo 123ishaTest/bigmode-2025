@@ -30,10 +30,10 @@
             <table class="w-full">
                 <thead>
                     <tr>
-                        <td><div class="flex flex-row justify-center"><UIcon icon="heart" /></div></td>
-                        <td><div class="flex flex-row justify-center"><UIcon icon="swords" /></div></td>
-                        <td><div class="flex flex-row justify-center"><UIcon icon="helmet" /></div></td>
-                        <td class="pb-4"><div class="flex flex-row justify-center"><UIcon icon="boots" /></div></td>
+                        <td class="pb-6"><div class="flex flex-row justify-center"><UIcon icon="heart" /></div></td>
+                        <td class="pb-6"><div class="flex flex-row justify-center"><UIcon icon="swords" /></div></td>
+                        <td class="pb-6"><div class="flex flex-row justify-center"><UIcon icon="helmet" /></div></td>
+                        <td class="pb-6"><div class="flex flex-row justify-center"><UIcon icon="boots" /></div></td>
                     </tr>
                 </thead>
                 <tbody>

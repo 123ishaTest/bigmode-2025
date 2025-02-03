@@ -1,6 +1,6 @@
 <div class="flex flex-col">
     <p class="text-xs italic">
-        Made for the <a class="underline" href="bigmode Game Jam 2025 - itch.io" target="_blank"
+        Made for the <a class="underline" href="https://itch.io/jam/bigmode-game-jam-2025/rate/3294478" target="_blank"
             >Bigmode 2025 Game jam</a
         >.
     </p>
