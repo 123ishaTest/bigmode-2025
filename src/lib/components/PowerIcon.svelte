@@ -43,7 +43,7 @@
     openDelay={200}
 >
     {#snippet trigger()}
-        <div class="relative flex flex-col border-2" title={power.name}>
+        <div class="relative flex flex-col" title={power.name}>
             <img class="pixelated {sizeClass} {level === 0 ? 'grayscale' : ''}" src="{base}/images/{path}" alt={path} />
             {#if isGranted && showLevel}
                 <span class="absolute bottom-0 right-0.5 p-0.5">{level}</span>

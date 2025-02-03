@@ -41,7 +41,7 @@
     openDelay={200}
 >
     {#snippet trigger()}
-        <div class="relative flex flex-col border-2" title={keyItem.name}>
+        <div class="relative flex flex-col" title={keyItem.name}>
             <img class="pixelated {sizeClass} {!hasKeyItem ? 'grayscale' : ''}" src="{base}/images/{path}" alt={path} />
         </div>
     {/snippet}
